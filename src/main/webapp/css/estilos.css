@@ -1,0 +1,32 @@
+header, nav, footer {
+	background-color: lightcyan;
+}
+
+header, footer {	
+	width: 100%;
+	height: 3em;
+}
+
+nav {
+	float: left;
+	content: "";
+	clear:both;
+}
+
+main {
+	background-color: lightblue;
+	float: right;
+}
+
+#logo {
+	float: left;
+}
+
+#login {
+	float: right;
+}
+
+ul {
+	list-style-type: none;
+}
+
