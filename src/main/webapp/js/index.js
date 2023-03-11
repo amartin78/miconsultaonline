@@ -33,10 +33,12 @@ function opcion(o) {
 
 function perfil() {
 
+    limpiarContenidoPrincipal();
 }
 
 function diagnostico() {
-    
+
+    limpiarContenidoPrincipal();
     let contenidoPrincipal = document.getElementById("contenido-principal").innerHTML;
     let datosDiagnostico = [["Dolor muscular", "04/09/2021"], 
                             ["Grano en la cara", "24/11/2021"]];
@@ -53,17 +55,29 @@ function diagnostico() {
 }
 
 function analitica() {
-    
+
+    limpiarContenidoPrincipal();
 }
 
 function medicacion() {
-    
+
+    limpiarContenidoPrincipal();
 }
 
 function receta() {
-    
+
+    limpiarContenidoPrincipal();
 }
 
 function cita() {
-    
+
+    limpiarContenidoPrincipal();
+}
+
+function limpiarContenidoPrincipal() {
+
+    let contenidoPrincipal = document.getElementById("contenido-principal").innerHTML;
+    if(contenidoPrincipal.indexOf("table") > 0) {
+        document.getElementById("contenido-principal").getElementsByTagName("table")[0].remove();
+    }
 }
