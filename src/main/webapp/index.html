@@ -4,30 +4,40 @@
 		<meta charset="UTF-8">
 		<title>Prueba despliegue Heroku</title>
 		<link href="css/estilos.css" rel="stylesheet">
-		
 	</head>
 	<body>
-		<header>		
-			<div id="logo">Logo</div>
-			<div id="login">Bienvenido usuario</div>
-		</header>
-		<nav>
-			<ul id="menu">
-				<a href="#perfil"><li>Perfil</li></a>
-				<a href="#diagnostico"><li>Diagnóstico</li></a>
-				<a href="#analitica"><li>Analítica</li></a>
-				<a href="#medicacion"><li>Medicación</li></a>
-				<a href="#citas"><li>Citas</li></a>
-			</ul>
-		</nav>
-		<main>
-			<div>
-				<a href="#diagnostico">Contenido</a>
-			</div>
-		</main>
-		<footer>		
-			<div id="copyright">amartin</div>
-			<div id="privacidad">Privacidad</div>
-		</footer>
+        <div id="contenedor">
+            <header>		
+                <div id="logo">Mi Consulta Online</div>
+                <div id="login">Login</div>
+            </header>
+            <nav>
+                <ul id="menu">
+                    <li onclick="opcion(this)">Perfil</li>
+                    <li onclick="opcion(this)">Diagnóstico</li>
+                    <li onclick="opcion(this)">Analítica</li>
+                    <li onclick="opcion(this)">Medicación</li>
+                    <li onclick="opcion(this)">Recetas</li>
+                    <hr>
+                    <li onclick="opcion(this)">Citas</li>
+                </ul>
+            </nav>
+            <main>
+                <div id="contenido-principal">Perfil</div>
+            </main>
+            <footer>		
+                <div id="copyright">© 2023 Mi Consulta Online</div>
+                <div id="privacidad">Privacidad</div>
+            </footer>
+        </div>
+        <script>
+            window.onload = function () {
+
+            };
+
+            function opcion(o) {
+                document.getElementById("contenido-principal").innerHTML = o.innerText;
+            }
+        </script>
 	</body>
 </html>

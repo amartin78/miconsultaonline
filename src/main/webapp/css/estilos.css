@@ -1,32 +1,57 @@
-header, nav, footer {
-	background-color: lightcyan;
+#contenedor {
+    width: 100vw;
+    height: 100vh;
+    display: grid;
+    grid-template-columns: 20% 80%;
+    grid-template-rows: 14% 72% 14%;
 }
 
-header, footer {	
-	width: 100%;
-	height: 3em;
+header, footer {
+    display: grid;
+    grid-column: 1 / span 2;
+    grid-template-columns: 40% 60%;
+    justify-content: space-between;
+    align-content: center;
 }
 
-nav {
-	float: left;
-	content: "";
-	clear:both;
+header, footer, nav {
+    background-color: aliceblue;
 }
 
-main {
-	background-color: lightblue;
-	float: right;
+header, footer, nav, main {
+    font-size: 2em;
 }
 
-#logo {
-	float: left;
+hr {
+    border: 0.5px solid #333;
+    width: 80%;
 }
 
-#login {
-	float: right;
+#logo, #copyright {
+    align-self: center;
+}
+
+#login, #privacidad {
+    justify-self: end;
+}
+
+#contenido-principal {
+    text-align: center;
 }
 
 ul {
-	list-style-type: none;
+    list-style-type: none;
 }
+
+ul li {
+    margin: 16px;
+    cursor: pointer;
+}
+
+ul li:hover {
+    color:palevioletred;
+}
+
+
+
 
