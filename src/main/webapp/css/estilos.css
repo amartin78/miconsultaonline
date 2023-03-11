@@ -1,3 +1,9 @@
+body {
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+}
+
 #contenedor {
     width: 100vw;
     height: 100vh;
@@ -12,14 +18,24 @@ header, footer {
     grid-template-columns: 40% 60%;
     justify-content: space-between;
     align-content: center;
+    padding: 0 1em;
 }
 
 header, footer, nav {
     background-color: aliceblue;
 }
 
-header, footer, nav, main {
+header {
+    font-size: 1.9em;
+}
+
+nav, footer {
+    font-size: 1.7em;
+}
+
+main h1 {
     font-size: 2em;
+    font-weight: lighter;
 }
 
 hr {
@@ -39,8 +55,18 @@ hr {
     text-align: center;
 }
 
+table {
+    margin: 0 auto;
+    font-size: 1.2em;
+}
+
+table th, td {
+    padding: 0.3em 1.6em;
+}
+
 ul {
     list-style-type: none;
+    padding-left: 1em;
 }
 
 ul li {
