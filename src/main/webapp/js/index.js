@@ -32,7 +32,6 @@ function opcion(o) {
 }
 
 function perfil() {
-    alert("Perfil");
 
 }
 
@@ -54,17 +53,17 @@ function diagnostico() {
 }
 
 function analitica() {
-    alert("Analítica");
+    
 }
 
 function medicacion() {
-    alert("Medicacion");
+    
 }
 
 function receta() {
-    alert("Receta");
+    
 }
 
 function cita() {
-    alert("Cita");
+    
 }
