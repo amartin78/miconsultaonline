@@ -81,3 +81,4 @@ function limpiarContenidoPrincipal() {
         document.getElementById("contenido-principal").getElementsByTagName("table")[0].remove();
     }
 }
+
