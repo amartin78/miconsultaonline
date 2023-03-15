@@ -9,7 +9,7 @@ body {
     height: 100vh;
     display: grid;
     grid-template-columns: 20% 80%;
-    grid-template-rows: 14% 72% 14%;
+    grid-template-rows: 14% 74% 12%;
 }
 
 header, footer {
@@ -76,6 +76,10 @@ ul li {
 
 ul li:hover {
     color:palevioletred;
+}
+
+#login {
+    cursor: pointer;
 }
 
 

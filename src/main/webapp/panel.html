@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>Panel principal</title>
+		<link href="css/panel.css" rel="stylesheet">
+	</head>
+	<body>
+        <div id="contenedor">
+            <header>		
+                <div id="logo">Mi Consulta Online</div>
+                <div id="login">Login</div>
+            </header>
+            <nav>
+                <ul id="menu">
+                    <li onclick="opcion(this)">Perfil</li>
+                    <li onclick="opcion(this)">Diagnóstico</li>
+                    <li onclick="opcion(this)">Analítica</li>
+                    <li onclick="opcion(this)">Medicación</li>
+                    <li onclick="opcion(this)">Recetas</li>
+                    <hr>
+                    <li onclick="opcion(this)">Citas</li>
+                </ul>
+            </nav>
+            <main>
+                <div id="contenido-principal"></div>
+            </main>
+            <footer>		
+                <div id="copyright">© 2023 Mi Consulta Online</div>
+                <div id="privacidad">Privacidad</div>
+            </footer>
+        </div>
+        <script type="text/javascript" src="js/panel.js"></script>
+        <!-- <script type="text/javascript" src="js/login.js"></script> -->
+	</body>
+</html>

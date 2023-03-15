@@ -2,34 +2,60 @@
 <html>
 	<head>
 		<meta charset="UTF-8">
-		<title>Prueba despliegue Heroku</title>
-		<link href="css/estilos.css" rel="stylesheet">
+		<title>Mi Consulta Online</title>
+		<link href="css/index.css" rel="stylesheet">
 	</head>
 	<body>
         <div id="contenedor">
-            <header>		
-                <div id="logo">Mi Consulta Online</div>
-                <div id="login">Login</div>
+            <header>
+                <div id="logo"><a href="index.html">Mi Consulta Online</a></div>
+                <nav>
+                    <ul id="menu-header">
+                        <li id="login"><a href="login.html">Login</a></li>
+                        <li id="registro"><a href="registro.html">Registrarme</a></li>
+                    </ul>
+                </nav>
             </header>
-            <nav>
-                <ul id="menu">
-                    <li onclick="opcion(this)">Perfil</li>
-                    <li onclick="opcion(this)">Diagnóstico</li>
-                    <li onclick="opcion(this)">Analítica</li>
-                    <li onclick="opcion(this)">Medicación</li>
-                    <li onclick="opcion(this)">Recetas</li>
-                    <hr>
-                    <li onclick="opcion(this)">Citas</li>
-                </ul>
-            </nav>
             <main>
-                <div id="contenido-principal"></div>
+                <div id="descripcion">
+                    <img src="img/microscopio.jpg">
+                    <div id="portal">
+                        <h1>Portal de Salud</h1>
+                        <p> Servicio que te permite conocer de primera mano la información 
+                            principal sobre tu estado actual de salud. </p>
+                        <p> Podrás realizar tus citas, recibir los resultados de tus análisis, consultar
+                            tu historial clínico y acceder a importantes consejos sobre como mantener un 
+                            estado óptimo de salud. </p>
+                    </div>
+                </div>
+                <div id="ventajas">
+                    <div>
+                        <img src="img/healthcare-128.png">
+                        <p> Conéctate desde donde quieras</p>
+                    </div>
+                    <div>
+                        <img src="img/patient-128.png">
+                        <p> Recibe información detallada</p>
+                    </div>
+                    <div>
+                        <img src="img/reception-desk-128.png">
+                        <p> Gestiona tus citas online</p>
+                    </div>
+                </div>
             </main>
             <footer>		
                 <div id="copyright">© 2023 Mi Consulta Online</div>
-                <div id="privacidad">Privacidad</div>
+                <nav>
+                    <ul id="menu-footer">
+                        <li onclick="opcion(this)">Privacidad</li>
+                        <li onclick="opcion(this)">Términos</li>
+                        <li onclick="opcion(this)">Accesibilidad</li>
+                        <li onclick="opcion(this)">Referencias</li>
+                    </ul>
+                </nav>
             </footer>
         </div>
         <script type="text/javascript" src="js/index.js"></script>
+        <script type="text/javascript" src="js/login.js"></script>
 	</body>
 </html>
