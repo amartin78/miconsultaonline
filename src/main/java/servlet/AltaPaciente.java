@@ -13,6 +13,7 @@ import modelo.Paciente;
 
 
 @WebServlet("/AltaPaciente")
+@MultipartConfig
 public class AltaPaciente extends HttpServlet {
 
 	/**
@@ -43,10 +44,8 @@ public class AltaPaciente extends HttpServlet {
 		
 		Paciente p = new Paciente(nombre, apellidos, email, password, fecNacimiento);
 		try {			
-			System.out.println("dando de alta al paciente ...");
 			p.insertar();
-			System.out.println("... y ha sido un exito");
-			resp.sendRedirect("panel.html");
+			resp.sendRedirect("login.html");
 		} catch(SQLException e) {
 			e.printStackTrace();
 		}

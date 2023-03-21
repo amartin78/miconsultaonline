@@ -2,4 +2,6 @@
 /Users/antonio/eclipse-workspace/miconsultaonline/src/main/java/servlet/AltaPaciente.java
 /Users/antonio/eclipse-workspace/miconsultaonline/src/main/java/launch/Main.java
 /Users/antonio/eclipse-workspace/miconsultaonline/src/main/java/modelo/PacienteDAO.java
+/Users/antonio/eclipse-workspace/miconsultaonline/src/main/java/servlet/LoginPaciente.java
 /Users/antonio/eclipse-workspace/miconsultaonline/src/main/java/modelo/ConexionBBDD.java
+/Users/antonio/eclipse-workspace/miconsultaonline/src/main/java/servlet/ObtenerPaciente.java

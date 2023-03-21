@@ -6,6 +6,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import com.google.gson.Gson;
+import com.mysql.cj.jdbc.ClientPreparedStatement;
 
 public class PacienteDAO {
 
@@ -49,9 +50,10 @@ public class PacienteDAO {
 			if(pacienteRes == null) {
 				pacienteRes = new ArrayList<>();
 			}
+//			pacienteRes.add(new Paciente(rs.getString("nombre"), rs.getString("apellidos"),  rs.getString("email"), 
+//										 rs.getString("password"), rs.getDate("fec_nacimiento")));
 			pacienteRes.add(new Paciente(rs.getString("nombre"), rs.getString("apellidos"),  rs.getString("email"), 
-										 rs.getString("password"), rs.getDate("fecNacimiento"), rs.getString("direccion"), 
-										 rs.getInt("telefono"), rs.getString("estadoCivil")));
+					 rs.getString("password")));
 		}
 		rs.close();
 		ps.close();
@@ -65,5 +67,49 @@ public class PacienteDAO {
 		return json;
 	}
 	
+	public Paciente buscarPorAtributo(String atributo, String valor) throws SQLException {
+		
+		Paciente p = null;
+		PreparedStatement ps = con.prepareStatement("SELECT * FROM paciente WHERE " + atributo + "=?");
+		ps.setString(1, valor);
+		ResultSet rs = ps.executeQuery();		
+		
+		while(rs.next()) {
+			p = new Paciente(rs.getString("nombre"), rs.getString("apellidos"),  rs.getString("email"), 
+					 rs.getString("password"), rs.getDate("fec_nacimiento"));
+		}			
+		rs.close();
+		ps.close();
+		
+		System.out.println("persona " + p);
+		
+		return p;
+	}
+	
+
+	public String buscarPorAtributoJSON(String atributo, String valor) throws SQLException {
+		
+		Gson gson = new Gson();
+		String json = gson.toJson(this.buscarPorAtributo(atributo, valor));
+		return json;
+	}
+	
+	public boolean autenticar(String email, String password) throws SQLException {
+		
+		boolean registrado = false;
+		PreparedStatement ps = con.prepareStatement("SELECT * FROM paciente WHERE email=? AND password=?");
+		ps.setString(1, email);
+		ps.setString(2, password);
+		ResultSet rs = ps.executeQuery();
+		if(rs.next()) {
+			registrado = true;
+			System.out.println("El usuario " + rs.getString("nombre") + " " + rs.getString("apellidos") + " es válido.");
+		} else {
+			System.out.println("Usuario o contraseña incorrecta.");
+		}
+		rs.close();
+		ps.close();
+		return registrado;
+	}
 }
 

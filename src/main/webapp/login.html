@@ -3,6 +3,7 @@
 	<head>
 		<meta charset="UTF-8">
 		<title>Login</title>
+		<link href="css/header-footer.css" rel="stylesheet">
 		<link href="css/index.css" rel="stylesheet">
         <link href="css/registro-login.css" rel="stylesheet">
 	</head>
@@ -19,7 +20,7 @@
             </header>
             <main>
                 <h1>Login</h1>
-                <form id="login" action="">
+                <form id="login" action="LoginPaciente" method="post">
                     <table>
                         <tr>
                             <td>
@@ -30,11 +31,11 @@
                         <tr>
                             <td>
                                 <label>Contraseña</label>
-                                <input name="contrasenia" size="30" type="password">
+                                <input name="password" size="30" type="password">
                             </td>
                         </tr>
                         <tr>
-                            <td><input id="enviar" type="reset" value="Enviar"></td>
+                            <td><input id="enviar" type="submit" value="Enviar"></td>
                         </tr>
                     </table>
                 </form>

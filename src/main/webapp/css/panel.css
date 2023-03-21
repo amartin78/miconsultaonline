@@ -1,36 +1,28 @@
-body {
-    margin: 0;
-    padding: 0;
-    overflow-x: hidden;
-}
-
 #contenedor {
     width: 100vw;
-    height: 100vh;
+	height: 100vh;
     display: grid;
-    grid-template-columns: 20% 80%;
-    grid-template-rows: 14% 74% 12%;
+    /* grid-template-columns: 20% 80%; */
+    /* grid-template-rows: 14% 74% 12%; */
 }
 
 header, footer {
-    display: grid;
+    /* display: grid;
     grid-column: 1 / span 2;
     grid-template-columns: 40% 60%;
     justify-content: space-between;
     align-content: center;
-    padding: 0 1em;
+    padding: 0 2.5em;
+    background-color: lightsteelblue; */
 }
 
-header, footer, nav {
-    background-color: aliceblue;
+#menu li {
+	display: block;
+	cursor: pointer;
 }
 
-header {
-    font-size: 1.9em;
-}
-
-nav, footer {
-    font-size: 1.7em;
+nav ul li:hover {
+    color:palevioletred;
 }
 
 main h1 {
@@ -41,14 +33,6 @@ main h1 {
 hr {
     border: 0.5px solid #333;
     width: 80%;
-}
-
-#logo, #copyright {
-    align-self: center;
-}
-
-#login, #privacidad {
-    justify-self: end;
 }
 
 #contenido-principal {
@@ -64,23 +48,6 @@ table th, td {
     padding: 0.3em 1.6em;
 }
 
-ul {
-    list-style-type: none;
-    padding-left: 1em;
-}
-
-ul li {
-    margin: 16px;
-    cursor: pointer;
-}
-
-ul li:hover {
-    color:palevioletred;
-}
-
-#login {
-    cursor: pointer;
-}
 
 
 

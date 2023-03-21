@@ -17,7 +17,15 @@ public class Paciente {
 	private String estadoCivil;
 	
 	public Paciente() {
-		
+		super();
+	}
+	
+	public Paciente(String nombre, String apellidos, String email, String password) {
+		super();
+		this.nombre = nombre;
+		this.apellidos = apellidos;
+		this.email = email;
+		this.password = password;
 	}
 	
 	public Paciente(String nombre, String apellidos, String email, String password, Date fecNacimiento) {

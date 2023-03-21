@@ -1,9 +1,25 @@
 window.onload = function () {
+	
     const e = document.createElement("h1");
     document.getElementById("contenido-principal").appendChild(e).innerText = "Perfil";
+    
+    fetch('ObtenerPaciente').
+	then(response => response.json()).
+	then(data => {
+		paciente = data;
+		nombreCompleto = paciente["nombre"] + " " + paciente["apellidos"];
+	    document.getElementById("paciente").getElementsByTagName("button")[0].innerText = nombreCompleto;
+	});
+	
+	document.getElementById("paciente").getElementsByTagName("button")[0].addEventListener('click', function() {
+		// alert("cierre de sesion");
+		
+	});
+	
 };
 
 function opcion(o) {
+	
     let nombreOpcion = o.innerText;
     document.getElementById("contenido-principal").
              getElementsByTagName("h1")[0].innerText = nombreOpcion;
