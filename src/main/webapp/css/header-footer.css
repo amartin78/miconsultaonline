@@ -14,9 +14,12 @@ body {
 header, footer {
     display: grid;
     grid-template-columns: 40% 60%;
-    padding: 0 2.5em;
     align-content: center;
     background-color: lightsteelblue;
+}
+
+header {
+	padding: 0.5em 2.5em;
 }
 
 header nav ul li a {
@@ -38,10 +41,6 @@ header nav ul li:hover {
 
 header nav, footer nav {
     text-align: right;
-}
-
-header nav {
-    /* font-size: 1.15em; */
 }
 
 header nav ul, footer nav ul {

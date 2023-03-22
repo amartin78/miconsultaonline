@@ -1,24 +1,92 @@
-#contenedor {
-    width: 100vw;
-	height: 100vh;
-    display: grid;
-    /* grid-template-columns: 20% 80%; */
-    /* grid-template-rows: 14% 74% 12%; */
+body {
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+    background-color: aliceblue;
+    font-family: Arial, Helvetica, sans-serif;
+    color: #333;
 }
 
-header, footer {
-    /* display: grid;
-    grid-column: 1 / span 2;
+#contenedor {
+    width: 100vw;
+}
+
+header {
+    position: fixed;
+    top: 0;
+    width: -webkit-fill-available;
+	padding: 0.5em 2.5em;
+    display: grid;
     grid-template-columns: 40% 60%;
-    justify-content: space-between;
-    align-content: center;
-    padding: 0 2.5em;
-    background-color: lightsteelblue; */
+    background-color: lightsteelblue;
+}
+
+header nav {
+    text-align: right;
+}
+
+header nav ul {
+    list-style-type: none;
+    padding-left: 1em;
+    margin: 0.4em;
+}
+
+header nav ul li {
+    margin: 16px;
+    cursor: pointer;
+    display: inline-grid;
+}
+
+header nav ul li a {
+    color:#d87093;
+    text-decoration: none;
+}
+
+header nav ul li:hover {
+    opacity: 0.7;
+}
+
+#paciente button {	
+    color: #d87093;
+    border: none;
+    background-color: lightsteelblue;
+    font-size: 1em;
+    cursor: pointer;
+}
+
+#logo, #copyright {
+    align-self: center;
+}
+
+#logo {
+    font-size: 1.8em;
+}
+
+#logo a {
+    color: #333;
+    text-decoration: none;
+}
+
+/* ############### Nav Main ################## */
+
+#contenedor > nav {
+    position: fixed;
+    top: 4.26em;
+    bottom: 0;
+    width: 12em;
+    background-color: lightsteelblue;
+}
+
+main {
+    margin-top: 7em;
+    margin-left: 12em;
 }
 
 #menu li {
 	display: block;
 	cursor: pointer;
+    padding: 1em 0;
+	font-size: 1.3em;
 }
 
 nav ul li:hover {
@@ -31,8 +99,9 @@ main h1 {
 }
 
 hr {
-    border: 0.5px solid #333;
     width: 80%;
+    margin-left: 0;
+    border: 0.5px solid #333;
 }
 
 #contenido-principal {
@@ -48,7 +117,55 @@ table th, td {
     padding: 0.3em 1.6em;
 }
 
+/* ############### Responsive ################## */
+
+/* Laptop */
+@media screen and (max-width: 1024px) {
 
 
+}
 
+/* Tablet */
+@media screen and (max-width: 768px) {
+
+
+}
+
+/* Móbil */
+@media screen and (max-width: 425px) {
+
+    header {
+        padding: 0.5em 2em;
+    }
+
+    /* header nav ul {
+        margin-right: 1em;
+    } */
+
+    header nav ul li {
+        margin: 8px;
+        font-size: 1.3em;
+    }
+
+    #menu-header {
+        display: inline-flex;
+    }
+
+    #logo {
+        font-size: 1.6em;
+    }
+
+    #contenedor > nav {
+        position: static;
+        width: 100%;
+        margin-top: 6.4em;
+        text-align: center;
+    }
+    
+    #menu li {
+        padding: 0.6em 0;
+    }
+
+
+}
 

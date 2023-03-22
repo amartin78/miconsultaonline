@@ -57,7 +57,7 @@ public class LoginPaciente extends HttpServlet {
 		Paciente p = null;
 		
 		try {
-			if(sesion.getAttribute("email") != null) {
+			if(sesion.getAttribute("usuario") != null) {
 				cerrarSesion(req, resp);
 			}
 			else if (PacienteDAO.getInstance().autenticar(email, password)) {
@@ -109,7 +109,7 @@ public class LoginPaciente extends HttpServlet {
 		System.out.println("apertura de sesion");
 		HttpSession sesion = req.getSession();
 		String email = req.getParameter("email");
-		sesion.setAttribute("email", email);
+		sesion.setAttribute("usuario", email);
 		resp.sendRedirect("panel.html");
 	}
 	
@@ -117,7 +117,7 @@ public class LoginPaciente extends HttpServlet {
 		
 		System.out.println("cierre de sesion");
 		HttpSession sesion = req.getSession();
-		sesion.removeAttribute("email");
+		sesion.removeAttribute("usuario");
 		sesion.invalidate();
 		resp.sendRedirect("login.html");
 	}
