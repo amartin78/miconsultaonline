@@ -2,11 +2,11 @@ window.onload = function () {
 	
     const e = document.createElement("h1");
     document.getElementById("contenido-principal").appendChild(e).innerText = "Perfil";
+    document.getElementById("perfil").click();
     
     fetch('ObtenerPaciente').
 	then(response => response.json()).
-	then(data => {
-		paciente = data;
+	then(paciente => {
 		nombreCompleto = paciente["nombre"] + " " + paciente["apellidos"];
 	    document.getElementById("paciente").getElementsByTagName("button")[0].innerText = nombreCompleto;
 	});
@@ -45,11 +45,6 @@ function opcion(o) {
         default:
             console.log("Opción incorrecta");
     }
-}
-
-function perfil() {
-
-    limpiarContenidoPrincipal();
 }
 
 function diagnostico() {

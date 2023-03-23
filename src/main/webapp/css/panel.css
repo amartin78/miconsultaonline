@@ -38,7 +38,7 @@ header nav ul li {
 }
 
 header nav ul li a {
-    color:#d87093;
+    color: #d87093;
     text-decoration: none;
 }
 
@@ -77,6 +77,10 @@ header nav ul li:hover {
     background-color: lightsteelblue;
 }
 
+#menu {
+	margin-top: 3em;
+}
+
 main {
     margin-top: 7em;
     margin-left: 12em;
@@ -87,6 +91,10 @@ main {
 	cursor: pointer;
     padding: 1em 0;
 	font-size: 1.3em;
+}
+
+#menu li:focus {
+	color: #d87093;
 }
 
 nav ul li:hover {

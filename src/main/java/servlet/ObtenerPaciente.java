@@ -29,19 +29,14 @@ public class ObtenerPaciente extends HttpServlet {
 		// TODO Auto-generated method stub
 		
 		String p = null;
-		String listaPacientes = "";
-		// String email = "rodrigo@hotmail.com";
 		HttpSession sesion = req.getSession();
-		
 		String email = String.valueOf(sesion.getAttribute("usuario"));
-		// System.out.println("servidor sesion email es " + email);
 		
 		try {
 			p = PacienteDAO.getInstance().buscarPorAtributoJSON("email", email);
 		} catch(SQLException e) {
 			e.printStackTrace();
 		}
-		// System.out.println("servidor persona es " + p);
 		resp.getWriter().print(p);
 	}
 
@@ -49,6 +44,10 @@ public class ObtenerPaciente extends HttpServlet {
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		
-		doGet(req, resp);
+//		try {
+//			Se modificaria el paciente por metodo modificarPaciente con PacienteDAO...
+//		} catch(SQLException e) {
+//			e.printStackTrace();
+//		}
 	}
 }

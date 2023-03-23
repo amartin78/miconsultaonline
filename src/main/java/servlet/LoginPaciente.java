@@ -70,41 +70,8 @@ public class LoginPaciente extends HttpServlet {
 		}	
 	}
 	
-	private static final String getBasicAuthenticationHeader(String username, String password) {
-	    String valueToEncode = username + ":" + password;
-	    return "Basic " + Base64.getEncoder().encodeToString(valueToEncode.getBytes());
-	}
-
-	
 	private void iniciarSesion(HttpServletRequest req, HttpServletResponse resp) 
 					throws ServletException, IOException, URISyntaxException, InterruptedException {
-
-//		Ejemplo Http API Java 9
-		
-//		HttpClient client = HttpClient.newHttpClient();
-		
-//		HttpClient client = HttpClient.newBuilder()
-//		  .authenticator(new Authenticator() {
-//		      @Override
-//		      protected PasswordAuthentication getPasswordAuthentication() {
-//		          return new PasswordAuthentication("victoria@hotmail.com", "1234".toCharArray());
-//		      }
-//		  })
-//		  .build();
-//		
-//		HttpRequest request = HttpRequest.newBuilder()
-//		  .GET()
-//		  .uri(new URI("http://localhost:8080/panel.html/get"))
-//		  .header("Authorization", getBasicAuthenticationHeader("victoria@hotmail.com", "1234"))
-//		  .build();
-//		
-//		HttpResponse<String> response = client.send(request, BodyHandlers.ofString());
-//		
-//		System.out.println("status " + response.statusCode());
-
-//		logger.info("Status {}", response.statusCode());
-		
-// ----------------------------------------------------------------------------------------------------------  //
 		
 		System.out.println("apertura de sesion");
 		HttpSession sesion = req.getSession();

@@ -160,7 +160,7 @@ public class Paciente {
 
 	@Override
 	public String toString() {
-		return "Paciente [id=" + id + ", nombre=" + nombre + ", apellidos=" + apellidos + ", emai=" + email
+		return "Paciente [id=" + id + ", nombre=" + nombre + ", apellidos=" + apellidos + ", email=" + email
 				+ ", password=" + password + ", fecNacimiento=" + fecNacimiento + ", direccion=" + direccion
 				+ ", telefono=" + telefono + ", estadoCivil=" + estadoCivil + "]";
 	}
