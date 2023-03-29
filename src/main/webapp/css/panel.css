@@ -37,14 +37,14 @@ header nav ul li {
     display: inline-grid;
 }
 
-header nav ul li a {
+header nav ul li a, #nombre-paciente {
     color: #d87093;
     text-decoration: none;
 }
 
-header nav ul li:hover {
+/* header nav ul li:hover {
     opacity: 0.7;
-}
+} */
 
 #paciente button {	
     color: #d87093;
@@ -53,6 +53,58 @@ header nav ul li:hover {
     font-size: 1em;
     cursor: pointer;
 }
+
+
+/* ############### Menu paciente ############### */
+
+#nombre-paciente {
+	position: relative;	
+}
+
+#menu-paciente {
+	position: absolute;
+	width: 12em;
+	top: 3.4em;
+	text-align: left;
+	padding: 0.3em 0.5em;
+	background-color: white;
+}
+
+#menu-paciente form {
+	width: inherit;
+}
+	
+
+#menu-paciente ul, #menu-paciente ul li {
+	display: block;
+	padding: 0;
+	margin: 0;
+}
+
+#menu-paciente ul li:nth-child(2) {
+	border-bottom: 1px solid #333;
+	width: 60%;
+	padding-bottom: 0.4em;
+}
+
+#menu-paciente ul li:last-child {
+	padding-top: 0.4em;
+}
+
+#cerrar-sesion input {
+	/* color: #d87093;
+    font-size: 1em; */
+    background-color: white;
+    border: none;
+    cursor: pointer;
+    font-family: inherit !important;
+    font-size: inherit !important;
+    text-align: left;
+    padding: 0;
+}
+
+/* ############### Fin menu paciente ############### */
+
 
 #logo, #copyright {
     align-self: center;
@@ -97,8 +149,13 @@ main {
 	color: #d87093;
 }
 
-nav ul li:hover {
-    color:palevioletred;
+/* nav ul li:hover {
+    color: #d87093;
+}
+ */
+#menu-paciente ul li:hover {
+    /* color: #d87093; */
+    background-color: #ddd;
 }
 
 main h1 {

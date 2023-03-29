@@ -83,8 +83,7 @@ public class LoginPaciente extends HttpServlet {
 	private void cerrarSesion(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		
 		System.out.println("cierre de sesion");
-		HttpSession sesion = req.getSession();
-		sesion.removeAttribute("usuario");
+		HttpSession sesion = req.getSession(false);
 		sesion.invalidate();
 		resp.sendRedirect("login.html");
 	}

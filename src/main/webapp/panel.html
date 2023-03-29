@@ -3,7 +3,8 @@
 	<head>
 		<meta charset="UTF-8">
 		<title>Panel principal</title>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link href="css/reset.css" rel="stylesheet"> 
 		<link href="css/panel.css" rel="stylesheet">
 		<link href="css/formularios.css" rel="stylesheet">	
 	</head>
@@ -13,11 +14,20 @@
                 <div id="logo"><a href="index.html">Mi Consulta Online</a></div>
                 <nav>
                     <ul id="menu-header">
-                        <li id="news"><a href="news.html">News</a></li>
-                        <li id="paciente">
-                        	<form id="logout" action="LoginPaciente" method="post">                        	
-	                        	<button type="submit">Paciente</button>
-                        	</form>
+                        <li><a href="news.html" id="news">News</a></li>
+                        <li>
+                        	<div id="nombre-paciente">Paciente</div>
+		                    <div id="menu-paciente">
+		                    	<ul>
+		                    		<li>Perfil</li>
+		                    		<li>Cuenta</li>
+		                    		<li>
+		                    			<form id="cerrar-sesion" action="LoginPaciente" method="post">
+		                    				<input type="submit" value="Cerrar sesión">
+		                    			</form>
+		                    		</li>
+		                    	</ul>
+		                    </div>
                         </li>
                     </ul>
                 </nav>

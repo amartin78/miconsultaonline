@@ -11,6 +11,7 @@ import javax.servlet.ServletException;
 import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
 import javax.servlet.RequestDispatcher;
+import javax.servlet.ServletContext;
 import javax.servlet.annotation.WebFilter;
 import javax.servlet.annotation.MultipartConfig;
 import modelo.Paciente;
@@ -20,7 +21,15 @@ import modelo.PacienteDAO;
 @MultipartConfig
 public class FiltroAutenticacion implements Filter {
 	
+	private ServletContext context;
 	private HttpServletRequest httpRequest;
+	
+	@Override
+	public void init(FilterConfig filterConfig) throws ServletException {
+		// TODO Auto-generated method stub
+		
+		this.context = filterConfig.getServletContext();
+	}
 
 	@Override
 	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
@@ -28,20 +37,15 @@ public class FiltroAutenticacion implements Filter {
 		// TODO Auto-generated method stub
 		
 		httpRequest = (HttpServletRequest) request;
-		HttpSession sesion = httpRequest.getSession();
+		HttpSession sesion = httpRequest.getSession(false);
 		boolean clienteLogueado = sesion != null && sesion.getAttribute("usuario") != null;
 		
 		if(clienteLogueado) {
-			httpRequest.getRequestDispatcher("/panel.html").forward(request, response);
+			// httpRequest.getRequestDispatcher("/panel.html").forward(request, response);
+			chain.doFilter(request, response);
 		} else {
 			httpRequest.getRequestDispatcher("/login.html").forward(request, response);
 		} 		
-	}
-
-	@Override
-	public void init(FilterConfig filterConfig) throws ServletException {
-		// TODO Auto-generated method stub
-		
 	}
 
 	@Override

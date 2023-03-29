@@ -9,7 +9,15 @@ function perfil() {
 		let nombre = paciente["nombre"];
         let apellidos = paciente["apellidos"];
         let fecNacimiento = paciente["fecNacimiento"];
-        console.log("fecNacimiento es " + fecNacimiento);
+        fecNacimiento = new Date(fecNacimiento);
+        // console.log(fecNacimiento);
+        let anio = fecNacimiento.getFullYear();
+        let mes = fecNacimiento.getMonth() + 1;
+        mes = String(mes).length == 2 ? mes : `0${mes}`;
+        let dia = fecNacimiento.getDate();
+        dia = String(dia).length == 2 ? dia : `0${dia}`;
+        console.log(dia);
+        fecNacimiento = anio + "-" + mes + "-" + dia;
         let email = paciente["email"];
         let direccion = paciente["direccion"];
         let telefono = paciente["telefono"];
@@ -43,58 +51,3 @@ function perfil() {
 
 }
 
-
-
-
-
-// Form registro
-
-{/* <table>
-    <tr>
-        <td>
-            <label>Nombre</label>
-            <input name="nombre" type="text" size="30">
-        </td>
-    </tr>
-    <tr>
-        <td>
-            <label>Apellidos</label>
-            <input name="apellidos" type="text" size="30">
-        </td>
-    </tr>
-    <tr>
-        <td>
-            <label>Fecha de nacimiento</label>
-            <input name="fecNacimiento" id="fecNacimiento" type="date">
-        </td>
-    </tr>
-    <tr>
-        <td>
-            <label>Email</label>
-            <input name="email" type="email" size="30" placeholder="ejemplo@hotmail.com">
-        </td>
-    </tr>
-    <tr>
-        <td>
-            <label>Contraseña</label>
-            <input name="password" size="30" type="password">
-        </td>
-    </tr>
-    <tr>
-        <td><input id="enviar" type="submit" value="Enviar"></td>
-    </tr>
-    </table> */}
-
-
-// Diagnostico
-
-// let tablaDiagnostico = "<table border='1'>";
-// tablaDiagnostico += "<tr><th>Anomalía</th><th>Fecha consulta</th></tr>";
-// for(let i = 0; i < datosDiagnostico.length; i++) {
-//     tablaDiagnostico += "<tr><td>" + datosDiagnostico[i][0] + "</td>" + 
-//                             "<td>" + datosDiagnostico[i][1] + "</td></tr>";
-// }
-// tablaDiagnostico += "</table>";
-// if(contenidoPrincipal.indexOf("table") == -1) {
-//     document.getElementById("contenido-principal").innerHTML += tablaDiagnostico;
-// }

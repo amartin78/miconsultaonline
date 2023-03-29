@@ -3,18 +3,37 @@ window.onload = function () {
     const e = document.createElement("h1");
     document.getElementById("contenido-principal").appendChild(e).innerText = "Perfil";
     document.getElementById("perfil").click();
+    document.getElementById("nombre-paciente").display = "hidden";
     
     fetch('ObtenerPaciente').
 	then(response => response.json()).
 	then(paciente => {
 		nombreCompleto = paciente["nombre"] + " " + paciente["apellidos"];
-	    document.getElementById("paciente").getElementsByTagName("button")[0].innerText = nombreCompleto;
+	    document.getElementById("nombre-paciente").innerText = nombreCompleto;
 	});
 	
-	document.getElementById("paciente").getElementsByTagName("button")[0].addEventListener('click', function() {
-		// alert("cierre de sesion");
+	document.getElementById("nombre-paciente").addEventListener('mouseover', function() {
+		
+		if(document.getElementById("ventana") == null) {
+			document.getElementById("nombre-paciente").display = "visible";
+			// let menuPaciente = document.getElementById("menu-paciente");
+			// menuPaciente.style.backgroundColor = "white";
+			// nombrePaciente.style.zIndex = 40;
+			// menuPaciente.innerText = "Cerrar sesión";
+		}
+
+	});
+	
+	document.getElementById("ventana").addEventListener('mouseout', function() {
+		alert("evento mouse leave");
+		// const e = document.createElement("div");
+		this.remove();
+		
+		
 		
 	});
+	
+	// .getElementsByTagName("button")[0]
 	
 };
 
