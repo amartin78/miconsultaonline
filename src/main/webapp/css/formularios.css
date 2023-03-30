@@ -22,14 +22,13 @@ input[type="date"] {
 
 td {
     text-align: left;
-    padding: 0.4em 0;
+    padding: 0.4em;
 }
 /* 
 tr:nth-of-type(6) {
     text-align: center;
 } */
-
-#enviar {
+.enviar {
     background-color: #d87093;
     color: white;
     border-style: none;
@@ -39,10 +38,24 @@ tr:nth-of-type(6) {
     cursor: pointer;
 }
 
-#enviar:hover {
+.enviar:hover {
     background-color: white;
     color: #d87093;
     border: 2px solid #d87093;
+}
+
+#perfil label {
+	display: block;
+	margin-bottom: 0.3em;
+}
+
+#perfil table tr:last-child td {
+	text-align: center;
+}
+
+#perfil .enviar {
+	margin-top: 1em;
+	width: 16em;
 }
 
 

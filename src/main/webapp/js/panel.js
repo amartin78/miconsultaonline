@@ -36,7 +36,7 @@ function opcion(o) {
 	
     let nombreOpcion = o.innerText;
     document.getElementById("contenido-principal").
-             getElementsByTagName("h1")[0].innerText = nombreOpcion;
+             getElementsByTagName("h1")[0].innerText = "";
     switch(nombreOpcion) {
 	case "Perfil":
             perfil();

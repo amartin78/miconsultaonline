@@ -25,14 +25,17 @@ function perfil() {
         // Servlet ObtenerPaciente devuelve paciente (doGet) o modifica el paciente (doPost)
         let formulario = "<form id='perfil' action='ObtenerPaciente' method='post'>";
         formulario += "<table>";
-        formulario += "<tr><td><label>Nombre</label><input name='nombre' type='text' size='35'></td></tr>";
-        formulario += "<tr><td><label>Apellidos</label><input name='apellidos' type='text' size='35'></td></tr>";
-        formulario += "<tr><td><label>Fecha de nacimiento</label><input name='fecNacimiento' id='fecNacimiento' type='date' size='35'></td></tr>";
-        formulario += "<tr><td><label>Email</label><input name='email' type='email' size='35' placeholder='ejemplo@hotmail.com'></td></tr>";
-        formulario += "<tr><td><label>Dirección</label><input name='dirección' type='text' size='35'></td></tr>";
-        formulario += "<tr><td><label>Teléfono</label><input name='teléfono' type='number' size='35'></td></tr>";
-        formulario += "<tr><td><label>Estado civil</label><input name='estadoCivil' type='text' size='35'></td></tr>";
-        formulario += "<tr><td><input id='enviar' type='submit' value='Enviar'></td></tr>";
+        formulario += "<tr><td><label>Nombre</label><input name='nombre' type='text' size='30'></td>";
+        formulario += "<td><label>Apellidos</label><input name='apellidos' type='text' size='30'></td></tr>";
+        formulario += "<tr><td><label>Email</label><input name='email' type='email' size='30' placeholder='ejemplo@hotmail.com'></td>";
+        formulario += "<td><label>Fecha de nacimiento</label><input name='fecNacimiento' id='fecNacimiento' type='date' size='30'></td></tr>";
+        formulario += "<tr><td><label>Domicilio</label><input name='domicilio' type='text' size='30'></td>";
+        formulario += "<td><label>Código postal</label><input name='cPostal' type='number' size='30'></td></tr>";
+        formulario += "<tr><td><label>Localidad</label><input name='localidad' type='text' size='30'></td>";
+        formulario += "<td><label>Provincia</label><input name='provincia' type='text' size='30'></td></tr>";
+        formulario += "<tr><td><label>Teléfono</label><input name='teléfono' type='number' size='30'></td>";
+        formulario += "<td><label>Estado civil</label><input name='estadoCivil' type='text' size='30'></td></tr>";
+        formulario += "<tr><td colspan='2' text-align='right'><input id='enviar' class='enviar' type='submit' value='Enviar'></td></tr>";
         formulario += "</table>";
         formulario += "</form>";
     

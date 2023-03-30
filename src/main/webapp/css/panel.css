@@ -43,6 +43,10 @@ header nav {
     text-decoration: none;
 }
 
+#news:hover, #nombre-paciente:hover {
+	opacity: 0.75;
+}
+
 #paciente button {	
     color: #d87093;
     border: none;
@@ -53,7 +57,7 @@ header nav {
 
 #flecha {
 	margin-left: 0.4em;
-	font-size: 1.4em;
+	font-size: 1.6em;
 }
 
 
@@ -158,6 +162,10 @@ main {
 	cursor: pointer;
     padding: 1em 0 1em 1.5em;
 	font-size: 1.3em;
+}
+
+#menu li:hover {
+	color: #d87093;
 }
 
 #menu li:focus {
