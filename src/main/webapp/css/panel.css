@@ -68,9 +68,8 @@ header nav {
 	top: 3.4em;
 	right: 4em;
 	text-align: left;
-	background-color: white;
+	background-color: aliceblue;
 	box-shadow: 0 3px 6px rgba(0,0,0,0.2), 0 5px 16px 0 rgba(0,0,0,0.18);
-	
 }
 
 #menu-paciente form {
