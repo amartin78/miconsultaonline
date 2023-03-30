@@ -16,7 +16,6 @@ function perfil() {
         mes = String(mes).length == 2 ? mes : `0${mes}`;
         let dia = fecNacimiento.getDate();
         dia = String(dia).length == 2 ? dia : `0${dia}`;
-        console.log(dia);
         fecNacimiento = anio + "-" + mes + "-" + dia;
         let email = paciente["email"];
         let direccion = paciente["direccion"];
@@ -43,9 +42,9 @@ function perfil() {
         document.getElementsByName("apellidos")[0].value = apellidos;
         document.getElementsByName("fecNacimiento")[0].value = fecNacimiento;
         document.getElementsByName("email")[0].value = email;
-        document.getElementsByName("direccion")[0].value = direccion;
-        document.getElementsByName("telefono")[0].value = telefono;
-        document.getElementsByName("estadoCivil")[0].value = estadoCivil;
+        // document.getElementsByName("direccion")[0].value = direccion;
+        // document.getElementsByName("telefono")[0].value = telefono;
+        // document.getElementsByName("estadoCivil")[0].value = estadoCivil;
 	});
 
 

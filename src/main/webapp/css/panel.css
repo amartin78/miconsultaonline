@@ -2,7 +2,7 @@ body {
     margin: 0;
     padding: 0;
     overflow-x: hidden;
-    background-color: aliceblue;
+    background-color: white;
     font-family: Arial, Helvetica, sans-serif;
     color: #333;
 }
@@ -15,36 +15,33 @@ header {
     position: fixed;
     top: 0;
     width: -webkit-fill-available;
-	padding: 0.5em 2.5em;
+	padding: 0.5em 4em 0.5em 2.5em;
     display: grid;
     grid-template-columns: 40% 60%;
     background-color: lightsteelblue;
+    z-index: 10;
 }
 
 header nav {
     text-align: right;
 }
 
-header nav ul {
+#menu-header {
     list-style-type: none;
     padding-left: 1em;
     margin: 0.4em;
 }
 
-header nav ul li {
+#menu-header > li {
     margin: 16px;
     cursor: pointer;
     display: inline-grid;
 }
 
-header nav ul li a, #nombre-paciente {
+#menu-header li a, #nombre-paciente {
     color: #d87093;
     text-decoration: none;
 }
-
-/* header nav ul li:hover {
-    opacity: 0.7;
-} */
 
 #paciente button {	
     color: #d87093;
@@ -54,53 +51,72 @@ header nav ul li a, #nombre-paciente {
     cursor: pointer;
 }
 
+#flecha {
+	margin-left: 0.4em;
+	font-size: 1.4em;
+}
+
 
 /* ############### Menu paciente ############### */
 
 #nombre-paciente {
-	position: relative;	
+	position: relative;
 }
 
 #menu-paciente {
 	position: absolute;
-	width: 12em;
 	top: 3.4em;
+	right: 4em;
 	text-align: left;
-	padding: 0.3em 0.5em;
 	background-color: white;
+	box-shadow: 0 3px 6px rgba(0,0,0,0.2), 0 5px 16px 0 rgba(0,0,0,0.18);
+	
 }
 
 #menu-paciente form {
 	width: inherit;
 }
 	
+#menu-paciente {
+	padding: 0.3em 0.5em;
+	margin: 0.3em 1.4em 0 0;
+} 
 
-#menu-paciente ul, #menu-paciente ul li {
-	display: block;
+#menu-paciente li {
+	padding: 0.3em 0.5em;
+	margin: 0 -0.5em;
+}
+
+#menu-paciente li:hover {
+    background-color: #f0f0f0;
+}
+
+#menu-paciente li:last-child {
 	padding: 0;
 	margin: 0;
+	
 }
 
-#menu-paciente ul li:nth-child(2) {
-	border-bottom: 1px solid #333;
-	width: 60%;
-	padding-bottom: 0.4em;
-}
-
-#menu-paciente ul li:last-child {
-	padding-top: 0.4em;
+#menu-paciente hr {
+	margin: 0 -0.5em;
+	height: 0.03em;
+	border: none;
+	background-color: rgb(210,210,210);
 }
 
 #cerrar-sesion input {
-	/* color: #d87093;
-    font-size: 1em; */
     background-color: white;
     border: none;
     cursor: pointer;
     font-family: inherit !important;
     font-size: inherit !important;
     text-align: left;
-    padding: 0;
+    padding: 0.3em 0.5em;
+    margin: 0 -0.5em;
+}
+
+#cerrar-sesion input:hover {
+	background-color: #f0f0f0;
 }
 
 /* ############### Fin menu paciente ############### */
@@ -126,7 +142,7 @@ header nav ul li a, #nombre-paciente {
     top: 4.26em;
     bottom: 0;
     width: 12em;
-    background-color: lightsteelblue;
+    background-color: aliceblue;
 }
 
 #menu {
@@ -141,7 +157,7 @@ main {
 #menu li {
 	display: block;
 	cursor: pointer;
-    padding: 1em 0;
+    padding: 1em 0 1em 1.5em;
 	font-size: 1.3em;
 }
 
@@ -149,21 +165,12 @@ main {
 	color: #d87093;
 }
 
-/* nav ul li:hover {
-    color: #d87093;
-}
- */
-#menu-paciente ul li:hover {
-    /* color: #d87093; */
-    background-color: #ddd;
-}
-
 main h1 {
     font-size: 2em;
     font-weight: lighter;
 }
 
-hr {
+#menu hr {
     width: 80%;
     margin-left: 0;
     border: 0.5px solid #333;
@@ -203,11 +210,7 @@ table th, td {
         padding: 0.5em 2em;
     }
 
-    /* header nav ul {
-        margin-right: 1em;
-    } */
-
-    header nav ul li {
+    #menu-header li {
         margin: 8px;
         font-size: 1.3em;
     }
@@ -230,7 +233,5 @@ table th, td {
     #menu li {
         padding: 0.6em 0;
     }
-
-
 }
 

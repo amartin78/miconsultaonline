@@ -2,38 +2,33 @@ window.onload = function () {
 	
     const e = document.createElement("h1");
     document.getElementById("contenido-principal").appendChild(e).innerText = "Perfil";
-    document.getElementById("perfil").click();
-    document.getElementById("nombre-paciente").display = "hidden";
+    document.getElementById("historia-clinica").click();
+    document.getElementById("menu-paciente").style.display = "none";
     
     fetch('ObtenerPaciente').
 	then(response => response.json()).
 	then(paciente => {
 		nombreCompleto = paciente["nombre"] + " " + paciente["apellidos"];
 	    document.getElementById("nombre-paciente").innerText = nombreCompleto;
+	    document.getElementById("nombre-paciente").innerHTML += "<span id='flecha'>&#8744</span>";
+	    // 8964 ? 		8744 down 8743 up
 	});
 	
-	document.getElementById("nombre-paciente").addEventListener('mouseover', function() {
-		
-		if(document.getElementById("ventana") == null) {
-			document.getElementById("nombre-paciente").display = "visible";
-			// let menuPaciente = document.getElementById("menu-paciente");
-			// menuPaciente.style.backgroundColor = "white";
-			// nombrePaciente.style.zIndex = 40;
-			// menuPaciente.innerText = "Cerrar sesión";
-		}
+	document.getElementById("nombre-paciente").addEventListener('click', function() {
 
+		if(document.getElementById("menu-paciente").style.display == "none") {
+			document.getElementById("menu-paciente").style.display = "block";
+			document.getElementById("nombre-paciente").getElementsByTagName("span")[0].innerHTML = "&#8743";
+		} else {
+			document.getElementById("menu-paciente").style.display = "none";
+			document.getElementById("nombre-paciente").getElementsByTagName("span")[0].innerHTML = "&#8744";
+		}
 	});
 	
-	document.getElementById("ventana").addEventListener('mouseout', function() {
-		alert("evento mouse leave");
-		// const e = document.createElement("div");
-		this.remove();
-		
+	document.getElementById("nombre-paciente").addEventListener('click', function() {
 		
 		
 	});
-	
-	// .getElementsByTagName("button")[0]
 	
 };
 
@@ -43,8 +38,11 @@ function opcion(o) {
     document.getElementById("contenido-principal").
              getElementsByTagName("h1")[0].innerText = nombreOpcion;
     switch(nombreOpcion) {
-        case "Perfil":
+	case "Perfil":
             perfil();
+            break;
+        case "Historia clínica":
+            historiaClinica();
             break;
         case "Diagnóstico":
             diagnostico();
@@ -64,6 +62,11 @@ function opcion(o) {
         default:
             console.log("Opción incorrecta");
     }
+}
+
+function historiaClinica() {
+
+    limpiarContenidoPrincipal();
 }
 
 function diagnostico() {

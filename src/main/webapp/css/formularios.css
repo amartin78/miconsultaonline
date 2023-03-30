@@ -12,6 +12,12 @@ label {
 input {
     padding: 6px;
     width: -webkit-fill-available;
+    font-size: 0.75em;
+}
+
+
+input[type="date"] {
+    font-size: 1em;
 }
 
 td {

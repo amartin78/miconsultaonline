@@ -16,25 +16,26 @@
                     <ul id="menu-header">
                         <li><a href="news.html" id="news">News</a></li>
                         <li>
-                        	<div id="nombre-paciente">Paciente</div>
-		                    <div id="menu-paciente">
-		                    	<ul>
-		                    		<li>Perfil</li>
+                        	<div class="np" id="nombre-paciente">Paciente</div>
+		                    <!-- <div id="menu-paciente"> -->
+		                    	<ul id="menu-paciente">
+		                    		<li id="perfil" onclick="opcion(this)">Perfil</li>
 		                    		<li>Cuenta</li>
+									<li><hr></li>
 		                    		<li>
 		                    			<form id="cerrar-sesion" action="LoginPaciente" method="post">
 		                    				<input type="submit" value="Cerrar sesión">
 		                    			</form>
 		                    		</li>
 		                    	</ul>
-		                    </div>
+		                    <!-- </div> -->
                         </li>
                     </ul>
                 </nav>
             </header>
             <nav>
                 <ul id="menu">
-                    <li id="perfil" onclick="opcion(this)">Perfil</li>
+                    <li id="historia-clinica" onclick="opcion(this)">Historia clínica</li>
                     <li onclick="opcion(this)">Diagnóstico</li>
                     <li onclick="opcion(this)">Analítica</li>
                     <li onclick="opcion(this)">Medicación</li>
