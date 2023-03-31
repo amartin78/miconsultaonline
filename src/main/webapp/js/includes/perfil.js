@@ -10,7 +10,6 @@ function perfil() {
         let apellidos = paciente["apellidos"];
         let fecNacimiento = paciente["fecNacimiento"];
         fecNacimiento = new Date(fecNacimiento);
-        // console.log(fecNacimiento);
         let anio = fecNacimiento.getFullYear();
         let mes = fecNacimiento.getMonth() + 1;
         mes = String(mes).length == 2 ? mes : `0${mes}`;
@@ -22,7 +21,7 @@ function perfil() {
         let telefono = paciente["telefono"];
         let estadoCivil = paciente["estadoCivil"];
         
-        // Servlet ObtenerPaciente devuelve paciente (doGet) o modifica el paciente (doPost)
+        // Este formulario invoca al servlet ModificarPaciente que modifica los datos del paciente 
         let formulario = "<form id='perfil' action='ObtenerPaciente' method='post'>";
         formulario += "<table>";
         formulario += "<tr><td><label>Nombre</label><input name='nombre' type='text' size='30' disabled></td>";
@@ -35,12 +34,12 @@ function perfil() {
         formulario += "<td><label>Provincia</label><input name='provincia' type='text' size='30' disabled></td></tr>";
         formulario += "<tr><td><label>Teléfono</label><input name='teléfono' type='number' size='30' disabled></td>";
         formulario += "<td><label>Estado civil</label><input name='estadoCivil' type='text' size='30' disabled></td></tr>";
-        formulario += "<tr><td colspan='2'><input id='editar' class='boton' type='' value='Editar'>";
+        formulario += "<tr><td colspan='2'><input id='editar' class='boton' type='button' value='Editar'>";
         formulario += "<input id='enviar' class='boton' type='submit' value='Enviar'></td></tr>";
         formulario += "</table>";
         formulario += "</form>";
     
-        document.getElementById("contenido-principal").innerHTML += formulario;
+        document.getElementById("contenido-principal").innerHTML = formulario;
         
         document.getElementsByName("nombre")[0].value = nombre;
         document.getElementsByName("apellidos")[0].value = apellidos;

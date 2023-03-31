@@ -82,7 +82,7 @@ header nav {
 	
 #menu-paciente {
 	padding: 0.3em 0.5em;
-	margin: 0.3em 1.4em 0 0;
+	margin: 0.6em 1.4em 0 0;
 } 
 
 #menu-paciente li {
@@ -91,7 +91,7 @@ header nav {
 }
 
 #menu-paciente li:hover {
-    background-color: #f0f0f0;
+    background-color: #f0f0f0 !important;
 }
 
 #menu-paciente li:last-child {
@@ -134,7 +134,7 @@ header nav {
 }
 
 #logo a {
-    color: #333;
+    color: white;
     text-decoration: none;
 }
 
@@ -149,6 +149,7 @@ header nav {
 }
 
 #menu {
+	padding: 0 1.5em;
 	margin-top: 3em;
 }
 
@@ -160,7 +161,7 @@ main {
 #menu li {
 	display: block;
 	cursor: pointer;
-    padding: 1em 0 1em 1.5em;
+    padding: 1em 0;
 	font-size: 1.3em;
 }
 
@@ -178,13 +179,14 @@ main h1 {
 }
 
 #menu hr {
-    width: 80%;
     border: 0.5px solid #333;
 }
 
 #contenido-principal {
     text-align: center;
     margin-top: 8em;
+    /* width: 100vw; */
+    height: 100vh;
 }
 
 table {

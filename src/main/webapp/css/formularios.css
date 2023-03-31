@@ -14,7 +14,7 @@ input {
 }
 
 input[type="date"] {
-    font-size: 1em;
+    font-size: 0.85em;
 }
 
 td {
