@@ -56,7 +56,7 @@ header nav {
 }
 
 #flecha {
-	margin-left: 0.4em;
+	margin-left: 0.2em;
 	font-size: 1.6em;
 }
 
@@ -179,12 +179,12 @@ main h1 {
 
 #menu hr {
     width: 80%;
-    margin-left: 0;
     border: 0.5px solid #333;
 }
 
 #contenido-principal {
     text-align: center;
+    margin-top: 8em;
 }
 
 table {

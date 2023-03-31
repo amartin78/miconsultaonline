@@ -1,5 +1,5 @@
 
-function perfil() {
+function cuenta() {
 
     limpiarContenidoPrincipal();
 
@@ -23,7 +23,7 @@ function perfil() {
         let estadoCivil = paciente["estadoCivil"];
         
         // Servlet ObtenerPaciente devuelve paciente (doGet) o modifica el paciente (doPost)
-        let formulario = "<form id='perfil' action='ObtenerPaciente' method='post'>";
+        /*let formulario = "<form id='perfil' action='ObtenerPaciente' method='post'>";
         formulario += "<table>";
         formulario += "<tr><td><label>Nombre</label><input name='nombre' type='text' size='30' disabled></td>";
         formulario += "<td><label>Apellidos</label><input name='apellidos' type='text' size='30' disabled></td></tr>";
@@ -46,9 +46,9 @@ function perfil() {
         document.getElementsByName("apellidos")[0].value = apellidos;
         document.getElementsByName("fecNacimiento")[0].value = fecNacimiento;
         document.getElementsByName("email")[0].value = email;
-        // document.getElementsByName("direccion")[0].value = direccion;
-        // document.getElementsByName("telefono")[0].value = telefono;
-        // document.getElementsByName("estadoCivil")[0].value = estadoCivil;
+        document.getElementsByName("direccion")[0].value = direccion;
+        document.getElementsByName("telefono")[0].value = telefono;
+        document.getElementsByName("estadoCivil")[0].value = estadoCivil; 
         
         document.getElementById("editar").addEventListener('click', function() {
 		
@@ -56,9 +56,9 @@ function perfil() {
 			for(let i = 0; i < camposTexto.length; i++) {
 				camposTexto[i].disabled = false;
 			}
-		});
+		}); */
 		
-		document.querySelector("#menu-paciente li:nth-child(1)").style.backgroundColor = "#f0f0f0";
+		document.querySelector("#menu-paciente li:nth-child(2)").style.backgroundColor = "#f0f0f0";
 	});
 
 

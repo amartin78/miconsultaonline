@@ -2,7 +2,8 @@ window.onload = function () {
 	
     const e = document.createElement("h1");
     document.getElementById("contenido-principal").appendChild(e).innerText = "Perfil";
-    document.getElementById("historia-clinica").click();
+    // Se activa la opción de Historia clínica
+    document.querySelector("#menu li:nth-child(1)").click();
     document.getElementById("menu-paciente").style.display = "none";
     
     fetch('ObtenerPaciente').
@@ -11,7 +12,6 @@ window.onload = function () {
 		nombreCompleto = paciente["nombre"] + " " + paciente["apellidos"];
 	    document.getElementById("nombre-paciente").innerText = nombreCompleto;
 	    document.getElementById("nombre-paciente").innerHTML += "<span id='flecha'>&#8744</span>";
-	    // 8964 ? 		8744 down 8743 up
 	});
 	
 	document.getElementById("nombre-paciente").addEventListener('click', function() {
@@ -25,10 +25,6 @@ window.onload = function () {
 		}
 	});
 	
-	document.getElementById("nombre-paciente").addEventListener('click', function() {
-		
-		
-	});
 	
 };
 
@@ -38,8 +34,11 @@ function opcion(o) {
     document.getElementById("contenido-principal").
              getElementsByTagName("h1")[0].innerText = "";
     switch(nombreOpcion) {
-	case "Perfil":
+		case "Perfil":
             perfil();
+            break;
+        case "Cuenta":
+            cuenta();
             break;
         case "Historia clínica":
             historiaClinica();
@@ -67,11 +66,13 @@ function opcion(o) {
 function historiaClinica() {
 
     limpiarContenidoPrincipal();
+    document.querySelector("#menu li:nth-child(1)").style.color = "#d87093";
 }
 
 function diagnostico() {
 
     limpiarContenidoPrincipal();
+    document.querySelector("#menu li:nth-child(2)").style.color = "#d87093";
     let contenidoPrincipal = document.getElementById("contenido-principal").innerHTML;
     let datosDiagnostico = [["Dolor muscular 1", "04/01/2021"], 
                             ["Dolor muscular 2", "04/02/2021"],
@@ -119,25 +120,39 @@ function diagnostico() {
 function analitica() {
 
     limpiarContenidoPrincipal();
+    document.querySelector("#menu li:nth-child(3)").style.color = "#d87093";
 }
 
 function medicacion() {
 
     limpiarContenidoPrincipal();
+    document.querySelector("#menu li:nth-child(4)").style.color = "#d87093";
 }
 
 function receta() {
 
     limpiarContenidoPrincipal();
+    document.querySelector("#menu li:nth-child(5)").style.color = "#d87093";
 }
 
 function cita() {
 
     limpiarContenidoPrincipal();
+    document.querySelector("#menu li:nth-child(7)").style.color = "#d87093";
 }
 
 function limpiarContenidoPrincipal() {
-
+	
+	let opcionesMenuPrincipal = document.querySelectorAll("#menu li");
+	for(let i = 0; i < opcionesMenuPrincipal.length; i++) {
+		opcionesMenuPrincipal[i].style.color = "#333";
+	}
+	
+	let opcionesMenuPaciente = document.querySelectorAll("#menu-paciente li");
+	for(let i = 0; i < opcionesMenuPaciente.length; i++) {
+		opcionesMenuPaciente[i].style.backgroundColor = "#fff";
+	}
+	
     let contenidoPrincipal = document.getElementById("contenido-principal").innerHTML;
     if(contenidoPrincipal.indexOf("table") > 0) {
         document.getElementById("contenido-principal").getElementsByTagName("table")[0].remove();

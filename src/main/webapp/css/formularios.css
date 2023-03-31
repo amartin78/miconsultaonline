@@ -4,17 +4,14 @@ form {
 }
 
 label {
-    /* display: block; */
     padding-right: 1em;
-    /* margin-bottom: 4px; */
 }
 
 input {
-    padding: 6px;
+    padding: 4px;
     width: -webkit-fill-available;
     font-size: 0.75em;
 }
-
 
 input[type="date"] {
     font-size: 1em;
@@ -24,38 +21,46 @@ td {
     text-align: left;
     padding: 0.4em;
 }
-/* 
-tr:nth-of-type(6) {
-    text-align: center;
-} */
-.enviar {
+
+.boton {
     background-color: #d87093;
     color: white;
-    border-style: none;
+    border: 2px solid transparent;
     width: -webkit-fill-available;
     padding: 0.6em 0;
     text-align: center;
     cursor: pointer;
 }
 
-.enviar:hover {
+.boton:hover {
     background-color: white;
     color: #d87093;
     border: 2px solid #d87093;
+    margin: 0;
 }
 
 #perfil label {
 	display: block;
 	margin-bottom: 0.3em;
+	font-size: 0.75em;
 }
 
 #perfil table tr:last-child td {
-	text-align: center;
+	text-align: right;
+	padding: 1em 0.4em;
 }
 
-#perfil .enviar {
-	margin-top: 1em;
-	width: 16em;
+#perfil .boton {
+	width: 8em;
+}
+
+#editar {
+	margin-right: 1em;
+}
+
+
+#editar:focus-visible {
+	outline: none;
 }
 
 

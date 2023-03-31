@@ -20,7 +20,7 @@
 		                    <!-- <div id="menu-paciente"> -->
 		                    	<ul id="menu-paciente">
 		                    		<li id="perfil" onclick="opcion(this)">Perfil</li>
-		                    		<li>Cuenta</li>
+		                    		<li onclick="opcion(this)">Cuenta</li>
 									<li><hr></li>
 		                    		<li>
 		                    			<form id="cerrar-sesion" action="LoginPaciente" method="post">
@@ -36,7 +36,7 @@
             <nav>
                 <ul id="menu">
                     <li id="historia-clinica" onclick="opcion(this)">Historia clínica</li>
-                    <li onclick="opcion(this)">Diagnóstico</li>
+                    <li id="diagnostico" onclick="opcion(this)">Diagnóstico</li>
                     <li onclick="opcion(this)">Analítica</li>
                     <li onclick="opcion(this)">Medicación</li>
                     <li onclick="opcion(this)">Recetas</li>
@@ -50,6 +50,7 @@
         </div>
         <script type="text/javascript" src="js/panel.js"></script>
         <script type="text/javascript" src="js/perfil.js"></script>
+        <script type="text/javascript" src="js/cuenta.js"></script>
 	</body>
 </html>
 
