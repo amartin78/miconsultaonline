@@ -16,7 +16,7 @@ import javax.servlet.annotation.MultipartConfig;
 import modelo.Paciente;
 import modelo.PacienteDAO;
 
-@WebServlet("/ObtenerPaciente")
+@WebServlet("/ModificarPaciente")
 @MultipartConfig
 public class ModificarPaciente extends HttpServlet {
 

@@ -22,7 +22,7 @@ function perfil() {
         let estadoCivil = paciente["estadoCivil"];
         
         // Este formulario invoca al servlet ModificarPaciente que modifica los datos del paciente 
-        let formulario = "<form id='perfil' action='ObtenerPaciente' method='post'>";
+        let formulario = "<form id='perfil' action='ModificarPaciente' method='post'>";
         formulario += "<table>";
         formulario += "<tr><td><label>Nombre</label><input name='nombre' type='text' size='30' disabled></td>";
         formulario += "<td><label>Apellidos</label><input name='apellidos' type='text' size='30' disabled></td></tr>";
