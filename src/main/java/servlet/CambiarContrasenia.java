@@ -40,15 +40,21 @@ public class CambiarContrasenia extends HttpServlet {
 		try {
 			
 			int id = req.getParameter("id") == null ? null : Integer.parseInt(req.getParameter("id"));
-			// System.out.println("El id del paciente es: " + id);
-			Paciente p = PacienteDAO.getInstance().obtenerPacientePorID(id);
-			p.setPassword(req.getParameter("nuevaContrasenia"));
-			p.modificarContrasenia();
-			// System.out.println("La nueva contraseña " + p.getPassword() + " ha sido guardada con éxito.");
-			resp.sendRedirect("panel.html");
+			String nuevaContrasenia = req.getParameter("nuevaContrasenia");
+			String repetirContrasenia = req.getParameter("repetirContrasenia");
+			
+			if(nuevaContrasenia.equals(repetirContrasenia)) {
+				// System.out.println("El id del paciente es: " + id);
+				Paciente p = PacienteDAO.getInstance().obtenerPacientePorID(id);
+				p.setPassword(req.getParameter("nuevaContrasenia"));
+				p.modificarContrasenia();
+				System.out.println("La nueva contraseña " + p.getPassword() + " ha sido guardada con éxito.");
+				resp.sendRedirect("panel.html");
+			} else {
+				System.out.println("Las contraseñas recibidas no son idénticas.");
+			}
 		} catch(SQLException e) {
 			e.printStackTrace();
 		}
 	}
-	
 }

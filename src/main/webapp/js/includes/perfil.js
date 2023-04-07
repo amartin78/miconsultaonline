@@ -8,9 +8,9 @@ function perfil() {
 	then(paciente => {
 		// console.log("datos: " + paciente["domicilio"])
 		let id = paciente["id"];
-		let nombre = paciente["nombre"];
-        let apellidos = paciente["apellidos"];
-        let email = paciente["email"];
+		let nombre = paciente["nombre"] == undefined ? "" : paciente["nombre"];
+        let apellidos = paciente["apellidos"] == undefined ? "" : paciente["apellidos"];
+        let email = paciente["email"] == undefined ? "" : paciente["email"];
         let fecNacimiento = paciente["fecNacimiento"];
         fecNacimiento = new Date(fecNacimiento);
         let anio = fecNacimiento.getFullYear();
@@ -19,12 +19,12 @@ function perfil() {
         let dia = fecNacimiento.getDate();
         dia = String(dia).length == 2 ? dia : `0${dia}`;
         fecNacimiento = anio + "-" + mes + "-" + dia;
-        let domicilio = paciente["domicilio"];
-        let codPostal = paciente["codPostal"];
-        let localidad = paciente["localidad"];
-        let provincia = paciente["provincia"];
-        let telefono = paciente["telefono"];
-        let estadoCivil = paciente["estadoCivil"];
+        let domicilio = paciente["domicilio"] == undefined ? "" : paciente["domicilio"];
+        let codPostal = paciente["codPostal"] == 0 ? "" : paciente["codPostal"];
+        let localidad = paciente["localidad"] == undefined ? "" : paciente["localidad"];
+        let provincia = paciente["provincia"] == undefined ? "" : paciente["provincia"];
+        let telefono = paciente["telefono"] == 0 ? "" : paciente["telefono"];
+        let estadoCivil = paciente["estadoCivil"] == undefined ? "" : paciente["estadoCivil"];
         
         // Este formulario invoca al servlet ModificarPaciente que modifica los datos del paciente 
         let formulario = "<form id='perfil' action='ModificarPaciente' method='post'>";
