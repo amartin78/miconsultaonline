@@ -159,7 +159,7 @@ public class PacienteDAO {
 	}
 	
 
-	public String buscarPorAtributoJSON(String atributo, String valor) throws SQLException {
+	public String buscarPacientePorAtributoJSON(String atributo, String valor) throws SQLException {
 		
 		Gson gson = new Gson();
 		String json = gson.toJson(this.buscarPacientePorAtributo(atributo, valor));

@@ -6,6 +6,7 @@ import javax.servlet.FilterConfig;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpSession;
 import javax.servlet.ServletException;
 import java.io.IOException;
@@ -54,10 +55,11 @@ public class LoginPaciente extends HttpServlet {
 		HttpSession sesion = req.getSession();
 		String email = req.getParameter("email");
 		String password = req.getParameter("password");
-		// Paciente p = null;
+		
+		System.out.println("Paciente 1 es: " + sesion.getAttribute("paciente"));
 		
 		try {
-			if(sesion.getAttribute("usuario") != null) {
+			if(sesion.getAttribute("paciente") != null) {
 				cerrarSesion(req, resp);
 			}
 			else if (PacienteDAO.getInstance().autenticarPaciente(email, password)) {
@@ -76,7 +78,20 @@ public class LoginPaciente extends HttpServlet {
 		System.out.println("apertura de sesion");
 		HttpSession sesion = req.getSession();
 		String email = req.getParameter("email");
-		sesion.setAttribute("usuario", email);
+		Paciente paciente = null;
+		
+		try {
+			paciente = PacienteDAO.getInstance().buscarPacientePorAtributo("email", email);
+			System.out.println("Paciente 2 es: " + paciente);
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		sesion.setAttribute("paciente", paciente);
+		 Cookie cookie = new Cookie("email", paciente.getEmail());
+		 cookie.setMaxAge(60 * 5);
+		 resp.addCookie(cookie);
 		resp.sendRedirect("panel.html");
 	}
 	

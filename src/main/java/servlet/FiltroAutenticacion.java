@@ -38,7 +38,7 @@ public class FiltroAutenticacion implements Filter {
 		
 		httpRequest = (HttpServletRequest) request;
 		HttpSession sesion = httpRequest.getSession(false);
-		boolean clienteLogueado = sesion != null && sesion.getAttribute("usuario") != null;
+		boolean clienteLogueado = sesion != null && sesion.getAttribute("paciente") != null;
 		
 		if(clienteLogueado) {
 			// httpRequest.getRequestDispatcher("/panel.html").forward(request, response);

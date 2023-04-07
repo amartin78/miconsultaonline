@@ -44,7 +44,7 @@ public class ModificarPaciente extends HttpServlet {
 			p.setCodPostal(codPostal);
 			p.setLocalidad(req.getParameter("localidad"));
 			p.setProvincia(req.getParameter("provincia"));
-			System.out.println("El telefono es blank: " + req.getParameter("telefono").isBlank());
+			// System.out.println("El telefono es blank: " + req.getParameter("telefono").isBlank());
 			int telefono = req.getParameter("telefono").isBlank() ? 0 : Integer.parseInt(req.getParameter("telefono"));
 			p.setTelefono(telefono);
 			p.setEstadoCivil(req.getParameter("estadoCivil"));
