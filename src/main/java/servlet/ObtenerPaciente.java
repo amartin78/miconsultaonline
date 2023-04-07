@@ -44,10 +44,5 @@ public class ObtenerPaciente extends HttpServlet {
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		
-//		try {
-//			Se modificaria el paciente por metodo modificarPaciente con PacienteDAO...
-//		} catch(SQLException e) {
-//			e.printStackTrace();
-//		}
 	}
 }

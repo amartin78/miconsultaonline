@@ -54,13 +54,13 @@ public class LoginPaciente extends HttpServlet {
 		HttpSession sesion = req.getSession();
 		String email = req.getParameter("email");
 		String password = req.getParameter("password");
-		Paciente p = null;
+		// Paciente p = null;
 		
 		try {
 			if(sesion.getAttribute("usuario") != null) {
 				cerrarSesion(req, resp);
 			}
-			else if (PacienteDAO.getInstance().autenticar(email, password)) {
+			else if (PacienteDAO.getInstance().autenticarPaciente(email, password)) {
 				iniciarSesion(req, resp);				
 			} else {
 				resp.sendRedirect("login.html");

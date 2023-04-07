@@ -28,7 +28,8 @@ window.onload = function () {
 	document.querySelector("body").addEventListener('click', function(ev) {
 
 		if(document.getElementById("menu-paciente").style.display == "block" && 
-		  (ev.target.id != "nombre-paciente" && ev.target.id != "flecha" && ev.target.id != "perfil" && ev.target.id != "cuenta")) 
+		  (ev.target.id != "nombre-paciente" && ev.target.id != "flecha" && 
+		   ev.target.id != "perfil" && ev.target.id != "cuenta")) 
 		{
 			document.getElementById("menu-paciente").style.display = "none";
 			document.getElementById("nombre-paciente").getElementsByTagName("span")[0].innerHTML = "&#8744";

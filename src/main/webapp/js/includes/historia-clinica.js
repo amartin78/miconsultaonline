@@ -44,7 +44,7 @@ function historiaClinica() {
     }
     tablaDiagnostico += "</table>";
     if(contenidoPrincipal.indexOf("table") == -1) {
-        document.getElementById("contenido-principal").innerHTML += tablaDiagnostico;
+        document.getElementById("contenido-principal").innerHTML = tablaDiagnostico;
     }
 }
 

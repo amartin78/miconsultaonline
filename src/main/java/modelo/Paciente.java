@@ -4,6 +4,14 @@ import java.sql.Date;
 import java.util.Objects;
 import java.sql.SQLException;
 
+/**
+ * Esta clase crea un objeto de tipo Paciente con sus atributos y 
+ * permite además realizar operaciones de inserción, borrado, 
+ * modificación y lectura de dichos objetos sobre la BBDD.
+ * 
+ * @author Antonio M. Martín Jimeno
+ * @version 1.0
+ */
 public class Paciente {
 
 	private int id;
@@ -12,7 +20,10 @@ public class Paciente {
 	private String email;
 	private String password;
 	private Date fecNacimiento;
-	private String direccion;
+	private String domicilio;
+	private int codPostal;
+	private String localidad;
+	private String provincia;
 	private int telefono;
 	private String estadoCivil;
 	
@@ -28,6 +39,15 @@ public class Paciente {
 		this.password = password;
 	}
 	
+	/**
+	 * Este método constuye un objeto con los atributos necesarios para el registro
+	 * de un nuevo paciente en el sistema.
+	 * @param nombre
+	 * @param apellidos
+	 * @param email
+	 * @param password
+	 * @param fecNacimiento
+	 */
 	public Paciente(String nombre, String apellidos, String email, String password, Date fecNacimiento) {
 		super();
 		this.nombre = nombre;
@@ -37,22 +57,7 @@ public class Paciente {
 		this.fecNacimiento = fecNacimiento;
 	}
 	
-	// Constructor de objeto cuyo atributo id ya tiene un valor en la base de datos
-	public Paciente(String nombre, String apellidos, String email, String password, Date fecNacimiento,
-			String direccion, int telefono, String estadoCivil) {
-		super();
-		this.nombre = nombre;
-		this.apellidos = apellidos;
-		this.email = email;
-		this.password = password;
-		this.fecNacimiento = fecNacimiento;
-		this.direccion = direccion;
-		this.telefono = telefono;
-		this.estadoCivil = estadoCivil;
-	}
-	
-	public Paciente(int id, String nombre, String apellidos, String email, String password, Date fecNacimiento,
-			String direccion, int telefono, String estadoCivil) {
+	public Paciente(int id, String nombre, String apellidos, String email, String password, Date fecNacimiento) {
 		super();
 		this.id = id;
 		this.nombre = nombre;
@@ -60,7 +65,45 @@ public class Paciente {
 		this.email = email;
 		this.password = password;
 		this.fecNacimiento = fecNacimiento;
-		this.direccion = direccion;
+	}
+	
+	/**
+	 * Este método constuye un objeto con los atributos necesarios para la modificación 
+	 * de un paciente en el sistema.
+	 * @param nombre
+	 * @param apellidos
+	 * @param email
+	 * @param password
+	 * @param fecNacimiento
+	 */
+	public Paciente(int id, String nombre, String apellidos, Date fecNacimiento, String domicilio, 
+				    int codPostal, String localidad, String provincia, int telefono, String estadoCivil) {
+		super();
+		this.id = id;
+		this.nombre = nombre;
+		this.apellidos = apellidos;
+		this.fecNacimiento = fecNacimiento;
+		this.domicilio = domicilio;
+		this.codPostal = codPostal;
+		this.localidad = localidad;
+		this.provincia = provincia;
+		this.telefono = telefono;
+		this.estadoCivil = estadoCivil;
+	}
+	
+	public Paciente(int id, String nombre, String apellidos, String email, String password, Date fecNacimiento,
+			String domicilio, int codPostal, String localidad, String provincia, int telefono, String estadoCivil) {
+		super();
+		this.id = id;
+		this.nombre = nombre;
+		this.apellidos = apellidos;
+		this.email = email;
+		this.password = password;
+		this.fecNacimiento = fecNacimiento;
+		this.domicilio = domicilio;
+		this.codPostal = codPostal;
+		this.localidad = localidad;
+		this.provincia = provincia;
 		this.telefono = telefono;
 		this.estadoCivil = estadoCivil;
 	}
@@ -113,12 +156,36 @@ public class Paciente {
 		this.fecNacimiento = fecNacimiento;
 	}
 
-	public String getDireccion() {
-		return direccion;
+	public String getDomicilio() {
+		return domicilio;
 	}
 
-	public void setDireccion(String direccion) {
-		this.direccion = direccion;
+	public void setDomicilio(String domicilio) {
+		this.domicilio = domicilio;
+	}
+
+	public int getCodPostal() {
+		return codPostal;
+	}
+
+	public void setCodPostal(int codPostal) {
+		this.codPostal = codPostal;
+	}
+
+	public String getLocalidad() {
+		return localidad;
+	}
+
+	public void setLocalidad(String localidad) {
+		this.localidad = localidad;
+	}
+
+	public String getProvincia() {
+		return provincia;
+	}
+
+	public void setProvincia(String provincia) {
+		this.provincia = provincia;
 	}
 
 	public int getTelefono() {
@@ -136,10 +203,11 @@ public class Paciente {
 	public void setEstadoCivil(String estadoCivil) {
 		this.estadoCivil = estadoCivil;
 	}
-
+	
 	@Override
 	public int hashCode() {
-		return Objects.hash(apellidos, direccion, email, estadoCivil, fecNacimiento, id, nombre, password, telefono);
+		return Objects.hash(apellidos, codPostal, domicilio, email, estadoCivil, fecNacimiento, id, localidad, nombre,
+				password, provincia, telefono);
 	}
 
 	@Override
@@ -151,23 +219,40 @@ public class Paciente {
 		if (getClass() != obj.getClass())
 			return false;
 		Paciente other = (Paciente) obj;
-		return Objects.equals(apellidos, other.apellidos) && Objects.equals(direccion, other.direccion)
-				&& Objects.equals(email, other.email) && Objects.equals(estadoCivil, other.estadoCivil)
-				&& Objects.equals(fecNacimiento, other.fecNacimiento) && id == other.id
-				&& Objects.equals(nombre, other.nombre) && Objects.equals(password, other.password)
+		return Objects.equals(apellidos, other.apellidos) && codPostal == other.codPostal
+				&& Objects.equals(domicilio, other.domicilio) && Objects.equals(email, other.email)
+				&& Objects.equals(estadoCivil, other.estadoCivil) && Objects.equals(fecNacimiento, other.fecNacimiento)
+				&& id == other.id && Objects.equals(localidad, other.localidad) && Objects.equals(nombre, other.nombre)
+				&& Objects.equals(password, other.password) && Objects.equals(provincia, other.provincia)
 				&& telefono == other.telefono;
 	}
 
 	@Override
 	public String toString() {
 		return "Paciente [id=" + id + ", nombre=" + nombre + ", apellidos=" + apellidos + ", email=" + email
-				+ ", password=" + password + ", fecNacimiento=" + fecNacimiento + ", direccion=" + direccion
-				+ ", telefono=" + telefono + ", estadoCivil=" + estadoCivil + "]";
+				+ ", password=" + password + ", fecNacimiento=" + fecNacimiento + ", domicilio=" + domicilio
+				+ ", codPostal=" + codPostal + ", localidad=" + localidad + ", provincia=" + provincia + ", telefono="
+				+ telefono + ", estadoCivil=" + estadoCivil + "]";
 	}
-	
+
 	public void insertar() throws SQLException {
 		
-		PacienteDAO.getInstance().daoInsertar(this);
+		PacienteDAO.getInstance().altaPaciente(this);
+	}
+	
+	public void eliminar() throws SQLException {
+		
+		PacienteDAO.getInstance().bajaPaciente(this);
+	}
+	
+	public void modificar() throws SQLException {
+		
+		PacienteDAO.getInstance().modificarPaciente(this);
+	}
+	
+	public void modificarContrasenia() throws SQLException {
+		
+		PacienteDAO.getInstance().cambiarContrasenia(this);
 	}
 }
 

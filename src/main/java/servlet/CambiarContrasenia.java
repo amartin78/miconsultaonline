@@ -7,20 +7,24 @@ import javax.servlet.ServletException;
 import java.io.IOException;
 import java.sql.Date;
 import java.sql.SQLException;
+
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.annotation.MultipartConfig;
 import modelo.Paciente;
+import modelo.PacienteDAO;
 
-
-@WebServlet("/AltaPaciente")
+/**
+ * Esta clase permite modificar la contraseña del paciente
+ * en la base de datos.
+ * 
+ * @author Antonio Martín
+ */
+@WebServlet("/CambiarContrasenia")
 @MultipartConfig
-public class AltaPaciente extends HttpServlet {
+public class CambiarContrasenia extends HttpServlet {
 
-	/**
-	 *  Constructor por defecto
-	 */
-	public AltaPaciente() {
-		// TODO Auto-generated constructor stub
+	public CambiarContrasenia() {
+		
 	}
 
 	@Override
@@ -33,19 +37,18 @@ public class AltaPaciente extends HttpServlet {
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		
-		String nombre = req.getParameter("nombre");
-		String apellidos = req.getParameter("apellidos");
-		String email = req.getParameter("email");
-		String password = req.getParameter("password");
-		Date fecNacimiento = Date.valueOf(req.getParameter("fecNacimiento"));
-		
-		Paciente p = new Paciente(nombre, apellidos, email, password, fecNacimiento);
-		try {			
-			p.insertar();
-			resp.sendRedirect("login.html");
+		try {
+			
+			int id = req.getParameter("id") == null ? null : Integer.parseInt(req.getParameter("id"));
+			// System.out.println("El id del paciente es: " + id);
+			Paciente p = PacienteDAO.getInstance().obtenerPacientePorID(id);
+			p.setPassword(req.getParameter("nuevaContrasenia"));
+			p.modificarContrasenia();
+			// System.out.println("La nueva contraseña " + p.getPassword() + " ha sido guardada con éxito.");
+			resp.sendRedirect("panel.html");
 		} catch(SQLException e) {
 			e.printStackTrace();
 		}
 	}
+	
 }
-

@@ -71,6 +71,7 @@ header nav {
 	position: absolute;
 	top: 3.4em;
 	right: 4em;
+	border-radius: 2px;
 	text-align: left;
 	background-color: white;
 	box-shadow: 0 3px 6px rgba(0,0,0,0.2), 0 5px 16px 0 rgba(0,0,0,0.18);
@@ -90,14 +91,13 @@ header nav {
 	margin: 0 -0.5em;
 }
 
-#menu-paciente li:hover {
+#menu-paciente li:not(:nth-child(3)):hover {
     background-color: #f0f0f0 !important;
 }
 
 #menu-paciente li:last-child {
 	padding: 0;
-	margin: 0;
-	
+	margin: 0;	
 }
 
 #menu-paciente hr {
@@ -187,15 +187,6 @@ main h1 {
     margin-top: 8em;
     /* width: 100vw; */
     height: 100vh;
-}
-
-table {
-    margin: 0 auto;
-    font-size: 1.2em;
-}
-
-table th, td {
-    padding: 0.3em 1.6em;
 }
 
 /* ############### Responsive ################## */
