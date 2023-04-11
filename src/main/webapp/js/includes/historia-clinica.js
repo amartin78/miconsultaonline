@@ -4,47 +4,71 @@ function historiaClinica() {
     limpiarContenidoPrincipal();
     document.querySelector("#menu li:nth-child(1)").style.color = "#d87093";
     
-    let contenidoPrincipal = document.getElementById("contenido-principal").innerHTML;
-    let datosDiagnostico = [["Dolor muscular 1", "04/01/2021"], 
-                            ["Dolor muscular 2", "04/02/2021"],
-                            ["Dolor muscular 3", "04/03/2021"], 
-                            ["Dolor muscular 4", "04/04/2021"], 
-                            ["Dolor muscular 5", "04/05/2021"], 
-                            ["Dolor muscular 6", "04/06/2021"], 
-                            ["Dolor muscular 7", "04/07/2021"], 
-                            ["Dolor muscular 8", "04/08/2021"], 
-                            ["Dolor muscular 9", "04/09/2021"], 
-                            ["Dolor muscular 10", "04/10/2021"], 
-                            ["Dolor muscular 11", "04/11/2021"], 
-                            ["Dolor muscular 12", "04/12/2021"], 
-                            ["Dolor muscular 13", "05/01/2021"], 
-                            ["Dolor muscular 14", "05/02/2021"], 
-                            ["Dolor muscular 15", "05/03/2021"],
-                            ["Dolor muscular 1", "04/01/2021"], 
-                            ["Dolor muscular 2", "04/02/2021"],
-                            ["Dolor muscular 3", "04/03/2021"], 
-                            ["Dolor muscular 4", "04/04/2021"], 
-                            ["Dolor muscular 5", "04/05/2021"], 
-                            ["Dolor muscular 6", "04/06/2021"], 
-                            ["Dolor muscular 7", "04/07/2021"], 
-                            ["Dolor muscular 8", "04/08/2021"], 
-                            ["Dolor muscular 9", "04/09/2021"], 
-                            ["Dolor muscular 10", "04/10/2021"], 
-                            ["Dolor muscular 11", "04/11/2021"], 
-                            ["Dolor muscular 12", "04/12/2021"], 
-                            ["Dolor muscular 13", "05/01/2021"], 
-                            ["Dolor muscular 14", "05/02/2021"], 
-                            ["Dolor muscular 15", "05/03/2021"] 
-                        ];
-    let tablaDiagnostico = "<table border='1'>";
+    // let contenidoPrincipal = document.getElementById("contenido-principal").innerHTML;
+    
+    // Consultas
+    let datosDiagnostico = [["Náusea", "14-01-2010"], 
+                            ["Reflujo gástrico", "29-09-2012"],
+                            ["Revisión general", "03-07-2015"], 
+                            ["Gripe", "04-01-2015"],  
+                            ["Revisión general", "10-06-2018"],
+                            ["Fiebre", "22-04-2021"]
+                           ];
+    let tablaDiagnostico = "<div class='contenedor-hClinica'>";
+    tablaDiagnostico += "<table id='diagnostico' class='listado'>";
     tablaDiagnostico += "<tr><th>Anomalía</th><th>Fecha consulta</th></tr>";
     for(let i = 0; i < datosDiagnostico.length; i++) {
         tablaDiagnostico += "<tr><td>" + datosDiagnostico[i][0] + "</td>" + 
                                 "<td>" + datosDiagnostico[i][1] + "</td></tr>";
     }
     tablaDiagnostico += "</table>";
-    if(contenidoPrincipal.indexOf("table") == -1) {
-        document.getElementById("contenido-principal").innerHTML = tablaDiagnostico;
+    tablaDiagnostico += "</div>";
+    
+    // Alergias
+    let datosAlergias = [["Polen", "04-09-2008"], 
+                         ["Acaros", "12-03-2010"],
+                         ["Moho", "01-08-2014"]
+                        ];
+    let tablaAlergias = "<div class='contenedor-hClinica'>";                    
+    tablaAlergias += "<table id='alergias' class='listado'>";
+    tablaAlergias += "<tr><th>Alergia</th><th>Fecha</th></tr>";
+    for(let i = 0; i < datosAlergias.length; i++) {
+        tablaAlergias += "<tr><td>" + datosAlergias[i][0] + "</td>" + 
+                                "<td>" + datosAlergias[i][1] + "</td></tr>";
     }
+    tablaAlergias += "</table>";
+    tablaAlergias += "</div>";
+    
+    // Vacunas
+    let datosVacunas = [["Sarampión", "08-03-2001"], 
+                        ["Viruela", "12-05-2001"],
+                        ["Polio", "01-06-2002"],
+                        ["Covid", "02-12-2021"]
+                       ];
+    let tablaVacunas = "<div class='contenedor-hClinica'>";
+    tablaVacunas += "<table id='vacunas' class='listado'>";
+    tablaVacunas += "<tr><th>Vacuna</th><th>Fecha</th></tr>";
+    for(let i = 0; i < datosVacunas.length; i++) {
+        tablaVacunas += "<tr><td>" + datosVacunas[i][0] + "</td>" + 
+                                "<td>" + datosVacunas[i][1] + "</td></tr>";
+    }
+    tablaVacunas += "</table>";
+    tablaVacunas += "</div>";
+    
+    
+    //if() {
+	
+	//}
+    
+    document.getElementById("contenido-principal").innerHTML = tablaDiagnostico;
+    document.getElementById("contenido-principal").innerHTML += tablaAlergias;
+    document.getElementById("contenido-principal").innerHTML += tablaVacunas;
 }
+
+
+
+// Estilo de vida
+// Consultas
+// Alergias
+// Vacunas
 

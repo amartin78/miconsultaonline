@@ -55,9 +55,7 @@ public class LoginPaciente extends HttpServlet {
 		HttpSession sesion = req.getSession();
 		String email = req.getParameter("email");
 		String password = req.getParameter("password");
-		
-		System.out.println("Paciente 1 es: " + sesion.getAttribute("paciente"));
-		
+				
 		try {
 			if(sesion.getAttribute("paciente") != null) {
 				cerrarSesion(req, resp);
@@ -81,17 +79,16 @@ public class LoginPaciente extends HttpServlet {
 		Paciente paciente = null;
 		
 		try {
-			paciente = PacienteDAO.getInstance().buscarPacientePorAtributo("email", email);
-			System.out.println("Paciente 2 es: " + paciente);
 			
+			paciente = PacienteDAO.getInstance().buscarPacientePorAtributo("email", email);			
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		sesion.setAttribute("paciente", paciente);
-		 Cookie cookie = new Cookie("email", paciente.getEmail());
-		 cookie.setMaxAge(60 * 5);
-		 resp.addCookie(cookie);
+		Cookie cookie = new Cookie("email", paciente.getEmail());
+		cookie.setMaxAge(60 * 5);
+		resp.addCookie(cookie);
 		resp.sendRedirect("panel.html");
 	}
 	

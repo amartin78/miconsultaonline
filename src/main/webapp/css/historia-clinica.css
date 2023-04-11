@@ -1,0 +1,43 @@
+
+.listado {
+	width: 100%;
+	border-collapse: collapse;
+}
+
+.contenedor-hClinica {
+	box-shadow: 0 3px 6px rgba(0,0,0,0.2), 0 5px 16px 0 rgba(0,0,0,0.18);
+	width: 50%;
+	background-color: white;
+	padding: 1.8em;
+	margin: 0 auto 2em;
+}
+
+.contenedor-hClinica table {
+	margin: 0 !important;	
+}
+
+
+.contenedor-hClinica:last-child {
+	margin-bottom: 4em;
+}
+
+.listado td, .listado th {
+	padding: 0.6em 1em;
+	text-align: left;
+}
+
+.listado tr:last-child td {
+	border: none;
+}
+
+.listado th {
+	background-color: aliceblue;
+	color: #333;
+}
+
+.listado tr:nth-child(2n+1) {
+	background-color: aliceblue;
+}
+
+
+

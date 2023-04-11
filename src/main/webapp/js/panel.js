@@ -81,9 +81,9 @@ function limpiarContenidoPrincipal() {
 		opcionesMenuPaciente[i].style.backgroundColor = "#fff";
 	}
 	
-    let contenidoPrincipal = document.getElementById("contenido-principal").innerHTML;
-    if(contenidoPrincipal.indexOf("table") > 0) {
-        document.getElementById("contenido-principal").getElementsByTagName("table")[0].remove();
-    }
+    // let contenidoPrincipal = document.getElementById("contenido-principal").innerHTML;
+    // if(contenidoPrincipal.indexOf("table") > 0) {
+        // document.getElementById("contenido-principal").getElementsByTagName("table")[0].remove();
+    // }
 }
 

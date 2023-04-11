@@ -40,7 +40,7 @@ tr:nth-of-type(6) {
     border: 2px solid #d87093;
 }
 
-#footer-login {
+footer {
     position: fixed;
     bottom: 0;
     min-width: -webkit-fill-available;
