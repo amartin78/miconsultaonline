@@ -43,7 +43,7 @@ function checkCookie() {
 	
 	let cookie = obtenerCookie();
 	if (cookie == null) {
-		window.location.href = "http://localhost:8080/login.html";
+		window.location.href = "https://miconsultaonline.herokuapp.com/login.html";
 	}
 }
 
