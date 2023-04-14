@@ -5,6 +5,7 @@ import java.io.IOException;
 import javax.servlet.Filter;
 import javax.servlet.FilterChain;
 import javax.servlet.FilterConfig;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import javax.servlet.ServletException;
@@ -38,7 +39,16 @@ public class FiltroAutenticacion implements Filter {
 		
 		httpRequest = (HttpServletRequest) request;
 		HttpSession sesion = httpRequest.getSession(false);
-		boolean clienteLogueado = sesion != null && sesion.getAttribute("paciente") != null;
+		Cookie listaCookies[] = httpRequest.getCookies();
+		String email = "";
+		for(Cookie cookie : listaCookies) {
+			System.out.println();
+			if(cookie.getName().equals("email")) {
+				email = cookie.getValue();
+			}
+		}
+		System.out.println("Email has a value: " + !email.trim().isEmpty());
+		boolean clienteLogueado = sesion != null && sesion.getAttribute("paciente") != null && !email.trim().isEmpty();
 		
 		if(clienteLogueado) {
 			// httpRequest.getRequestDispatcher("/panel.html").forward(request, response);

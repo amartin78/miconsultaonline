@@ -43,6 +43,10 @@ function checkCookie() {
 	
 	let cookie = obtenerCookie();
 	if (cookie == null) {
+		// Entorno local
+		// window.location.href = "http://localhost:8080/login.html";
+		
+		// Entorno producción
 		window.location.href = "https://miconsultaonline.herokuapp.com/login.html";
 	}
 }
