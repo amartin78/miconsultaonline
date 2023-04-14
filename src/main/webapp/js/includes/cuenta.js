@@ -19,7 +19,7 @@ function cuenta() {
         formulario += "<tr><td><label>Email</label><input name='email' type='email' size='30' disabled placeholder='ejemplo@hotmail.com'></td></tr>";
         formulario += "<tr><td><label>Contraseña actual</label><input name='actualContrasenia' id='actualContrasenia' disabled type='password' size='30'></td></tr>";
         formulario += "<tr><td><label>Nueva contraseña</label><input name='nuevaContrasenia' id='nuevaContrasenia' disabled type='password' size='30'></td></tr>";
-        formulario += "<tr><td><label>Repetir contraseña</label><input name='repetirContrasenia' id='repetirContrasenia' disabled type='password' size='30'></td></tr>";
+        formulario += "<tr><td><label>Repetir nueva contraseña</label><input name='repetirContrasenia' id='repetirContrasenia' disabled type='password' size='30'></td></tr>";
         formulario += "<tr><td><input class='boton' type='button' value='Editar'>";
         formulario += "<input class='boton' type='submit' onclick='comprobarContrasenia()' value='Enviar'></td></tr>";
         formulario += "</table>";

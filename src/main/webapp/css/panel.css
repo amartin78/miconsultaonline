@@ -166,7 +166,7 @@ main {
 }
 
 #menu li:hover {
-	color: #d87093;
+	color: #d87093 !important;
 }
 
 #menu li:focus {

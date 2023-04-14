@@ -75,6 +75,7 @@ public class LoginPaciente extends HttpServlet {
 		
 		System.out.println("apertura de sesion");
 		HttpSession sesion = req.getSession();
+		sesion.setMaxInactiveInterval(4);
 		String email = req.getParameter("email");
 		Paciente paciente = null;
 		
@@ -87,7 +88,7 @@ public class LoginPaciente extends HttpServlet {
 		}
 		sesion.setAttribute("paciente", paciente);
 		Cookie cookie = new Cookie("email", paciente.getEmail());
-		cookie.setMaxAge(60 * 5);
+		cookie.setMaxAge(4);
 		resp.addCookie(cookie);
 		resp.sendRedirect("panel.html");
 	}

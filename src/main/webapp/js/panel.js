@@ -36,7 +36,26 @@ window.onload = function () {
 		}
 	});
 	
+	setInterval(checkCookie, 4000);
 };
+
+function checkCookie() {
+	
+	let cookie = obtenerCookie();
+	if (cookie == null) {
+		window.location.href = "http://localhost:8080/login.html";
+	}
+}
+
+function obtenerCookie() {
+	
+	let dc = document.cookie.split("=");
+	let email = dc[1];
+	if(email == "") {
+		return null;
+	}
+	return email;
+}
 
 function opcion(o) {
 	
