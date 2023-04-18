@@ -1,10 +1,11 @@
 
 window.onload = function () {
 	
-    // Se activa la opción de Historia clínica
+    // Se activa por defecto la primera opción del menú del panel que es la Historia clínica
     document.querySelector("#menu li:nth-child(1)").click();
     document.getElementById("menu-paciente").style.display = "none";
     
+    // Se obtienen datos del servidor sobre el paciente para mostrarlos en el panel principal.
     fetch('ObtenerPaciente').
 	then(response => response.json()).
 	then(paciente => {
@@ -13,7 +14,7 @@ window.onload = function () {
 	    document.getElementById("nombre-paciente").innerHTML += "<span id='flecha'>&#8744</span>";
 	});
 	
-	// Se muestra el menú paciente 
+	// Se muestra el menú paciente.
 	document.getElementById("nombre-paciente").addEventListener('click', function() {
 
 		if(document.getElementById("menu-paciente").style.display == "none") {
@@ -25,6 +26,8 @@ window.onload = function () {
 		}
 	});
 	
+	// Se oculta el menú del paciente al clickear en cualquier parte del documento que no sea
+	// el mismo menú del paciente.
 	document.querySelector("body").addEventListener('click', function(ev) {
 
 		if(document.getElementById("menu-paciente").style.display == "block" && 
@@ -36,9 +39,29 @@ window.onload = function () {
 		}
 	});
 	
-	setInterval(checkCookie, 4000);
+	// Se determina el origen del perfil o el contenido correspondiente a la opción de menú elegida por el 
+	// paciente (ej. cuenta) y se muestra dicha información en el panel principal.
+	let origen = "";
+	let cookies = document.cookie.split(";");
+	for(let i=0; i<cookies.length; i++) {
+		if(cookies[i].indexOf("origen") != -1) {
+			origen = cookies[i].split("=")[1];
+			document.cookie = "origen=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path:/;";
+		} 
+	}
+	if(origen == "perfil") {
+		opcion("Perfil");
+	} else if(origen == "cuenta") {
+		opcion("Cuenta");
+	}
+	
+	// Se comprueba cada minuto que la cookie este activa, en caso contrario se redirecciona al  
+	// cliente a la página de loguin para autenticarse de nuevo e iniciar una nueva sesión.
+	setInterval(checkCookie, 60000);
 };
 
+// Redirecciona al cliente a la página de loguin solo en el caso 
+// de que la cookie este inactiva.
 function checkCookie() {
 	
 	let cookie = obtenerCookie();
@@ -51,6 +74,7 @@ function checkCookie() {
 	}
 }
 
+// Devuelve el valor de la cookie con nombre email o null si su valor esta vacío
 function obtenerCookie() {
 	
 	let dc = document.cookie.split("=");
@@ -61,10 +85,12 @@ function obtenerCookie() {
 	return email;
 }
 
+// Muestra al usuario el contenido correspondiente (tablas, listados) a la opción elegida 
+// en el menú. Para facilitar la modularidad del código, se divide el contenido en funciones, 
+// cada una con su respectiva opción de menú.
 function opcion(o) {
 	
-    let nombreOpcion = o.innerText;
-    // document.getElementById("contenido-principal").innerHTML = "<span>Hola</span>";
+    let nombreOpcion = typeof o == "string" ? o : o.innerText;
     switch(nombreOpcion) {
 		case "Perfil":
             perfil();
@@ -92,6 +118,8 @@ function opcion(o) {
     }
 }
 
+// Esta función restablece los estilos del menú principal y del menú del paciente 
+// cada vez que el paciente cambia de opción en el menú.
 function limpiarContenidoPrincipal() {
 	
 	let opcionesMenuPrincipal = document.querySelectorAll("#menu li");
@@ -103,10 +131,5 @@ function limpiarContenidoPrincipal() {
 	for(let i = 0; i < opcionesMenuPaciente.length; i++) {
 		opcionesMenuPaciente[i].style.backgroundColor = "#fff";
 	}
-	
-    // let contenidoPrincipal = document.getElementById("contenido-principal").innerHTML;
-    // if(contenidoPrincipal.indexOf("table") > 0) {
-        // document.getElementById("contenido-principal").getElementsByTagName("table")[0].remove();
-    // }
 }
 

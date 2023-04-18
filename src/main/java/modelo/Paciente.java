@@ -31,13 +31,13 @@ public class Paciente {
 		super();
 	}
 	
-	public Paciente(String nombre, String apellidos, String email, String password) {
-		super();
-		this.nombre = nombre;
-		this.apellidos = apellidos;
-		this.email = email;
-		this.password = password;
-	}
+//	public Paciente(String nombre, String apellidos, String email, String password) {
+//		super();
+//		this.nombre = nombre;
+//		this.apellidos = apellidos;
+//		this.email = email;
+//		this.password = password;
+//	}
 	
 	/**
 	 * Este método constuye un objeto con los atributos necesarios para el registro
@@ -67,6 +67,20 @@ public class Paciente {
 		this.fecNacimiento = fecNacimiento;
 	}
 	
+//	public Paciente(int id, String nombre, String apellidos, Date fecNacimiento, String domicilio, 
+//				    int codPostal, String localidad, String provincia, int telefono, String estadoCivil) {
+//		super();
+//		this.id = id;
+//		this.nombre = nombre;
+//		this.apellidos = apellidos;
+//		this.fecNacimiento = fecNacimiento;
+//		this.domicilio = domicilio;
+//		this.codPostal = codPostal;
+//		this.localidad = localidad;
+//		this.provincia = provincia;
+//		this.telefono = telefono;
+//		this.estadoCivil = estadoCivil;
+//	}
 	/**
 	 * Este método constuye un objeto con los atributos necesarios para la modificación 
 	 * de un paciente en el sistema.
@@ -76,29 +90,13 @@ public class Paciente {
 	 * @param password
 	 * @param fecNacimiento
 	 */
-	public Paciente(int id, String nombre, String apellidos, Date fecNacimiento, String domicilio, 
-				    int codPostal, String localidad, String provincia, int telefono, String estadoCivil) {
-		super();
-		this.id = id;
-		this.nombre = nombre;
-		this.apellidos = apellidos;
-		this.fecNacimiento = fecNacimiento;
-		this.domicilio = domicilio;
-		this.codPostal = codPostal;
-		this.localidad = localidad;
-		this.provincia = provincia;
-		this.telefono = telefono;
-		this.estadoCivil = estadoCivil;
-	}
-	
-	public Paciente(int id, String nombre, String apellidos, String email, String password, Date fecNacimiento,
+	public Paciente(int id, String nombre, String apellidos, String email, Date fecNacimiento,
 			String domicilio, int codPostal, String localidad, String provincia, int telefono, String estadoCivil) {
 		super();
 		this.id = id;
 		this.nombre = nombre;
 		this.apellidos = apellidos;
 		this.email = email;
-		this.password = password;
 		this.fecNacimiento = fecNacimiento;
 		this.domicilio = domicilio;
 		this.codPostal = codPostal;
@@ -230,7 +228,7 @@ public class Paciente {
 	@Override
 	public String toString() {
 		return "Paciente [id=" + id + ", nombre=" + nombre + ", apellidos=" + apellidos + ", email=" + email
-				+ ", password=" + password + ", fecNacimiento=" + fecNacimiento + ", domicilio=" + domicilio
+				+ ", fecNacimiento=" + fecNacimiento + ", domicilio=" + domicilio
 				+ ", codPostal=" + codPostal + ", localidad=" + localidad + ", provincia=" + provincia + ", telefono="
 				+ telefono + ", estadoCivil=" + estadoCivil + "]";
 	}

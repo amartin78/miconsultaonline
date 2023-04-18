@@ -1,8 +1,10 @@
 package servlet;
 
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import javax.servlet.ServletException;
 import java.io.IOException;
 import java.sql.Date;
@@ -39,20 +41,34 @@ public class CambiarContrasenia extends HttpServlet {
 		
 		try {
 			
+			HttpSession sesion = req.getSession();
 			int id = req.getParameter("id") == null ? null : Integer.parseInt(req.getParameter("id"));
+			String email = req.getParameter("email");
+			String actualContrasenia = req.getParameter("actualContrasenia");
 			String nuevaContrasenia = req.getParameter("nuevaContrasenia");
 			String repetirContrasenia = req.getParameter("repetirContrasenia");
 			
-			if(nuevaContrasenia.equals(repetirContrasenia)) {
-				// System.out.println("El id del paciente es: " + id);
-				Paciente p = PacienteDAO.getInstance().obtenerPacientePorID(id);
-				p.setPassword(req.getParameter("nuevaContrasenia"));
-				p.modificarContrasenia();
-				System.out.println("La nueva contraseña " + p.getPassword() + " ha sido guardada con éxito.");
-				resp.sendRedirect("panel.html");
+			String mensaje = null;
+			
+			if (PacienteDAO.getInstance().autenticarPaciente(email, actualContrasenia)) {
+				
+				if(nuevaContrasenia.equals(repetirContrasenia)) {
+					Cookie cookieValidez = new Cookie("passwordValido", "valido");
+					resp.addCookie(cookieValidez);
+					Paciente p = PacienteDAO.getInstance().obtenerPacientePorID(id);
+					p.setPassword(req.getParameter("nuevaContrasenia"));
+					p.modificarContrasenia();
+					System.out.println("La nueva contraseña ha sido guardada con éxito.");
+				}
 			} else {
-				System.out.println("Las contraseñas recibidas no son idénticas.");
+				Cookie cookieValidez = new Cookie("passwordValido", "noValido");
+				Cookie cookieOrigen = new Cookie("origen", "cuenta");
+				resp.addCookie(cookieValidez);
+				resp.addCookie(cookieOrigen);
 			}
+			Cookie cookieOrigen = new Cookie("origen", "cuenta");
+			resp.addCookie(cookieOrigen);
+			resp.sendRedirect("panel.html");
 		} catch(SQLException e) {
 			e.printStackTrace();
 		}

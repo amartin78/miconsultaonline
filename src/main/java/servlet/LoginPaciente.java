@@ -57,11 +57,16 @@ public class LoginPaciente extends HttpServlet {
 		String password = req.getParameter("password");
 				
 		try {
+			
+			// Si la sesión esta abierta entonces se cierra.
 			if(sesion.getAttribute("paciente") != null) {
 				cerrarSesion(req, resp);
 			}
+			// En este caso la sesión estará cerrada y se inicia.
 			else if (PacienteDAO.getInstance().autenticarPaciente(email, password)) {
-				iniciarSesion(req, resp);				
+				iniciarSesion(req, resp);		
+			// En este caso el usuario ha intentado iniciar la sesión pero sus 
+			// credenciales no son válidas y se redirecciona a la página de loguin.
 			} else {
 				resp.sendRedirect("login.html");
 			}
@@ -73,9 +78,10 @@ public class LoginPaciente extends HttpServlet {
 	private void iniciarSesion(HttpServletRequest req, HttpServletResponse resp) 
 					throws ServletException, IOException, URISyntaxException, InterruptedException {
 		
-		System.out.println("apertura de sesion");
+		System.out.println("Se inicia la sesión");
 		HttpSession sesion = req.getSession();
-		sesion.setMaxInactiveInterval(4);
+		// Tiempo máximo que estará activa la sesión
+		sesion.setMaxInactiveInterval(60 * 10);
 		String email = req.getParameter("email");
 		Paciente paciente = null;
 		
@@ -88,14 +94,19 @@ public class LoginPaciente extends HttpServlet {
 		}
 		sesion.setAttribute("paciente", paciente);
 		Cookie cookie = new Cookie("email", paciente.getEmail());
-		cookie.setMaxAge(4);
+		// Se establece un tiempo máximo para la cookie igual al de la sesión menos un minuto
+		// que es la frecuencia con que la parte cliente comprueba el estado de la sesión 
+		// para en el caso de estar finalizada redireccionar al cliente a la página de loguin.
+		cookie.setMaxAge(60 * 9);
 		resp.addCookie(cookie);
+		// Una vez autenticado el usuario y creadas la sesión y la cookie redireccionamos
+		// al cliente hacia el panel. 
 		resp.sendRedirect("panel.html");
 	}
 	
 	private void cerrarSesion(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		
-		System.out.println("cierre de sesion");
+		System.out.println("Se cierra la sesión");
 		HttpSession sesion = req.getSession(false);
 		sesion.invalidate();
 		resp.sendRedirect("login.html");

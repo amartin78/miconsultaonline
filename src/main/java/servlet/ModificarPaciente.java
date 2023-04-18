@@ -1,5 +1,6 @@
 package servlet;
 
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -32,7 +33,6 @@ public class ModificarPaciente extends HttpServlet {
 		// TODO Auto-generated method stub
 		
 		int id = req.getParameter("id") == null ? null : Integer.parseInt(req.getParameter("id"));
-		// System.out.println("Paciente id para su modificacion: " + id);
 		Paciente p;
 		try {
 			p = PacienteDAO.getInstance().obtenerPacientePorID(id);
@@ -44,12 +44,13 @@ public class ModificarPaciente extends HttpServlet {
 			p.setCodPostal(codPostal);
 			p.setLocalidad(req.getParameter("localidad"));
 			p.setProvincia(req.getParameter("provincia"));
-			// System.out.println("El telefono es blank: " + req.getParameter("telefono").isBlank());
 			int telefono = req.getParameter("telefono").isBlank() ? 0 : Integer.parseInt(req.getParameter("telefono"));
 			p.setTelefono(telefono);
 			p.setEstadoCivil(req.getParameter("estadoCivil"));
 			
 			p.modificar();
+			Cookie cookieOrigen = new Cookie("origen", "perfil");
+			resp.addCookie(cookieOrigen);
 			resp.sendRedirect("panel.html");
 			System.out.println("El paciente se ha modificado con éxito");
 		} catch (SQLException e1) {

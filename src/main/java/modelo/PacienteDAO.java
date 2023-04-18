@@ -42,7 +42,8 @@ public class PacienteDAO {
 		Paciente p = null;
 		
 		if(rs.next()) {
-			p = new Paciente(rs.getInt("id"), rs.getString("nombre"), rs.getString("apellidos"), rs.getDate("fec_nacimiento"), 
+			p = new Paciente(rs.getInt("id"), rs.getString("nombre"), rs.getString("apellidos"), 
+							 rs.getString("email"), rs.getDate("fec_nacimiento"), 
 							 rs.getString("domicilio"), rs.getInt("cod_postal"), rs.getString("localidad"), 
 							 rs.getString("provincia"), rs.getInt("telefono"), rs.getString("estado_civil"));
 		}
@@ -76,7 +77,6 @@ public class PacienteDAO {
 	
 	public void modificarPaciente(Paciente p) throws SQLException {
 		
-		// System.out.println("persona domicilio: " + p.getDomicilio() + ", persona codpostal: " + p.getCodPostal());
 		if(p.getId() != 0) {
 			
 			PreparedStatement ps = con.prepareStatement("UPDATE paciente SET " + 
@@ -120,10 +120,8 @@ public class PacienteDAO {
 			if(pacienteRes == null) {
 				pacienteRes = new ArrayList<>();
 			}
-//			pacienteRes.add(new Paciente(rs.getString("nombre"), rs.getString("apellidos"),  rs.getString("email"), 
-//										 rs.getString("password"), rs.getDate("fec_nacimiento")));
-			pacienteRes.add(new Paciente(rs.getString("nombre"), rs.getString("apellidos"),  rs.getString("email"), 
-					 rs.getString("password")));
+			pacienteRes.add(new Paciente(rs.getInt("id"), rs.getString("nombre"), rs.getString("apellidos"),  rs.getString("email"), 
+					 				     rs.getString("password"), rs.getDate("fec_nacimiento")));
 		}
 		rs.close();
 		ps.close();
@@ -146,14 +144,12 @@ public class PacienteDAO {
 		
 		if(rs.next()) {
 			p = new Paciente(rs.getInt("id"), rs.getString("nombre"), rs.getString("apellidos"), 
-					 rs.getString("email"), rs.getString("password"), rs.getDate("fec_nacimiento"), 
+					 rs.getString("email"), rs.getDate("fec_nacimiento"), 
 					 rs.getString("domicilio"), rs.getInt("cod_postal"), rs.getString("localidad"), 
 					 rs.getString("provincia"), rs.getInt("telefono"), rs.getString("estado_civil"));
 		}			
 		rs.close();
 		ps.close();
-		
-		System.out.println("persona " + p);
 		
 		return p;
 	}

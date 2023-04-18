@@ -30,9 +30,7 @@ public class ObtenerPaciente extends HttpServlet {
 		
 		String p = null;
 		HttpSession sesion = req.getSession();
-		// String email = String.valueOf(sesion.getAttribute("usuario"));
 		String email = ((Paciente) sesion.getAttribute("paciente")).getEmail();
-		System.out.println("email es: " + email);
 		
 		try {
 			p = PacienteDAO.getInstance().buscarPacientePorAtributoJSON("email", email);

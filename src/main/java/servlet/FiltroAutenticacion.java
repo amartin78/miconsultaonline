@@ -42,16 +42,13 @@ public class FiltroAutenticacion implements Filter {
 		Cookie listaCookies[] = httpRequest.getCookies();
 		String email = "";
 		for(Cookie cookie : listaCookies) {
-			System.out.println();
 			if(cookie.getName().equals("email")) {
 				email = cookie.getValue();
 			}
 		}
-		System.out.println("Email has a value: " + !email.trim().isEmpty());
 		boolean clienteLogueado = sesion != null && sesion.getAttribute("paciente") != null && !email.trim().isEmpty();
 		
 		if(clienteLogueado) {
-			// httpRequest.getRequestDispatcher("/panel.html").forward(request, response);
 			chain.doFilter(request, response);
 		} else {
 			httpRequest.getRequestDispatcher("/login.html").forward(request, response);
