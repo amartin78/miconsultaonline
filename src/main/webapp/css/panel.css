@@ -82,17 +82,18 @@ header nav {
 }
 	
 #menu-paciente {
-	padding: 0.4em 0.8em;
+	padding: 0em 0.8em;
 	margin: 0.5em 1em 0 0;
 } 
 
-#menu-paciente li, #menu-paciente li form input {
-	padding: 0.4em 0.8em;
+#menu-paciente li:not(:nth-child(3)), #menu-paciente li form input {
+	padding: 0.8em 0.8em;
 	margin: 0 -0.8em;
 }
 
-#menu-paciente li:not(:nth-child(3)):hover {
+#menu-paciente li:not(:nth-child(3)):hover, #menu-paciente li form input:hover {
     background-color: #f0f0f0 !important;
+    color: #d87093 !important;
 }
 
 #menu-paciente li:last-child {

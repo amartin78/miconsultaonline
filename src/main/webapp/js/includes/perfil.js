@@ -78,6 +78,7 @@ function perfil() {
 		
 		// Se cambia el estilo de la opción de menú paciente elegida (perfil), para mostrarla como activa.
 		document.querySelector("#menu-paciente li:nth-child(1)").style.backgroundColor = "#f0f0f0";
+		document.querySelector("#menu-paciente li:nth-child(1)").style.color = "#d87093";
 	});
 }
 

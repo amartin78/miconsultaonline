@@ -67,10 +67,10 @@ function checkCookie() {
 	let cookie = obtenerCookie();
 	if (cookie == null) {
 		// Entorno local
-		// window.location.href = "http://localhost:8080/login.html";
+		window.location.href = "http://localhost:8080/login.html";
 		
 		// Entorno producción
-		window.location.href = "https://miconsultaonline.herokuapp.com/login.html";
+		// window.location.href = "https://miconsultaonline.herokuapp.com/login.html";
 	}
 }
 
@@ -130,6 +130,7 @@ function limpiarContenidoPrincipal() {
 	let opcionesMenuPaciente = document.querySelectorAll("#menu-paciente li");
 	for(let i = 0; i < opcionesMenuPaciente.length; i++) {
 		opcionesMenuPaciente[i].style.backgroundColor = "#fff";
+		opcionesMenuPaciente[i].style.color = "#333";
 	}
 }
 
