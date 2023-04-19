@@ -6,21 +6,18 @@ function historiaClinica() {
     
     // Se crea una tabla que muestra información relativa a las anomalías 
     // o enfermedades que haya tenido el paciente.
-    let datosDiagnostico = [["Náusea", "14-01-2010"], 
-                            ["Reflujo gástrico", "29-09-2012"],
-                            // ["Revisión general", "03-07-2015"], 
-                            ["Gripe", "04-01-2015"],  
-                            // ["Revisión general", "10-06-2018"],
-                            ["Fiebre", "22-04-2021"]
+    let datosDiagnostico = [["Esguince de tobillo", "Dolor moderado y hematoma", "Dr. Arturo García", "29-09-2012"], 
+                            ["Gripe", "Estornudos y malestar general", "Dr. Carlos Rodríguez", "04-01-2015"], 
+                            ["Otitis", "Inflamación y dolor en los oídos", "Dr. Carlos Rodríguez", "22-04-2021"]
                            ];
     let tablaDiagnostico = "<div class='contenedor-hClinica'>";
     tablaDiagnostico += "<table id='diagnostico' class='listado'>";
-    tablaDiagnostico += "<tr><th>Anomalía</th><th></th><th></th><th>Fecha diagnóstico</th></tr>";
+    tablaDiagnostico += "<tr><th>Nombre (anomalía)</th><th>Sintomatología</th><th>Facultativo</th><th>Fecha</th></tr>";
     for(let i = 0; i < datosDiagnostico.length; i++) {
         tablaDiagnostico += "<tr><td>" + datosDiagnostico[i][0] + "</td>" + 
-        						"<td></td>" +
-        						"<td></td>" + 
-                                "<td>" + datosDiagnostico[i][1] + "</td></tr>";
+        						"<td>" + datosDiagnostico[i][1] + "</td>" +
+        						"<td>" + datosDiagnostico[i][2] + "</td>" + 
+                                "<td>" + datosDiagnostico[i][3] + "</td></tr>";
     }
     tablaDiagnostico += "</table>";
     tablaDiagnostico += "</div>";
@@ -33,7 +30,7 @@ function historiaClinica() {
                         ];
     let tablaAlergias = "<div class='contenedor-hClinica'>";                    
     tablaAlergias += "<table id='alergias' class='listado'>";
-    tablaAlergias += "<tr><th>Alergia</th><th>Síntomas</th><th>Frecuencia</th><th>Test realizado</th><th>Fecha</th></tr>";
+    tablaAlergias += "<tr><th>Nombre (alergia)</th><th>Sintomatología</th><th>Frecuencia</th><th>Test realizado</th><th>Fecha</th></tr>";
     for(let i = 0; i < datosAlergias.length; i++) {
         tablaAlergias += "<tr><td>" + datosAlergias[i][0] + "</td>" + 
        					     "<td>" + datosAlergias[i][1] + "</td>" +
@@ -45,19 +42,18 @@ function historiaClinica() {
     tablaAlergias += "</div>";
     
     // Se crea una tabla que muestra información relativa a las vacunas del paciente.
-    let datosVacunas = [["Sarampión", "08-03-2001"], 
-                        ["Viruela", "12-05-2001"],
-                        ["Polio", "01-06-2002"],
-                        ["Covid", "02-12-2021"]
+    let datosVacunas = [["Sarampión", "Sanofi Pasteur", "LZ3590", "08-03-2001"],
+                        ["Polio", "GSK", "WT9817", "01-06-2002"],
+                        ["Covid-19", "Pfizer", "EC5384", "02-12-2021"]
                        ];
     let tablaVacunas = "<div class='contenedor-hClinica'>";
     tablaVacunas += "<table id='vacunas' class='listado'>";
-    tablaVacunas += "<tr><th>Vacuna</th><th></th><th></th><th>Fecha</th></tr>";
+    tablaVacunas += "<tr><th>Nombre (vacuna)</th><th>Laboratorio</th><th>Lote</th><th>Fecha</th></tr>";
     for(let i = 0; i < datosVacunas.length; i++) {
         tablaVacunas += "<tr><td>" + datosVacunas[i][0] + "</td>" + 
-        						"<td></td>" +
-        						"<td></td>" + 
-                                "<td>" + datosVacunas[i][1] + "</td></tr>";
+        						"<td>" + datosVacunas[i][1] + "</td>" +
+        						"<td>" + datosVacunas[i][2] + "</td>" + 
+                                "<td>" + datosVacunas[i][3] + "</td></tr>";
     }
     tablaVacunas += "</table>";
     tablaVacunas += "</div>";
@@ -67,11 +63,4 @@ function historiaClinica() {
     document.getElementById("contenido-principal").innerHTML += tablaAlergias;
     document.getElementById("contenido-principal").innerHTML += tablaVacunas;
 }
-
-
-
-// Estilo de vida
-// Consultas
-// Alergias
-// Vacunas
 
