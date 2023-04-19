@@ -16,13 +16,14 @@ function cuenta() {
         // Este formulario invoca al servlet CambiarContrasenia que modifica el password del paciente.
         // Muestra el solo el email del paciente. Todos los campos se muestran inactivos hasta que el 
         // usuario pulse el botón Editar.
-        let formulario = "<form id='cuenta' action='CambiarContrasenia' method='post'>";
+        let formulario = "<form id='cuenta' action='CambiarContrasenia' method='post' autoComplete='off'>";
+        formulario += "<input autoComplete='false' name='hidden' type='text' style='display:none;'>";
         formulario += "<table>";
         formulario += "<tr><td><label>Email</label><input name='email' type='email' size='30' disabled placeholder='ejemplo@hotmail.com'></td></tr>";
         formulario += "<tr><td><label>Contraseña actual</label><input name='actualContrasenia' id='actualContrasenia' disabled type='password' size='30'></td></tr>";
-        formulario += "<tr><td><label>Nueva contraseña</label><input name='nuevaContrasenia' id='nuevaContrasenia' disabled type='password' size='30'></td></tr>";
+        formulario += "<tr><td><label>Nueva contraseña</label><input name='nuevaContrasenia' id='nuevaContrasenia' disabled type='password' autoComplete='new-password' size='30'></td></tr>";
         formulario += "<tr><td><label>Repetir nueva contraseña</label>";
-        formulario += "<input name='repetirContrasenia' id='repetirContrasenia' onblur='comprobarContrasenia()' disabled type='password' size='30'></td></tr>";
+        formulario += "<input name='repetirContrasenia' id='repetirContrasenia' onblur='comprobarContrasenia()' disabled type='password' autoComplete='new-password' size='30'></td></tr>";
         formulario += "<tr><td><input id='editar' class='boton' type='button' value='Editar'>";
         // El botón Enviar envía el formulario al servidor pero además comprueba justo antes del envío que 
         // los datos correspondientes a la contraseña sean correctos.
