@@ -16,7 +16,7 @@ function cuenta() {
         // Este formulario invoca al servlet CambiarContrasenia que modifica el password del paciente.
         // Muestra el solo el email del paciente. Todos los campos se muestran inactivos hasta que el 
         // usuario pulse el botón Editar.
-        let formulario = "<form id='cuenta' action='CambiarContrasenia' method='post' autoComplete='off'>";
+        let formulario = "<form id='cuenta' action='CPacientes?opcion=5' method='post' autoComplete='off'>";
         formulario += "<input autoComplete='false' name='hidden' type='text' style='display:none;'>";
         formulario += "<table>";
         formulario += "<tr><td><label>Email</label><input name='email' type='email' size='30' disabled placeholder='ejemplo@hotmail.com'></td></tr>";

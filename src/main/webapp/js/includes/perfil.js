@@ -29,7 +29,7 @@ function perfil() {
         // Este formulario invoca al servlet ModificarPaciente que modifica los datos del paciente.
         // Muestra los datos que hayan sido guardados por el usuario en el proceso de registro y posteriormente.
         // Todos los campos se muestran inactivos hasta que el usuario pulse el botón Editar.
-        let formulario = "<form id='perfil' action='ModificarPaciente' method='post'>";
+        let formulario = "<form id='perfil' action='CPacientes?opcion=3' method='post'>";
         formulario += "<table>";
         formulario += "<tr><td><label>Nombre</label><input name='nombre' type='text' size='30' disabled></td>";
         formulario += "<td><label>Apellidos</label><input name='apellidos' type='text' size='30' disabled></td></tr>";
