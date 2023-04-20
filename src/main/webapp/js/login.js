@@ -1,6 +1,6 @@
 window.onload = function() {
-
-	//document.getElementById("mensaje").innerText = "Sus credenciales no son válidas. Inténtelo de nuevo.";
+	
+	// Por defecto no se muestra ningún mensaje.
 	document.getElementById("mensaje").style.display = "none";	
 	
 	// Si se ha producido un error de autenticación entonces se creará una cookie credencialesInvalidas   
