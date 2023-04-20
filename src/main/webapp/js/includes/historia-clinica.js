@@ -12,7 +12,7 @@ function historiaClinica() {
                            ];
     let tablaDiagnostico = "<div class='contenedor-hClinica'>";
     tablaDiagnostico += "<table id='diagnostico' class='listado'>";
-    tablaDiagnostico += "<tr><th>Nombre (anomalía)</th><th>Sintomatología</th><th>Facultativo</th><th>Fecha</th></tr>";
+    tablaDiagnostico += "<tr><th>Anomalía</th><th>Síntomas</th><th>Facultativo</th><th>Fecha</th></tr>";
     for(let i = 0; i < datosDiagnostico.length; i++) {
         tablaDiagnostico += "<tr><td>" + datosDiagnostico[i][0] + "</td>" + 
         						"<td>" + datosDiagnostico[i][1] + "</td>" +
@@ -30,7 +30,7 @@ function historiaClinica() {
                         ];
     let tablaAlergias = "<div class='contenedor-hClinica'>";                    
     tablaAlergias += "<table id='alergias' class='listado'>";
-    tablaAlergias += "<tr><th>Nombre (alergia)</th><th>Sintomatología</th><th>Frecuencia</th><th>Test realizado</th><th>Fecha</th></tr>";
+    tablaAlergias += "<tr><th>Alergia</th><th>Síntomas</th><th>Frecuencia</th><th>Test realizado</th><th>Fecha</th></tr>";
     for(let i = 0; i < datosAlergias.length; i++) {
         tablaAlergias += "<tr><td>" + datosAlergias[i][0] + "</td>" + 
        					     "<td>" + datosAlergias[i][1] + "</td>" +
@@ -48,7 +48,7 @@ function historiaClinica() {
                        ];
     let tablaVacunas = "<div class='contenedor-hClinica'>";
     tablaVacunas += "<table id='vacunas' class='listado'>";
-    tablaVacunas += "<tr><th>Nombre (vacuna)</th><th>Laboratorio</th><th>Lote</th><th>Fecha</th></tr>";
+    tablaVacunas += "<tr><th>Vacuna</th><th>Laboratorio</th><th>Lote</th><th>Fecha</th></tr>";
     for(let i = 0; i < datosVacunas.length; i++) {
         tablaVacunas += "<tr><td>" + datosVacunas[i][0] + "</td>" + 
         						"<td>" + datosVacunas[i][1] + "</td>" +

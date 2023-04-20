@@ -1,4 +1,4 @@
-package modelo;
+package dao;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -8,10 +8,13 @@ import java.util.ArrayList;
 import com.google.gson.Gson;
 import com.mysql.cj.jdbc.ClientPreparedStatement;
 
+import modelo.Paciente;
+import singleton.ConexionBBDD;
+
 /**
- * Esta clase permite crear objetos de tipo PacienteDAO que 
- * contiene las funciones necesarias para la manipulación de
- * objetos Persona en la BBDD usando los métodos CRUD.
+ * Esta clase permite crear objetos de tipo PacienteDAO que contiene las funciones necesarias 
+ * para la manipulación de objetos Persona en la BBDD usando los métodos CRUD. Contiene también 
+ * otras funciones como autenticación y cambio de contraseña.
  *  
  * @author Antonio M. Martín Jimeno
  * @version 1.0
@@ -34,25 +37,6 @@ public class PacienteDAO {
 		return pacInstance;
 	}
 	
-	public Paciente obtenerPacientePorID(int id) throws SQLException {
-		
-		PreparedStatement ps = con.prepareStatement("SELECT * FROM paciente WHERE id=?");
-		ps.setInt(1, id);
-		ResultSet rs = ps.executeQuery();
-		Paciente p = null;
-		
-		if(rs.next()) {
-			p = new Paciente(rs.getInt("id"), rs.getString("nombre"), rs.getString("apellidos"), 
-							 rs.getString("email"), rs.getDate("fec_nacimiento"), 
-							 rs.getString("domicilio"), rs.getInt("cod_postal"), rs.getString("localidad"), 
-							 rs.getString("provincia"), rs.getInt("telefono"), rs.getString("estado_civil"));
-		}
-		rs.close();
-		ps.close();
-		
-		return p;
-	}
-	
 	public void altaPaciente(Paciente p) throws SQLException {
 		
 		PreparedStatement ps = con.prepareStatement("INSERT INTO paciente "
@@ -69,13 +53,13 @@ public class PacienteDAO {
 	
 	public void bajaPaciente(Paciente p) throws SQLException {
 		
-		PreparedStatement ps = con.prepareStatement("DELETE FROM paciente WHERE email=?");
-		ps.setString(1, p.getEmail());
+		PreparedStatement ps = con.prepareStatement("DELETE FROM paciente WHERE id=?");
+		ps.setInt(1, p.getId());
 		ps.executeUpdate();
 		ps.close();
 	}
 	
-	public void modificarPaciente(Paciente p) throws SQLException {
+	public void actualizarPaciente(Paciente p) throws SQLException {
 		
 		if(p.getId() != 0) {
 			
@@ -98,18 +82,6 @@ public class PacienteDAO {
 		}
 	}
 	
-	public void cambiarContrasenia(Paciente p) throws SQLException {
-		
-		if(p.getId() != 0) {
-			
-			PreparedStatement ps = con.prepareStatement("UPDATE paciente SET password=? WHERE id=?");
-			ps.setString(1, p.getPassword());
-			ps.setInt(2, p.getId());
-			int filas = ps.executeUpdate();
-			ps.close();
-		}
-	}
-	
 	public ArrayList<Paciente> listarPacientes() throws SQLException {
 		
 		PreparedStatement ps = con.prepareStatement("SELECT * FROM paciente");
@@ -120,7 +92,7 @@ public class PacienteDAO {
 			if(pacienteRes == null) {
 				pacienteRes = new ArrayList<>();
 			}
-			pacienteRes.add(new Paciente(rs.getInt("id"), rs.getString("nombre"), rs.getString("apellidos"),  rs.getString("email"), 
+			pacienteRes.add(new Paciente(rs.getString("nombre"), rs.getString("apellidos"),  rs.getString("email"), 
 					 				     rs.getString("password"), rs.getDate("fec_nacimiento")));
 		}
 		rs.close();
@@ -133,6 +105,25 @@ public class PacienteDAO {
 		Gson gson = new Gson();
 		String json = gson.toJson(this.listarPacientes());
 		return json;
+	}
+	
+	public Paciente obtenerPacientePorID(int id) throws SQLException {
+		
+		PreparedStatement ps = con.prepareStatement("SELECT * FROM paciente WHERE id=?");
+		ps.setInt(1, id);
+		ResultSet rs = ps.executeQuery();
+		Paciente p = null;
+		
+		if(rs.next()) {
+			p = new Paciente(rs.getInt("id"), rs.getString("nombre"), rs.getString("apellidos"), 
+							 rs.getString("email"), rs.getDate("fec_nacimiento"), 
+							 rs.getString("domicilio"), rs.getInt("cod_postal"), rs.getString("localidad"), 
+							 rs.getString("provincia"), rs.getInt("telefono"), rs.getString("estado_civil"));
+		}
+		rs.close();
+		ps.close();
+		
+		return p;
 	}
 	
 	public Paciente buscarPacientePorAtributo(String atributo, String valor) throws SQLException {
@@ -154,7 +145,6 @@ public class PacienteDAO {
 		return p;
 	}
 	
-
 	public String buscarPacientePorAtributoJSON(String atributo, String valor) throws SQLException {
 		
 		Gson gson = new Gson();
@@ -178,6 +168,18 @@ public class PacienteDAO {
 		rs.close();
 		ps.close();
 		return registrado;
+	}
+
+	public void cambiarContrasenia(Paciente p) throws SQLException {
+		
+		if(p.getId() != 0) {
+			
+			PreparedStatement ps = con.prepareStatement("UPDATE paciente SET password=? WHERE id=?");
+			ps.setString(1, p.getPassword());
+			ps.setInt(2, p.getId());
+			int filas = ps.executeUpdate();
+			ps.close();
+		}
 	}
 }
 

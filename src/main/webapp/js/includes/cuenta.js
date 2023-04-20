@@ -4,7 +4,7 @@ function cuenta() {
     limpiarContenidoPrincipal();
 
 	// Se obtiene información del paciente desde el servidor y se guarda temporalmente.
-    fetch('ObtenerPaciente').
+    fetch('CPacientes?opcion=4').
 	then(response => response.json()).
 	then(paciente => {
 		
@@ -60,8 +60,9 @@ function cuenta() {
 			document.getElementById("mensaje").style.display = "none";
 		});
         
-        // Si se ha cambiado la contraseña entonces la cookie passwordValido estará activa y según 
-        // su valor mostraremos un mensaje al usuario con el resultado de dicha modificación.
+        // Si se ha intentado cambiar la contraseña entonces la cookie passwordValido estará activa  
+        // y según su valor (válido / no válido ) mostraremos un mensaje al usuario con el   
+        // resultado de dicha modificación.
         let texto = "";
         let validez = "";
         let cookies = document.cookie.split(";");

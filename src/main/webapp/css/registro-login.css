@@ -46,3 +46,11 @@ footer {
     min-width: -webkit-fill-available;
 }
 
+#mensaje {
+	background-color: lavenderblush;
+	text-align: center;
+	width: 40%;
+	padding: 0.8em;
+	margin: 0 auto 2em;
+}
+

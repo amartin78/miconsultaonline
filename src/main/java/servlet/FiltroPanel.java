@@ -1,13 +1,13 @@
 package servlet;
 
-import java.io.IOException;
-
 import javax.servlet.Filter;
 import javax.servlet.FilterChain;
 import javax.servlet.FilterConfig;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+
+import java.io.IOException;
 import javax.servlet.ServletException;
 import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
@@ -15,21 +15,20 @@ import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletContext;
 import javax.servlet.annotation.WebFilter;
 import javax.servlet.annotation.MultipartConfig;
+
 import modelo.Paciente;
-import modelo.PacienteDAO;
+import dao.PacienteDAO;
 
 @WebFilter("/panel.html")
 @MultipartConfig
-public class FiltroAutenticacion implements Filter {
+public class FiltroPanel implements Filter {
 	
-	private ServletContext context;
 	private HttpServletRequest httpRequest;
 	
 	@Override
 	public void init(FilterConfig filterConfig) throws ServletException {
 		// TODO Auto-generated method stub
 		
-		this.context = filterConfig.getServletContext();
 	}
 
 	@Override

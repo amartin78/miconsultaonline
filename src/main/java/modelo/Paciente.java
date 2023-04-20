@@ -2,6 +2,9 @@ package modelo;
 
 import java.sql.Date;
 import java.util.Objects;
+
+import dao.PacienteDAO;
+
 import java.sql.SQLException;
 
 /**
@@ -27,17 +30,12 @@ public class Paciente {
 	private int telefono;
 	private String estadoCivil;
 	
+	/**
+	 * Constructor vacío
+	 */
 	public Paciente() {
 		super();
 	}
-	
-//	public Paciente(String nombre, String apellidos, String email, String password) {
-//		super();
-//		this.nombre = nombre;
-//		this.apellidos = apellidos;
-//		this.email = email;
-//		this.password = password;
-//	}
 	
 	/**
 	 * Este método constuye un objeto con los atributos necesarios para el registro
@@ -57,30 +55,6 @@ public class Paciente {
 		this.fecNacimiento = fecNacimiento;
 	}
 	
-	public Paciente(int id, String nombre, String apellidos, String email, String password, Date fecNacimiento) {
-		super();
-		this.id = id;
-		this.nombre = nombre;
-		this.apellidos = apellidos;
-		this.email = email;
-		this.password = password;
-		this.fecNacimiento = fecNacimiento;
-	}
-	
-//	public Paciente(int id, String nombre, String apellidos, Date fecNacimiento, String domicilio, 
-//				    int codPostal, String localidad, String provincia, int telefono, String estadoCivil) {
-//		super();
-//		this.id = id;
-//		this.nombre = nombre;
-//		this.apellidos = apellidos;
-//		this.fecNacimiento = fecNacimiento;
-//		this.domicilio = domicilio;
-//		this.codPostal = codPostal;
-//		this.localidad = localidad;
-//		this.provincia = provincia;
-//		this.telefono = telefono;
-//		this.estadoCivil = estadoCivil;
-//	}
 	/**
 	 * Este método constuye un objeto con los atributos necesarios para la modificación 
 	 * de un paciente en el sistema.
@@ -243,12 +217,17 @@ public class Paciente {
 		PacienteDAO.getInstance().bajaPaciente(this);
 	}
 	
-	public void modificar() throws SQLException {
+	public void actualizar() throws SQLException {
 		
-		PacienteDAO.getInstance().modificarPaciente(this);
+		PacienteDAO.getInstance().actualizarPaciente(this);
 	}
 	
-	public void modificarContrasenia() throws SQLException {
+	public void obtenerID(int id) throws SQLException {
+		
+		PacienteDAO.getInstance().obtenerPacientePorID(id);
+	}
+	
+	public void cambiarContrasenia() throws SQLException {
 		
 		PacienteDAO.getInstance().cambiarContrasenia(this);
 	}

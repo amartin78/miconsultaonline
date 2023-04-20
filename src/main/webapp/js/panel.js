@@ -6,7 +6,7 @@ window.onload = function () {
     document.getElementById("menu-paciente").style.display = "none";
     
     // Se obtienen datos del servidor sobre el paciente para mostrarlos en el panel principal.
-    fetch('ObtenerPaciente').
+    fetch('CPacientes?opcion=4').
 	then(response => response.json()).
 	then(paciente => {
 		nombreCompleto = paciente["nombre"] + " " + paciente["apellidos"];
@@ -67,7 +67,7 @@ function checkCookie() {
 	let cookie = obtenerCookie();
 	if (cookie == null) {
 		// Entorno local
-		//window.location.href = "http://localhost:8080/login.html";
+		// window.location.href = "http://localhost:8080/login.html";
 		
 		// Entorno producción
 		window.location.href = "https://miconsultaonline.herokuapp.com/login.html";

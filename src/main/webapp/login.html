@@ -20,18 +20,19 @@
                 </nav>
             </header>
             <main>
-                <form id="login" action="LoginPaciente" method="post">
+            	<div id='mensaje'></div>
+                <form id="login" action="CPacientes?opcion=6" method="post">
                     <table>
                         <tr>
                             <td>
                                 <label>Email</label>
-                                <input name="email" type="email" size="30" placeholder="ejemplo@hotmail.com">
+                                <input name="email" id="email" type="email" size="30" placeholder="ejemplo@hotmail.com">
                             </td>
                         </tr>
                         <tr>
                             <td>
                                 <label>Contraseña</label>
-                                <input name="password" size="30" type="password">
+                                <input name="password" id="password" size="30" type="password">
                             </td>
                         </tr>
                         <tr>
@@ -52,7 +53,6 @@
                 </nav>
             </footer>
         </div>
-        <script type="text/javascript" src="js/index.js"></script>
         <script type="text/javascript" src="js/login.js"></script>
 	</body>
 </html>
