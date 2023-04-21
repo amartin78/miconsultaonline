@@ -14,6 +14,7 @@ input {
 
 #fecNacimiento {
     min-width: -webkit-fill-available;
+    min-width: -moz-available;
 }
 
 td {
@@ -29,6 +30,7 @@ tr:nth-of-type(6) {
     color: white;
     border-style: none;
     width: -webkit-fill-available;
+    width: -moz-available;
     padding: 0.6em 0;
     text-align: center;
     cursor: pointer;
@@ -44,6 +46,7 @@ footer {
     position: fixed;
     bottom: 0;
     min-width: -webkit-fill-available;
+    min-width: -moz-available;
 }
 
 #mensaje {
