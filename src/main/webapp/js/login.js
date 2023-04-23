@@ -35,5 +35,4 @@ window.onload = function() {
 		
 		document.getElementById("mensaje").style.display = "none";	
 	});
-    
 };

@@ -8,8 +8,9 @@ import java.util.ArrayList;
 import com.google.gson.Gson;
 import com.mysql.cj.jdbc.ClientPreparedStatement;
 
-import modelo.Anomalia;
+import modelo.Alergia;
 import modelo.Paciente;
+import modelo.Vacuna;
 import singleton.ConexionBBDD;
 
 /**
@@ -19,50 +20,49 @@ import singleton.ConexionBBDD;
  * @author Antonio M. Martín Jimeno
  * @version 1.0
  */
-public class AnomaliaDAO {
+public class VacunaDAO {
 
 	private Connection con = null;
-	public static AnomaliaDAO anomaliaInstance = null;
+	public static VacunaDAO vacunaInstance = null;
 	
-	public AnomaliaDAO() throws SQLException {
+	public VacunaDAO() throws SQLException {
 		
 		con = ConexionBBDD.getConnection();
 	}
 	
-	public static AnomaliaDAO getInstance() throws SQLException {
+	public static VacunaDAO getInstance() throws SQLException {
 		
-		if(anomaliaInstance == null) {
-			anomaliaInstance = new AnomaliaDAO();
+		if(vacunaInstance == null) {
+			vacunaInstance = new VacunaDAO();
 		}
-		return anomaliaInstance;
+		return vacunaInstance;
 	}
 	
-	public ArrayList<Anomalia> listarPorPacienteSesion(int id) throws SQLException {
+	public ArrayList<Vacuna> listarPorPacienteSesion(int id) throws SQLException {
 		
-		PreparedStatement ps = con.prepareStatement("SELECT nombre, sintoma, facultativo, fecha FROM anomalia " + 
+		PreparedStatement ps = con.prepareStatement("SELECT nombre, laboratorio, lote, fecha FROM vacuna " + 
 													"WHERE paciente_id=?");
 		ps.setInt(1, id);
 		ResultSet rs = ps.executeQuery();
-		ArrayList<Anomalia> anomaliaRes = null;
+		ArrayList<Vacuna> vacunaRes = null;
 		
 		while(rs.next()) {
-			if(anomaliaRes == null) {
-				anomaliaRes = new ArrayList<>();
+			if(vacunaRes == null) {
+				vacunaRes = new ArrayList<>();
 			}
-			anomaliaRes.add(new Anomalia(rs.getString("nombre"), rs.getString("sintoma"),  rs.getString("facultativo"), 
+			vacunaRes.add(new Vacuna(rs.getString("nombre"), rs.getString("laboratorio"),  rs.getString("lote"), 
 					 				     rs.getDate("fecha")));
 		}
 		rs.close();
 		ps.close();
 		
-		return anomaliaRes;
+		return vacunaRes;
 	}
 	
 	public String listarPorPacienteSesionJSON(int id) throws SQLException {
 		
 		Gson gson = new Gson();
 		String json = gson.toJson(this.listarPorPacienteSesion(id));
-		System.out.println("lista de anomalias (json): " + json);
 		return json;
 	}
 }

@@ -6,9 +6,15 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import java.net.URLDecoder;
+import java.net.URLEncoder;
+
 import javax.servlet.ServletException;
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Enumeration;
 import java.sql.Date;
 
 import javax.servlet.annotation.WebServlet;
@@ -21,11 +27,15 @@ import dao.PacienteDAO;
 @MultipartConfig
 public class CPacientes extends HttpServlet {
 
+	private static final long serialVersionUID = 1L;
+
 	public CPacientes() {
 		super();
 	}
 
 	protected void inicio(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		
+		req.setCharacterEncoding("UTF-8");
 		
 		switch(req.getParameter("opcion")) {
 			case "1": 
@@ -73,7 +83,7 @@ public class CPacientes extends HttpServlet {
 		String apellidos = req.getParameter("apellidos");
 		String email = req.getParameter("email");
 		String password = req.getParameter("password");
-		Date fecNacimiento = Date.valueOf(req.getParameter("fecNacimiento"));
+		Date fecNacimiento = req.getParameter("fecNacimiento").isBlank() ? null : Date.valueOf(req.getParameter("fecNacimiento"));
 		
 		Paciente p = new Paciente(nombre, apellidos, email, password, fecNacimiento);
 		try {			
@@ -139,6 +149,7 @@ public class CPacientes extends HttpServlet {
 		} catch(SQLException e) {
 			e.printStackTrace();
 		}
+		resp.setContentType("text/html;charset=UTF8");
 		resp.getWriter().print(p);
 	}
 	

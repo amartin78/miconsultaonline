@@ -28,7 +28,7 @@ public class Anomalia extends HistoriaClinica {
 	
 	/**
 	 * Constructor de un objeto de tipo Anomalia que hereda atributos 
-	 * de su superclase HistoriaClinica. Para listarlos.
+	 * de su superclase HistoriaClinica.
 	 * 
 	 * @param nombre
 	 * @param sintomas

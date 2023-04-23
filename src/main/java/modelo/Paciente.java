@@ -222,11 +222,6 @@ public class Paciente {
 		PacienteDAO.getInstance().actualizarPaciente(this);
 	}
 	
-	public void obtenerID(int id) throws SQLException {
-		
-		PacienteDAO.getInstance().obtenerPacientePorID(id);
-	}
-	
 	public void cambiarContrasenia() throws SQLException {
 		
 		PacienteDAO.getInstance().cambiarContrasenia(this);

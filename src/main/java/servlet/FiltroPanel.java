@@ -11,13 +11,8 @@ import java.io.IOException;
 import javax.servlet.ServletException;
 import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
-import javax.servlet.RequestDispatcher;
-import javax.servlet.ServletContext;
 import javax.servlet.annotation.WebFilter;
 import javax.servlet.annotation.MultipartConfig;
-
-import modelo.Paciente;
-import dao.PacienteDAO;
 
 @WebFilter("/panel.html")
 @MultipartConfig
@@ -48,6 +43,9 @@ public class FiltroPanel implements Filter {
 		boolean clienteLogueado = sesion != null && sesion.getAttribute("paciente") != null && !email.trim().isEmpty();
 		
 		if(clienteLogueado) {
+			request.setCharacterEncoding("UTF-8");
+	        response.setContentType("text/html; charset=UTF-8");
+	        response.setCharacterEncoding("UTF-8");
 			chain.doFilter(request, response);
 		} else {
 			httpRequest.getRequestDispatcher("/login.html").forward(request, response);

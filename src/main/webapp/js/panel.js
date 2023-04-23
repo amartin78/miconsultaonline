@@ -1,8 +1,8 @@
 
 window.onload = function () {
 	
-    // Se activa por defecto la primera opción del menú del panel que es la Historia clínica
-    document.querySelector("#menu li:nth-child(1)").click();
+    // Se muestra por defecto el perfil del paciente
+    opcion("Perfil");
     document.getElementById("menu-paciente").style.display = "none";
     
     // Se obtienen datos del servidor sobre el paciente para mostrarlos en el panel principal.

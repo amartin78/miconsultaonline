@@ -16,18 +16,20 @@ import dao.AnomaliaDAO;
  */
 public class Alergia extends HistoriaClinica {
 
-	private String frecuencia;
-	private String testRealizado; // El nombre del doctor asignado al paciente
+	private String frecuencia;	// Época del año con más alergias
+	private String testRealizado; 
 	
 	/**
-	 * Constructor de Anomalia vacío
+	 * Constructor vacío
 	 */
 	public Alergia() {
 		super();
 	}
 
 	/**
-	 * @param id
+	 * Constructor de un objeto de tipo Alergía que hereda atributos 
+	 * de su superclase HistoriaClinica.
+	 * 
 	 * @param nombre
 	 * @param frecuencia
 	 * @param testRealizado
