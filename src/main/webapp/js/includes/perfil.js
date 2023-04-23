@@ -1,10 +1,10 @@
 
-function perfil() {
+async function perfil() {
 
     limpiarContenidoPrincipal();
 
 	// Se obtiene información del paciente desde el servidor y se guarda temporalmente.
-    fetch('CPacientes?opcion=4').
+    await fetch('CPacientes?opcion=4').
 	then(response => response.json()).
 	then(paciente => {
 		let id = paciente["id"];

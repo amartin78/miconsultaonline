@@ -1,8 +1,7 @@
 
 window.onload = function () {
 	
-    // Se muestra por defecto el perfil del paciente
-    opcion("Perfil");
+    
     document.getElementById("menu-paciente").style.display = "none";
     
     // Se obtienen datos del servidor sobre el paciente para mostrarlos en el panel principal.
@@ -49,10 +48,15 @@ window.onload = function () {
 			document.cookie = "origen=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path:/;";
 		} 
 	}
+	// Si la página se carga por primera vez, entonces se muestra al paciente la información relativa
+    // a su historial clínico, si no, el contenido relativo a la opción que el usuario haya elegido
+    // (perfil o cuenta).
 	if(origen == "perfil") {
 		opcion("Perfil");
 	} else if(origen == "cuenta") {
 		opcion("Cuenta");
+	} else {
+		opcion("Historia clínica");
 	}
 	
 	// Se comprueba cada minuto que la cookie este activa, en caso contrario se redirecciona al  

@@ -1,5 +1,5 @@
 
-function historiaClinica() {
+async function historiaClinica() {
 
     limpiarContenidoPrincipal();
     
@@ -14,10 +14,11 @@ function historiaClinica() {
     mostrarVacunas = false; */
     
     // Se muestra por pantalla la información relativa a las anomalías del paciente
-    fetch('CHistoriaClinica?opcion=1').
+    await fetch('CHistoriaClinica?opcion=1').
 	then(response => response.json()).
 	then(anomalias => {
-		console.log("datos: " + window.location.search.substr(1));
+		
+		// console.log("datos: " + window.location.search.substr(1));
 		
 		if(anomalias) {
 			tablaDiagnostico = "<div class='contenedor-hClinica'>";
@@ -57,7 +58,7 @@ function historiaClinica() {
     });
     
     // Se muestra por pantalla la información relativa a las alergías del paciente
-    fetch('CHistoriaClinica?opcion=2').
+    await fetch('CHistoriaClinica?opcion=2').
 	then(response => response.json()).
 	then(alergias => {
 		
@@ -99,7 +100,7 @@ function historiaClinica() {
     });
     
     // Se muestra por pantalla la información relativa a las vacunas del paciente
-    fetch('CHistoriaClinica?opcion=3').
+    await fetch('CHistoriaClinica?opcion=3').
 	then(response => response.json()).
 	then(vacunas => {
 		
@@ -135,7 +136,7 @@ function historiaClinica() {
 	    	document.getElementById("contenido-principal").innerHTML += tablaVacunas;
 	    	
 	    	let numeroTablas = document.querySelectorAll('div.contenedor-hClinica').length;
-	    	mensajeContenidoVacio(numeroTablas);
+	    	// mensajeContenidoVacio(numeroTablas);
 		} else {
 			mostrarVacunas = false;
 		}
@@ -143,6 +144,7 @@ function historiaClinica() {
 	    document.querySelector("#menu li:nth-child(1)").style.color = "#d87093";
     });
 }
+
 
 function mensajeContenidoVacio(numeroTablas) {
 	

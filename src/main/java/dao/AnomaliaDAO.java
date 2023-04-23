@@ -62,7 +62,6 @@ public class AnomaliaDAO {
 		
 		Gson gson = new Gson();
 		String json = gson.toJson(this.listarPorPacienteSesion(id));
-		System.out.println("lista de anomalias (json): " + json);
 		return json;
 	}
 }
