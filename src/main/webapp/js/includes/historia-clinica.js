@@ -7,18 +7,11 @@ async function historiaClinica() {
     
     // Por defecto no se muestra ningún mensaje.
 	document.getElementById("mensaje").style.display = "none";	
-	
-    mensaje = null;
-    /* mostrarAnomalias = false;
-    mostrarAlergias = false;
-    mostrarVacunas = false; */
     
     // Se muestra por pantalla la información relativa a las anomalías del paciente
-    await fetch('CHistoriaClinica?opcion=1').
+    await fetch('CHistoriasClinicas?opcion=1').
 	then(response => response.json()).
 	then(anomalias => {
-		
-		// console.log("datos: " + window.location.search.substr(1));
 		
 		if(anomalias) {
 			tablaDiagnostico = "<div class='contenedor-hClinica'>";
@@ -48,17 +41,12 @@ async function historiaClinica() {
 			tablaDiagnostico += "</table>";
 	    	tablaDiagnostico += "</div>";
 	    	
-	    	mostrarAnomalias = true;
 	    	document.getElementById("contenido-principal").innerHTML += tablaDiagnostico;
-		} else {
-			mostrarAnomalias = false;
 		}
-        
-	    document.querySelector("#menu li:nth-child(1)").style.color = "#d87093";
     });
     
     // Se muestra por pantalla la información relativa a las alergías del paciente
-    await fetch('CHistoriaClinica?opcion=2').
+    await fetch('CHistoriasClinicas?opcion=2').
 	then(response => response.json()).
 	then(alergias => {
 		
@@ -90,17 +78,12 @@ async function historiaClinica() {
 			tablaAlergias += "</table>";
 	    	tablaAlergias += "</div>";
 	    	
-	    	mostrarAlergias = true;
 	    	document.getElementById("contenido-principal").innerHTML += tablaAlergias;
-		} else {
-			mostrarAlergias = false;
 		}
-        
-	    document.querySelector("#menu li:nth-child(1)").style.color = "#d87093";
     });
     
     // Se muestra por pantalla la información relativa a las vacunas del paciente
-    await fetch('CHistoriaClinica?opcion=3').
+    await fetch('CHistoriasClinicas?opcion=3').
 	then(response => response.json()).
 	then(vacunas => {
 		
@@ -132,24 +115,22 @@ async function historiaClinica() {
 			tablaVacunas += "</table>";
 	    	tablaVacunas += "</div>";
 	    	
-	    	mostrarVacunas = true;
 	    	document.getElementById("contenido-principal").innerHTML += tablaVacunas;
 	    	
 	    	let numeroTablas = document.querySelectorAll('div.contenedor-hClinica').length;
 	    	// mensajeContenidoVacio(numeroTablas);
-		} else {
-			mostrarVacunas = false;
+	    	
 		}
-        
-	    document.querySelector("#menu li:nth-child(1)").style.color = "#d87093";
     });
+    document.querySelector("#menu li:nth-child(1)").style.color = "#d87093";
 }
 
 
 function mensajeContenidoVacio(numeroTablas) {
 	
-	// console.log("numero de tablas es " + numeroTablas)
-	if(numeroTablas < 1) {
+	console.log("numero de tablas es " + numeroTablas)
+	
+	if(numeroTablas == undefined) {
 		document.getElementById("mensaje").style.display = "block";	
 		document.getElementById("mensaje").style.fontSize = "1.6em";
 		document.getElementById("mensaje").style.marginTop = "7em";			

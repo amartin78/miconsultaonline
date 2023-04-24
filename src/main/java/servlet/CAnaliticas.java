@@ -12,21 +12,17 @@ import java.sql.SQLException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.annotation.MultipartConfig;
 
-import modelo.Paciente;
 import singleton.ConexionBBDD;
-import dao.AlergiaDAO;
-import dao.AnomaliaDAO;
-import dao.VacunaDAO;
+import modelo.Paciente;
 
-@WebServlet("/CHistoriaClinica")
+@WebServlet("/CAnaliticas")
 @MultipartConfig
-
-public class CHistoriaClinica extends HttpServlet {
+public class CAnaliticas extends HttpServlet {
 	
 	private static final long serialVersionUID = 1L;
 
 	// Constructor vacío
-	public CHistoriaClinica() {
+	public CAnaliticas() {
 		super();
 	}
 
@@ -35,25 +31,26 @@ public class CHistoriaClinica extends HttpServlet {
 		String datos = "";
 		HttpSession sesion = req.getSession();
 		int id = ((Paciente) sesion.getAttribute("paciente")).getId();
-		int opcion = Integer.parseInt(req.getParameter("opcion")); 
+		System.out.println("Sesion paciente: " + sesion.getAttribute("paciente") + ", id es " + id);
+		// int opcion = Integer.parseInt(req.getParameter("opcion")); 
 		
-		try {
-			
-			// Se recogen los datos correspondientes en formato json de acuerdo según la opción 
-			// enviada desde la parte cliente.
-			if(opcion == 1) {
-				ConexionBBDD.insertarDatos(id);
-				datos = AnomaliaDAO.getInstance().listarPorPacienteSesionJSON(id);
-			} else if(opcion == 2) {
-				datos = AlergiaDAO.getInstance().listarPorPacienteSesionJSON(id);
-			} else if(opcion == 3) {
-				datos = VacunaDAO.getInstance().listarPorPacienteSesionJSON(id);
-			} else {
-				System.out.println("Opción no válida.");
-			}
-		} catch(SQLException e) {
-			e.printStackTrace();
-		}
+//		try {
+//			
+//			// Se recogen los datos correspondientes en formato json de acuerdo según la opción 
+//			// enviada desde la parte cliente.
+//			if(opcion == 1) {
+//				ConexionBBDD.insertarDatos(id);
+//				datos = AnomaliaDAO.getInstance().listarPorPacienteSesionJSON(id);
+//			} else if(opcion == 2) {
+//				datos = AlergiaDAO.getInstance().listarPorPacienteSesionJSON(id);
+//			} else if(opcion == 3) {
+//				datos = VacunaDAO.getInstance().listarPorPacienteSesionJSON(id);
+//			} else {
+//				System.out.println("Opción no válida.");
+//			}
+//		} catch(SQLException e) {
+//			e.printStackTrace();
+//		}
 		resp.setContentType("text/html;charset=UTF8");
 		resp.getWriter().print(datos);
 	}

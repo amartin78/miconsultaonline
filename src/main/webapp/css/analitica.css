@@ -1,0 +1,43 @@
+.listado {
+	width: 100%;
+	border-collapse: collapse;
+}
+
+.contenedor-analitica {
+	box-shadow: 0 3px 6px rgba(0,0,0,0.2), 0 5px 16px rgba(0,0,0,0.14);
+	width: 70%;
+	background-color: white;
+	padding: 1.8em;
+	margin: 0 auto 2em;
+}
+
+.contenedor-analitica table {
+	margin: 0 !important;	
+}
+
+.contenedor-analitica table td {
+	font-size: 0.9em;
+}
+
+.contenedor-analitica {
+	margin-bottom: 4em;
+}
+
+.listado td, .listado th {
+	padding: 0.6em 1em;
+	text-align: center;
+}
+
+.listado tr:last-child td {
+	border: none;
+}
+
+.listado th {
+	background-color: aliceblue;
+	color: #333;
+}
+
+.listado tr:nth-child(2n+1) {
+	background-color: aliceblue;
+}
+
