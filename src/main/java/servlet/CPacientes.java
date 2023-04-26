@@ -196,6 +196,10 @@ public class CPacientes extends HttpServlet {
 		String email = req.getParameter("email");
 		String password = req.getParameter("password");
 		String mensaje;
+		
+		System.out.println("El email y la contraseña son - antes: " + email + ", " + password);
+		
+		
 				
 		try {
 			
@@ -223,6 +227,7 @@ public class CPacientes extends HttpServlet {
 				resp.sendRedirect("login.html");
 			}
 		} catch(Exception e) {
+			System.out.println("El email y la contraseña son - despues: " + email + ", " + password);
 			e.printStackTrace();
 		}
 	}
