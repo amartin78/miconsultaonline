@@ -3,7 +3,7 @@
 	border-collapse: collapse;
 }
 
-.contenedor-analitica {
+.contenedor-analisis {
 	box-shadow: 0 3px 6px rgba(0,0,0,0.2), 0 5px 16px rgba(0,0,0,0.14);
 	width: 70%;
 	background-color: white;
@@ -11,15 +11,15 @@
 	margin: 0 auto 2em;
 }
 
-.contenedor-analitica table {
+.contenedor-analisis table {
 	margin: 0 !important;	
 }
 
-.contenedor-analitica table td {
+.contenedor-analisis table td {
 	font-size: 0.9em;
 }
 
-.contenedor-analitica {
+.contenedor-analisis {
 	margin-bottom: 4em;
 }
 

@@ -14,13 +14,10 @@ import javax.servlet.annotation.MultipartConfig;
 
 import modelo.Paciente;
 import singleton.ConexionBBDD;
-import dao.AlergiaDAO;
-import dao.AnomaliaDAO;
-import dao.VacunaDAO;
+import dao.HistoriaClinicaDAO;
 
 @WebServlet("/CHistoriasClinicas")
 @MultipartConfig
-
 public class CHistoriasClinicas extends HttpServlet {
 	
 	private static final long serialVersionUID = 1L;
@@ -42,12 +39,12 @@ public class CHistoriasClinicas extends HttpServlet {
 			// Se recogen los datos correspondientes en formato json de acuerdo según la opción 
 			// enviada desde la parte cliente.
 			if(opcion == 1) {
-				ConexionBBDD.insertarDatos(id);
-				datos = AnomaliaDAO.getInstance().listarPorPacienteSesionJSON(id);
+				ConexionBBDD.insertarDatosHistoriaClinica(id);
+				datos = HistoriaClinicaDAO.getInstance().listarAnomaliasPorPacienteSesionJSON(id);
 			} else if(opcion == 2) {
-				datos = AlergiaDAO.getInstance().listarPorPacienteSesionJSON(id);
+				datos = HistoriaClinicaDAO.getInstance().listarAlergiasPorPacienteSesionJSON(id);
 			} else if(opcion == 3) {
-				datos = VacunaDAO.getInstance().listarPorPacienteSesionJSON(id);
+				datos = HistoriaClinicaDAO.getInstance().listarVacunasPorPacienteSesionJSON(id);
 			} else {
 				System.out.println("Opción no válida.");
 			}

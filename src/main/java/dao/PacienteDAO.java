@@ -152,22 +152,26 @@ public class PacienteDAO {
 		return json;
 	}
 	
-	public boolean autenticarPaciente(String email, String password) throws SQLException {
+	public Paciente autenticarPaciente(String email, String password) throws SQLException {
 		
 		boolean registrado = false;
 		PreparedStatement ps = con.prepareStatement("SELECT * FROM paciente WHERE email=? AND password=?");
 		ps.setString(1, email);
 		ps.setString(2, password);
 		ResultSet rs = ps.executeQuery();
+		Paciente p = null;
 		if(rs.next()) {
-			registrado = true;
+			p = new Paciente(rs.getInt("id"), rs.getString("nombre"), rs.getString("apellidos"), 
+					 rs.getString("email"), rs.getDate("fec_nacimiento"), 
+					 rs.getString("domicilio"), rs.getInt("cod_postal"), rs.getString("localidad"), 
+					 rs.getString("provincia"), rs.getInt("telefono"), rs.getString("estado_civil"));
 			System.out.println("El usuario " + rs.getString("nombre") + " " + rs.getString("apellidos") + " es válido.");
 		} else {
 			System.out.println("Usuario o contraseña incorrecta.");
 		}
 		rs.close();
 		ps.close();
-		return registrado;
+		return p;
 	}
 
 	public void cambiarContrasenia(Paciente p) throws SQLException {

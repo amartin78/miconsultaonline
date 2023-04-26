@@ -4,8 +4,6 @@ import java.sql.SQLException;
 import java.util.Date;
 import java.util.Objects;
 
-import dao.AnomaliaDAO;
-
 /**
  * Esta clase crea la un objeto con información relativa a anomalías de un 
  * paciente a lo largo de su estancia en el centro de salud asociado. 

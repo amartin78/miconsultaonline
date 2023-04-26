@@ -165,13 +165,13 @@ public class CPacientes extends HttpServlet {
 			String repetirContrasenia = req.getParameter("repetirContrasenia");
 			
 			String mensaje = null;
+			Paciente p = PacienteDAO.getInstance().autenticarPaciente(email, actualContrasenia);
 			
-			if (PacienteDAO.getInstance().autenticarPaciente(email, actualContrasenia)) {
+			if (p != null) {
 				
 				if(nuevaContrasenia.equals(repetirContrasenia)) {
 					Cookie cookieValidez = new Cookie("passwordValido", "valido");
 					resp.addCookie(cookieValidez);
-					Paciente p = PacienteDAO.getInstance().obtenerPacientePorID(id);
 					p.setPassword(req.getParameter("nuevaContrasenia"));
 					p.cambiarContrasenia();
 					System.out.println("La nueva contraseña ha sido guardada con éxito.");
@@ -199,19 +199,11 @@ public class CPacientes extends HttpServlet {
 				
 		try {
 			
-			if (PacienteDAO.getInstance().autenticarPaciente(email, password)) {
+			Paciente paciente = PacienteDAO.getInstance().autenticarPaciente(email, password);
+			if (paciente != null) {
 				System.out.println("Se inicia la sesión");
 				// Tiempo máximo que estará activa la sesión
 				sesion.setMaxInactiveInterval(60 * 10);
-				Paciente paciente = null;
-				
-				try {
-					
-					paciente = PacienteDAO.getInstance().buscarPacientePorAtributo("email", email);		
-				} catch (SQLException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
 				sesion.setAttribute("paciente", paciente);
 				Cookie cookie = new Cookie("email", paciente.getEmail());
 				// Se establece un tiempo máximo para la cookie igual al de la sesión menos un minuto
@@ -253,4 +245,50 @@ public class CPacientes extends HttpServlet {
 	}
 }
 
+
+
+//private void abrirSesion(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+//	
+//	HttpSession sesion = req.getSession();
+//	String email = req.getParameter("email");
+//	String password = req.getParameter("password");
+//	String mensaje;
+//			
+//	try {
+//		
+//		if (PacienteDAO.getInstance().autenticarPaciente(email, password)) {
+//			System.out.println("Se inicia la sesión");
+//			// Tiempo máximo que estará activa la sesión
+//			sesion.setMaxInactiveInterval(60 * 10);
+//			Paciente paciente = null;
+//			
+//			try {
+//				
+//				paciente = PacienteDAO.getInstance().buscarPacientePorAtributo("email", email);		
+//			} catch (SQLException e) {
+//				// TODO Auto-generated catch block
+//				e.printStackTrace();
+//			}
+//			sesion.setAttribute("paciente", paciente);
+//			Cookie cookie = new Cookie("email", paciente.getEmail());
+//			// Se establece un tiempo máximo para la cookie igual al de la sesión menos un minuto
+//			// que es la frecuencia con que la parte cliente comprueba el estado de la sesión 
+//			// para en el caso de estar finalizada redireccionar al cliente a la página de loguin.
+//			cookie.setMaxAge(60 * 9);
+//			resp.addCookie(cookie);
+//			// Una vez autenticado el usuario y creadas la sesión y la cookie redireccionamos
+//			// al cliente hacia el panel. 
+//			resp.sendRedirect("panel.html");	
+//		// En este caso el usuario ha intentado iniciar la sesión pero sus 
+//		// credenciales no son válidas y se redirecciona a la página de loguin.
+//		} else {
+//			mensaje = "noValido";
+//			Cookie cookieValidez = new Cookie("credencialesInvalidas", mensaje);
+//			resp.addCookie(cookieValidez);
+//			resp.sendRedirect("login.html");
+//		}
+//	} catch(Exception e) {
+//		e.printStackTrace();
+//	}
+//}
 

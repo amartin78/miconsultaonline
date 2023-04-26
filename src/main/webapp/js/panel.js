@@ -1,9 +1,6 @@
 
 window.onload = function () {
 	
-    
-    document.getElementById("menu-paciente").style.display = "none";
-    
     // Se obtienen datos del servidor sobre el paciente para mostrarlos en el panel principal.
     fetch('CPacientes?opcion=4').
 	then(response => response.json()).
@@ -56,7 +53,7 @@ window.onload = function () {
 	} else if(origen == "cuenta") {
 		opcion("Cuenta");
 	} else {
-		opcion("Historia clínica");
+		opcion("Analítica");
 	}
 	
 	// Se comprueba cada minuto que la cookie este activa, en caso contrario se redirecciona al  
@@ -106,7 +103,7 @@ function opcion(o) {
             historiaClinica();
             break;
         case "Analítica":
-            analitica();
+            analisis();
             break;
         case "Diagnóstico por imagen":
             imagen();

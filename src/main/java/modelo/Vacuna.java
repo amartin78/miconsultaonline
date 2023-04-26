@@ -4,8 +4,6 @@ import java.sql.SQLException;
 import java.util.Date;
 import java.util.Objects;
 
-import dao.VacunaDAO;
-
 /**
  * Esta clase crea la un objeto con información relativa a las vacunas que le han
  * sido administradas al paciente a lo largo de su estancia en el centro de salud asociado. 

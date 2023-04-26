@@ -11,7 +11,7 @@ import modelo.Paciente;
 public class ConexionBBDD {
 	
 //	public static final String JDBC_URL = "jdbc:mysql://localhost:3306/consultaonline";
-public static final String JDBC_URL = "jdbc:mysql://eu-cdbr-west-03.cleardb.net/heroku_40029d4180b186d?autoReconnect=true";
+	public static final String JDBC_URL = "jdbc:mysql://eu-cdbr-west-03.cleardb.net/heroku_40029d4180b186d?autoReconnect=true";
 //	public static final String JDBC_URL = "jdbc:mysql://eu-cdbr-west-03.cleardb.net/heroku_40029d4180b186d";
 	public static Connection instance = null;
 	
@@ -26,11 +26,10 @@ public static final String JDBC_URL = "jdbc:mysql://eu-cdbr-west-03.cleardb.net/
 			
 			instance = DriverManager.getConnection(JDBC_URL, props);
 		}
-		
 		return instance;
 	}
 	
-	public static void insertarDatos(int idPacienteSesionActiva) throws SQLException {
+	public static void insertarDatosHistoriaClinica(int idPacienteSesionActiva) throws SQLException {
 		
 		PreparedStatement ps1 = getConnection().prepareStatement(
 				"INSERT INTO anomalia (nombre, sintoma, facultativo, fecha, paciente_id) " + 
@@ -102,13 +101,70 @@ public static final String JDBC_URL = "jdbc:mysql://eu-cdbr-west-03.cleardb.net/
 				);
 		ps9.executeUpdate();
 		ps9.close();
-
-//		PreparedStatement ps10 = getConnection().prepareStatement(
-//				"INSERT INTO paciente (nombre, apellidos, fec_nacimiento, email, password) " + 
-//				"SELECT * FROM (SELECT 'Mario', 'García Martín', '19920904', 'mario@hotmail.com','Mario2023*')" +  
-//				"as tmp WHERE NOT EXISTS (SELECT email FROM paciente WHERE email='mario@hotmail.com') LIMIT 1;"
-//				);
-//		ps10.executeUpdate();
-//		ps10.close();
+	}
+	
+	public static void insertarDatosAnalisis(int idPacienteSesionActiva) throws SQLException {
+		
+		PreparedStatement ps1 = getConnection().prepareStatement(
+				"INSERT INTO analisis (nombre, estado, fecha, paciente_id) " + 
+				"SELECT * FROM (SELECT 'Prueba 1', 'Muestra en laboratorio', '19920822'," + idPacienteSesionActiva + ")" + 
+				"as tmp WHERE NOT EXISTS (SELECT nombre FROM analisis WHERE nombre='Prueba 1' and paciente_id=" + idPacienteSesionActiva + ") LIMIT 1;"
+				);
+		ps1.executeUpdate();
+		ps1.close();
+		
+		PreparedStatement ps2 = getConnection().prepareStatement(
+				"INSERT INTO analisis (nombre, estado, fecha, paciente_id) " + 
+				"SELECT * FROM (SELECT 'Prueba 2', 'Test realizado', '19981206'," + idPacienteSesionActiva + ")" + 
+				"as tmp WHERE NOT EXISTS (SELECT nombre FROM analisis WHERE nombre='Prueba 2' and paciente_id=" + idPacienteSesionActiva + ") LIMIT 1;"
+				);
+		ps2.executeUpdate();
+		ps2.close();
+	
+		PreparedStatement ps3 = getConnection().prepareStatement(
+				"INSERT INTO analisis (nombre, estado, fecha, paciente_id) " + 
+				"SELECT * FROM (SELECT 'Prueba 3', 'En espera de muestra', '20230209'," + idPacienteSesionActiva + ")" + 
+				"as tmp WHERE NOT EXISTS (SELECT nombre FROM analisis WHERE nombre='Prueba 3' and paciente_id=" + idPacienteSesionActiva + ") LIMIT 1;"
+				);
+		ps3.executeUpdate();
+		ps3.close();
+	}
+	
+	public static void insertarDatosMarcador(int idPacienteSesionActiva) throws SQLException {
+		
+		PreparedStatement ps1 = getConnection().prepareStatement(
+				"INSERT INTO marcador (nombre, categoria, valor, valor_minimo, valor_maximo, resultado, analisis_id) " + 
+				"SELECT * FROM (SELECT 'LDL Colesterol', 'Test Colesterol', '3.2'," + idPacienteSesionActiva + ")" + 
+				"as tmp WHERE NOT EXISTS (SELECT nombre FROM marcador WHERE nombre='Prueba 1' and paciente_id=" + idPacienteSesionActiva + ") LIMIT 1;"
+				);
+		ps1.executeUpdate();
+		ps1.close();
+		
+		PreparedStatement ps2 = getConnection().prepareStatement(
+				"INSERT INTO analisis (nombre, estado, fecha, paciente_id) " + 
+				"SELECT * FROM (SELECT 'Prueba 2', 'Test realizado', '19981206'," + idPacienteSesionActiva + ")" + 
+				"as tmp WHERE NOT EXISTS (SELECT nombre FROM analisis WHERE nombre='Prueba 2' and paciente_id=" + idPacienteSesionActiva + ") LIMIT 1;"
+				);
+		ps2.executeUpdate();
+		ps2.close();
+	
+		PreparedStatement ps3 = getConnection().prepareStatement(
+				"INSERT INTO analisis (nombre, estado, fecha, paciente_id) " + 
+				"SELECT * FROM (SELECT 'Prueba 3', 'En espera de muestra', '20230209'," + idPacienteSesionActiva + ")" + 
+				"as tmp WHERE NOT EXISTS (SELECT nombre FROM analisis WHERE nombre='Prueba 3' and paciente_id=" + idPacienteSesionActiva + ") LIMIT 1;"
+				);
+		ps3.executeUpdate();
+		ps3.close();
+	}
+	
+	public static void insertarDatosPacientes() throws SQLException {
+		
+		PreparedStatement ps1 = getConnection().prepareStatement(
+			"INSERT INTO paciente (nombre, apellidos, fec_nacimiento, email, password) " + 
+			"SELECT * FROM (SELECT 'Mario', 'García Martín', '19920904', 'mario@hotmail.com','Mario2023*')" +  
+			"as tmp WHERE NOT EXISTS (SELECT email FROM paciente WHERE email='mario@hotmail.com') LIMIT 1;"
+			);
+		ps1.executeUpdate();
+		ps1.close();
 	}
 }

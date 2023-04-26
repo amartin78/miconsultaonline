@@ -1,5 +1,5 @@
 
-function analitica() {
+function analisis() {
 	
     limpiarContenidoPrincipal();
     
@@ -9,26 +9,26 @@ function analitica() {
 	document.getElementById("mensaje").style.display = "none";	
 	
 	// Se muestra por pantalla la información relativa a las anomalías del paciente
-    /* fetch('CAnaliticas').
+    fetch('CAnalisis?opcion=1').
 	then(response => response.json()).
-	then(analiticas => { */
+	then(analisis => {
 		
-		if(true) {
-			tablaAnalitica = "<div class='contenedor-analitica'>";
-		    tablaAnalitica += "<table id='analitica' class='listado'>";
+		if(analisis) {
+			tablaAnalisis = "<div class='contenedor-analisis'>";
+		    tablaAnalisis += "<table id='analisis' class='listado'>";
 		    // tablaAnalitica += "<tr><th>Prueba realizada</th><th>Estado</th><th>Fecha</th></tr>";
 		    
-		    let analiticas = [
+		    /* let analisis = [
 				{"prueba": "Prueba1", "estado": "Estado1", "fecha": "12-04-2010", "ruta": "<a href=/CAnaliticas>Ver</a>"},
 				{"prueba": "Prueba2", "estado": "Estado2", "fecha": "12-04-2021", "ruta": "<a href=#''>Ver</a>"},
 				{"prueba": "Prueba3", "estado": "Estado3", "fecha": "12-04-2022", "ruta": "<a href=#''>Ver</a>"}
-			];
+			]; */
 		    
-			for(let a in analiticas) {
-				if(analiticas.hasOwnProperty(a)) {
-					let prueba = analiticas[a]["prueba"] == undefined ? "" : analiticas[a]["prueba"];
-			        let estado = analiticas[a]["estado"] == undefined ? "" : analiticas[a]["estado"];
-			        let fecha = analiticas[a]["fecha"];
+			for(let a in analisis) {
+				if(analisis.hasOwnProperty(a)) {
+					let nombre = analisis[a]["nombre"] == undefined ? "" : analisis[a]["nombre"];
+			        let estado = analisis[a]["estado"] == undefined ? "" : analisis[a]["estado"];
+			        let fecha = analisis[a]["fecha"];
 			        fecha = new Date(fecha);
 			        let anio = fecha.getFullYear();
 			        let mes = fecha.getMonth() + 1;
@@ -36,25 +36,25 @@ function analitica() {
 			        let dia = fecha.getDate();
 			        dia = String(dia).length == 2 ? dia : `0${dia}`;
 			        fecha = anio + "-" + mes + "-" + dia;
-			        let ruta = analiticas[a]["ruta"] == undefined ? "" : analiticas[a]["ruta"];
+			        let ruta = analisis[a]["ruta"] == undefined ? "" : analisis[a]["ruta"];
 			        
-					tablaAnalitica += "<tr><td>" + prueba + "</td>" + 
+					tablaAnalisis += "<tr><td>" + nombre + "</td>" + 
 										"<td>" + estado + "</td>" + 
 					                    "<td>" + fecha + "</td>" +
-					                    "<td>" + ruta + "</td></tr>";
+					                    "<td><a href=/CAnaliticas?opcion=2>Ver</a></td></tr>";
 					}
 				}
-			tablaAnalitica += "</table>";
-	    	tablaAnalitica += "</div>";
+			tablaAnalisis += "</table>";
+	    	tablaAnalisis += "</div>";
 	    	
-	    	document.getElementById("contenido-principal").innerHTML += tablaAnalitica;
+	    	document.getElementById("contenido-principal").innerHTML += tablaAnalisis;
 	    	
 	    	// Añadir mensaje cuando no haya ninguna tabla que mostrar.
 	    	// let numeroTablas = document.querySelectorAll('div.contenedor-hClinica').length;
 	    	// mensajeContenidoVacio(numeroTablas);
 	    	
 		}
-    // }); 
+    }); 
     document.querySelector("#menu li:nth-child(2)").style.color = "#d87093";  
 }
 
