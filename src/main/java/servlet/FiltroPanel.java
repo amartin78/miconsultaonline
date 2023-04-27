@@ -32,7 +32,7 @@ public class FiltroPanel implements Filter {
 		// TODO Auto-generated method stub
 		
 		httpRequest = (HttpServletRequest) request;
-		HttpSession sesion = httpRequest.getSession(false);
+		HttpSession sesion = httpRequest.getSession();
 		Cookie listaCookies[] = httpRequest.getCookies();
 		String email = "";
 		for(Cookie cookie : listaCookies) {
@@ -41,6 +41,7 @@ public class FiltroPanel implements Filter {
 			}
 		}
 		boolean clienteLogueado = sesion != null && sesion.getAttribute("paciente") != null && !email.trim().isEmpty();
+		System.out.println("El cliente esta logueado " + clienteLogueado);
 		
 		if(clienteLogueado) {
 			request.setCharacterEncoding("UTF-8");
