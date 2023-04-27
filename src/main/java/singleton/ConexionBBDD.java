@@ -12,21 +12,25 @@ import modelo.Paciente;
 
 public class ConexionBBDD {
 	
-	private static final String JDBC_URL = "jdbc:mysql://localhost:3306/consultaonline";
-//	private static final String JDBC_URL = "jdbc:mysql://eu-cdbr-west-03.cleardb.net/heroku_40029d4180b186d?autoReconnect=true";
+//	private static final String JDBC_URL = "jdbc:mysql://localhost:3306/consultaonline";
+	private static final String JDBC_URL = "jdbc:mysql://eu-cdbr-west-03.cleardb.net/heroku_40029d4180b186d?reconnect=true";
 //	private static final String JDBC_URL = "jdbc:mysql://eu-cdbr-west-03.cleardb.net/heroku_40029d4180b186d";
 	private static Connection instance = null;
 	
-	public static Connection getConnection() throws SQLException {
+	private ConexionBBDD() {
+		
+	}
+	
+ 	public static Connection getConnection() throws SQLException {
 		
 		if(instance == null) {
 			Properties props = new Properties();
-//			props.put("user", "ba840f90deec6a");
-//			props.put("password", "bfefe5fd");
-			props.put("maxLifetime", "90_000ms");
-			props.put("wait_timeout", "28800");
-			props.put("user", "root");
-			props.put("password", "root");
+			props.put("user", "ba840f90deec6a");
+			props.put("password", "bfefe5fd");
+//			props.put("maxLifetime", "90_000ms");
+//			props.put("wait_timeout", "28800");
+//			props.put("user", "root");
+//			props.put("password", "root");
 			
 			instance = DriverManager.getConnection(JDBC_URL, props);
 			System.out.println("The instance connection created is " + instance);
