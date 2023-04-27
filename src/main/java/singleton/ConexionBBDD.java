@@ -23,7 +23,7 @@ public class ConexionBBDD {
 	
  	public static Connection getConnection() throws SQLException {
 		
- 		System.out.println("The current instance connection is " + instance);
+ 		System.out.println("getConection() - The current instance connection is " + instance);
  		
 		if(instance == null) {
 			Properties props = new Properties();
@@ -41,7 +41,9 @@ public class ConexionBBDD {
 	
 	public static void insertarDatosHistoriaClinica(int idPacienteSesionActiva) throws SQLException {
 		
-		PreparedStatement ps1 = getConnection().prepareStatement(
+		System.out.println("insertarDatosHistoriaClinica() - The current instance connection is " + instance);
+		
+		PreparedStatement ps1 = ConexionBBDD.getConnection().prepareStatement(
 				"INSERT INTO anomalia (nombre, sintoma, facultativo, fecha, paciente_id) " + 
 				"SELECT * FROM (SELECT 'Esguince de tobillo', 'Dolor moderado y hematoma', 'Dr. Arturo Rodríguez', '20120929', " + idPacienteSesionActiva + ")" +  
 				"as tmp WHERE NOT EXISTS (SELECT nombre FROM anomalia WHERE nombre='Esguince de tobillo' and paciente_id=" + idPacienteSesionActiva + ") LIMIT 1;"
@@ -49,14 +51,14 @@ public class ConexionBBDD {
 		ps1.executeUpdate();
 		ps1.close();
 
-		PreparedStatement ps2 = getConnection().prepareStatement(
+		PreparedStatement ps2 = ConexionBBDD.getConnection().prepareStatement(
 				"INSERT INTO anomalia (nombre, sintoma, facultativo, fecha, paciente_id) " +
 				  "SELECT * FROM (SELECT 'Gripe', 'Estornudos y malestar general', 'Dr. Carlos Rodríguez', '20150104', " + idPacienteSesionActiva + ")" + 
 				  "as tmp WHERE NOT EXISTS (SELECT nombre FROM anomalia WHERE nombre='Gripe' and paciente_id=" + idPacienteSesionActiva + ") LIMIT 1;");
 		ps2.executeUpdate();
 		ps2.close();
 		
-		PreparedStatement ps3 = getConnection().prepareStatement(
+		PreparedStatement ps3 = ConexionBBDD.getConnection().prepareStatement(
 				"INSERT INTO anomalia (nombre, sintoma, facultativo, fecha, paciente_id) " + 
 				"SELECT * FROM (SELECT 'Otitis', 'Inflamación y dolor en los oídos', 'Dr. Arturo Rodríguez', '20120921'," + idPacienteSesionActiva + ")" +  
 				"as tmp WHERE NOT EXISTS (SELECT nombre FROM anomalia WHERE nombre='Otitis' and paciente_id=" + idPacienteSesionActiva + ") LIMIT 1;"
