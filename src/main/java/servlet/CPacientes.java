@@ -192,7 +192,7 @@ public class CPacientes extends HttpServlet {
 	
 	private void abrirSesion(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		
-		HttpSession sesion = req.getSession();
+		// HttpSession sesion = req.getSession();
 		String email = req.getParameter("email");
 		String password = req.getParameter("password");
 		String mensaje;
@@ -208,13 +208,13 @@ public class CPacientes extends HttpServlet {
 				System.out.println("Se inicia la sesión");
 				// Tiempo máximo que estará activa la sesión
 				// sesion.setMaxInactiveInterval(10 * 1);
-				sesion.setAttribute("paciente", paciente);
-				Cookie cookie = new Cookie("email", paciente.getEmail());
+				// sesion.setAttribute("paciente", paciente);
+				// Cookie cookie = new Cookie("email", paciente.getEmail());
 				// Se establece un tiempo máximo para la cookie igual al de la sesión menos un minuto
 				// que es la frecuencia con que la parte cliente comprueba el estado de la sesión 
 				// para en el caso de estar finalizada redireccionar al cliente a la página de loguin.
 				// cookie.setMaxAge(9 * 1);
-				resp.addCookie(cookie);
+				// resp.addCookie(cookie);
 				// Una vez autenticado el usuario y creadas la sesión y la cookie redireccionamos
 				// al cliente hacia el panel. 
 				resp.sendRedirect("panel.html");	
@@ -222,12 +222,13 @@ public class CPacientes extends HttpServlet {
 			// credenciales no son válidas y se redirecciona a la página de loguin.
 			} else {
 				mensaje = "noValido";
-				Cookie cookieValidez = new Cookie("credencialesInvalidas", mensaje);
-				resp.addCookie(cookieValidez);
+				// Cookie cookieValidez = new Cookie("credencialesInvalidas", mensaje);
+				// resp.addCookie(cookieValidez);
 				resp.sendRedirect("login.html");
 			}
 		} catch(Exception e) {
 			System.out.println("El email y la contraseña son - error: " + email + ", " + password);
+			resp.sendRedirect("login.html");
 			e.printStackTrace();
 		}
 	}
