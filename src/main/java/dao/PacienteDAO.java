@@ -1,6 +1,5 @@
 package dao;
 
-import java.net.URISyntaxException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -25,12 +24,12 @@ public class PacienteDAO {
 	private Connection con = null;
 	public static PacienteDAO pacInstance = null;
 	
-	public PacienteDAO() throws SQLException, URISyntaxException {
+	public PacienteDAO() throws SQLException {
 		
 		con = ConexionBBDD.getConnection();
 	}
 	
-	public static PacienteDAO getInstance() throws SQLException, URISyntaxException {
+	public static PacienteDAO getInstance() throws SQLException {
 		
 		if(pacInstance == null) {
 			pacInstance = new PacienteDAO();
