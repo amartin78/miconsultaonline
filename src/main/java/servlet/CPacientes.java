@@ -242,11 +242,11 @@ public class CPacientes extends HttpServlet {
 //			if(sesion.getAttribute("paciente") != null) {
 //				System.out.println("Se cierra la sesión");
 //				// sesion.invalidate();
-//				resp.sendRedirect("login.html");
 //			}
 //		} catch(Exception e) {
 //			e.printStackTrace();
 //		}
+				resp.sendRedirect("login.html");
 	}
 }
 
