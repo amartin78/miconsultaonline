@@ -57,3 +57,14 @@ footer {
 	margin: 0 auto 2em;
 }
 
+/* Móbil */
+@media screen and (max-width: 425px) and (max-height: 760px) {
+
+    #footer-registro {
+	    position: static;
+	    min-width: -webkit-fill-available;
+	    min-width: -moz-available;
+	}
+    
+}
+
