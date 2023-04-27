@@ -21,6 +21,7 @@ public class ConexionBBDD {
 			Properties props = new Properties();
 			props.put("user", "ba840f90deec6a");
 			props.put("password", "bfefe5fd");
+			props.put("maxLifetime", "90_000ms");
 //			props.put("user", "root");
 //			props.put("password", "root");
 			

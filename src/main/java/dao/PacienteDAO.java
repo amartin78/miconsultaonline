@@ -49,12 +49,6 @@ public class PacienteDAO {
 		ps.setString(5, p.getPassword());
 		int filas = ps.executeUpdate();
 		ps.close();
-		
-		if(ps != null)
-            ps.close();
-		if(con != null)
-            con.close();
-       
 	}
 	
 	public void bajaPaciente(Paciente p) throws SQLException {
@@ -177,8 +171,6 @@ public class PacienteDAO {
 		}
 		rs.close();
 		ps.close();
-		if(con != null)
-            con.close();
 		return p;
 	}
 
