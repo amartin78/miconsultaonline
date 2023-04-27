@@ -13,7 +13,7 @@ import modelo.Paciente;
 public class ConexionBBDD {
 	
 //	private static final String JDBC_URL = "jdbc:mysql://localhost:3306/consultaonline";
-	private static final String JDBC_URL = "jdbc:mysql://eu-cdbr-west-03.cleardb.net/heroku_40029d4180b186d?autoReconnect=true&interactiveClient=true";
+	private static final String JDBC_URL = "jdbc:mysql://eu-cdbr-west-03.cleardb.net/heroku_40029d4180b186d?autoReconnect=true";
 	private static Connection instance = null;
 	
 	private ConexionBBDD() {
@@ -30,6 +30,24 @@ public class ConexionBBDD {
 //			props.put("wait_timeout", "28800");
 //			props.put("user", "root");
 //			props.put("password", "root");
+			
+			props.put("jmxEnabled", "true");
+			props.put("initialSize", "5");
+			props.put("maxActive", "50");
+			props.put("minIdle", "5");
+			props.put("maxIdle", "30");
+			props.put("maxWait", "10000");
+			props.put("maxAge", "10 * 60000");
+			props.put("timeBetweenEvictionRunsMillis", "5000");
+			props.put("minEvictableIdleTimeMillis", "60000");
+			props.put("validationQuery", "SELECT 1");
+			props.put("validationQueryTimeout", "3");
+			props.put("validationInterval", "15000");
+			props.put("testOnBorrow", "true");
+			props.put("testWhileIdle", "true");
+			props.put("testOnReturn", "false");
+			props.put("jdbcInterceptors", "ConnectionState");
+			props.put("defaultTransactionIsolation", "java.sql.Connection.TRANSACTION_READ_COMMITTED");
 			
 			instance = DriverManager.getConnection(JDBC_URL, props);
 		}
