@@ -35,21 +35,21 @@ public class CAnalisis extends HttpServlet {
 		int id = ((Paciente) sesion.getAttribute("paciente")).getId();
 		int opcion = Integer.parseInt(req.getParameter("opcion")); 
 		
-		try {
-			
-			// Se recogen los datos correspondientes en formato json de acuerdo según la opción 
-			// enviada desde la parte cliente.
-			if(opcion == 1) {
-				// ConexionBBDD.insertarDatosAnalisis(id);
-				// datos = AnalisisDAO.getInstance().listarAnalisisPorPacienteSesionJSON(id);
-			} else if(opcion == 2) {
-				// datos = AnalisisDAO.getInstance().listarMarcadorPorAnalisisJSON(id);
-			} else {
-				System.out.println("Opción no válida.");
-			}
-		} catch(SQLException e) {
-			e.printStackTrace();
-		}
+//		try {
+//			
+//			// Se recogen los datos correspondientes en formato json de acuerdo según la opción 
+//			// enviada desde la parte cliente.
+//			if(opcion == 1) {
+//				// ConexionBBDD.insertarDatosAnalisis(id);
+//				// datos = AnalisisDAO.getInstance().listarAnalisisPorPacienteSesionJSON(id);
+//			} else if(opcion == 2) {
+//				// datos = AnalisisDAO.getInstance().listarMarcadorPorAnalisisJSON(id);
+//			} else {
+//				System.out.println("Opción no válida.");
+//			}
+//		} catch(SQLException e) {
+//			e.printStackTrace();
+//		}
 		resp.setContentType("text/html;charset=UTF8");
 		resp.getWriter().print(datos);
 	}
