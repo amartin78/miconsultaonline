@@ -207,13 +207,13 @@ public class CPacientes extends HttpServlet {
 			if (paciente != null) {
 				System.out.println("Se inicia la sesión");
 				// Tiempo máximo que estará activa la sesión
-				sesion.setMaxInactiveInterval(4);
+				sesion.setMaxInactiveInterval(60 * 5);
 				sesion.setAttribute("paciente", paciente);
 				Cookie cookie = new Cookie("email", paciente.getEmail());
 				// Se establece un tiempo máximo para la cookie igual al de la sesión menos un minuto
 				// que es la frecuencia con que la parte cliente comprueba el estado de la sesión 
 				// para en el caso de estar finalizada redireccionar al cliente a la página de loguin.
-				cookie.setMaxAge(3);
+				cookie.setMaxAge(60 * 4);
 				resp.addCookie(cookie);
 				// Una vez autenticado el usuario y creadas la sesión y la cookie redireccionamos
 				// al cliente hacia el panel. 
@@ -227,7 +227,7 @@ public class CPacientes extends HttpServlet {
 				resp.sendRedirect("login.html");
 			}
 		} catch(Exception e) {
-			System.out.println("El email y la contraseña son - despues: " + email + ", " + password);
+			System.out.println("El email y la contraseña son - error: " + email + ", " + password);
 			e.printStackTrace();
 		}
 	}

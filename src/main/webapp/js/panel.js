@@ -56,9 +56,9 @@ window.onload = function () {
 		opcion("Analítica");
 	}
 	
-	// Se comprueba cada minuto que la cookie este activa, en caso contrario se redirecciona al  
+	// Se comprueba cada medio minuto que la cookie este activa, en caso contrario se redirecciona al  
 	// cliente a la página de loguin para autenticarse de nuevo e iniciar una nueva sesión.
-	setInterval(checkCookie, 60000);
+	setInterval(checkCookie, 30000);
 };
 
 // Redirecciona al cliente a la página de loguin solo en el caso 
