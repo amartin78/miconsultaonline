@@ -41,7 +41,7 @@ public class CAnalisis extends HttpServlet {
 			// enviada desde la parte cliente.
 			if(opcion == 1) {
 				// ConexionBBDD.insertarDatosAnalisis(id);
-				datos = AnalisisDAO.getInstance().listarAnalisisPorPacienteSesionJSON(id);
+				// datos = AnalisisDAO.getInstance().listarAnalisisPorPacienteSesionJSON(id);
 			} else if(opcion == 2) {
 				// datos = AnalisisDAO.getInstance().listarMarcadorPorAnalisisJSON(id);
 			} else {
