@@ -1,5 +1,6 @@
 package modelo;
 
+import java.net.URISyntaxException;
 import java.sql.Date;
 import java.util.Objects;
 
@@ -207,24 +208,24 @@ public class Paciente {
 				+ telefono + ", estadoCivil=" + estadoCivil + "]";
 	}
 
-	public void insertar() throws SQLException {
+	public void insertar() throws SQLException, URISyntaxException {
 		
 		PacienteDAO.getInstance().altaPaciente(this);
 	}
 	
-	public void eliminar() throws SQLException {
-		
-		PacienteDAO.getInstance().bajaPaciente(this);
-	}
-	
-	public void actualizar() throws SQLException {
-		
-		PacienteDAO.getInstance().actualizarPaciente(this);
-	}
-	
-	public void cambiarContrasenia() throws SQLException {
-		
-		PacienteDAO.getInstance().cambiarContrasenia(this);
-	}
+//	public void eliminar() throws SQLException {
+//		
+//		PacienteDAO.getInstance().bajaPaciente(this);
+//	}
+//	
+//	public void actualizar() throws SQLException {
+//		
+//		PacienteDAO.getInstance().actualizarPaciente(this);
+//	}
+//	
+//	public void cambiarContrasenia() throws SQLException {
+//		
+//		PacienteDAO.getInstance().cambiarContrasenia(this);
+//	}
 }
 

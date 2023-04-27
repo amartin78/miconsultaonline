@@ -6,6 +6,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import java.net.URISyntaxException;
 import java.net.URLDecoder;
 import java.net.URLEncoder;
 
@@ -33,7 +34,7 @@ public class CPacientes extends HttpServlet {
 		super();
 	}
 
-	protected void inicio(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+	protected void inicio(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException, URISyntaxException {
 		
 		req.setCharacterEncoding("UTF-8");
 		
@@ -41,18 +42,18 @@ public class CPacientes extends HttpServlet {
 			case "1": 
 				altaPaciente(req, resp); 
 				return;
-			case "2": 
-				bajaPaciente(req, resp); 
-				return;
-			case "3": 
-				actualizarPaciente(req, resp); 
-				return;
-			case "4": 
-				buscarPaciente(req, resp); 
-				return;
-			case "5": 
-				cambiarContrasenia(req, resp); 
-				return;
+//			case "2": 
+//				bajaPaciente(req, resp); 
+//				return;
+//			case "3": 
+//				actualizarPaciente(req, resp); 
+//				return;
+//			case "4": 
+//				buscarPaciente(req, resp); 
+//				return;
+//			case "5": 
+//				cambiarContrasenia(req, resp); 
+//				return;
 			case "6": 
 				abrirSesion(req, resp); 
 				return;
@@ -66,18 +67,40 @@ public class CPacientes extends HttpServlet {
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		
-		this.inicio(req, resp);
+		try {
+			this.inicio(req, resp);
+		} catch (ServletException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (URISyntaxException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		
-		this.inicio(req, resp);
+		try {
+			this.inicio(req, resp);
+		} catch (ServletException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (URISyntaxException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		// abrirSesion(req, resp);
 	}
 	
-	private void altaPaciente(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+	private void altaPaciente(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException, URISyntaxException {
 		
 		String nombre = req.getParameter("nombre");
 		String apellidos = req.getParameter("apellidos");
@@ -94,101 +117,101 @@ public class CPacientes extends HttpServlet {
 		}
 	}
 	
-	private void bajaPaciente(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		
-		int id = req.getParameter("id") == null ? null : Integer.parseInt(req.getParameter("id"));
-		Paciente p;
-		try {
-			
-			p = PacienteDAO.getInstance().obtenerPacientePorID(id);
-			p.eliminar();
-		} catch (SQLException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		}
-			
-	}
-	
-	private void actualizarPaciente(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		
-		int id = req.getParameter("id") == null ? null : Integer.parseInt(req.getParameter("id"));
-		Paciente p;
-		try {
-			p = PacienteDAO.getInstance().obtenerPacientePorID(id);
-			p.setNombre(req.getParameter("nombre"));
-			p.setApellidos(req.getParameter("apellidos"));
-			p.setFecNacimiento(Date.valueOf(req.getParameter("fecNacimiento")));
-			p.setDomicilio(req.getParameter("domicilio"));
-			int codPostal = req.getParameter("codPostal").isBlank() ? 0 : Integer.parseInt(req.getParameter("codPostal"));
-			p.setCodPostal(codPostal);
-			p.setLocalidad(req.getParameter("localidad"));
-			p.setProvincia(req.getParameter("provincia"));
-			int telefono = req.getParameter("telefono").isBlank() ? 0 : Integer.parseInt(req.getParameter("telefono"));
-			p.setTelefono(telefono);
-			p.setEstadoCivil(req.getParameter("estadoCivil"));
-			
-			p.actualizar();
-			Cookie cookieOrigen = new Cookie("origen", "perfil");
-			resp.addCookie(cookieOrigen);
-			resp.sendRedirect("panel.html");
-			System.out.println("El paciente se ha modificado con éxito");
-		} catch (SQLException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		}
-	}
-	
-	private void buscarPaciente(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		
-		String p = null;
-		HttpSession sesion = req.getSession();
-		String email = ((Paciente) sesion.getAttribute("paciente")).getEmail();
-		
-		try {
-			p = PacienteDAO.getInstance().buscarPacientePorAtributoJSON("email", email);
-		} catch(SQLException e) {
-			e.printStackTrace();
-		}
-		resp.setContentType("text/html;charset=UTF8");
-		resp.getWriter().print(p);
-	}
-	
-	private void cambiarContrasenia(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-			
-		try {
-			
-			HttpSession sesion = req.getSession();
-			int id = req.getParameter("id") == null ? null : Integer.parseInt(req.getParameter("id"));
-			String email = req.getParameter("email");
-			String actualContrasenia = req.getParameter("actualContrasenia");
-			String nuevaContrasenia = req.getParameter("nuevaContrasenia");
-			String repetirContrasenia = req.getParameter("repetirContrasenia");
-			
-			String mensaje = null;
-			Paciente p = PacienteDAO.getInstance().autenticarPaciente(email, actualContrasenia);
-			
-			if (p != null) {
-				
-				if(nuevaContrasenia.equals(repetirContrasenia)) {
-					Cookie cookieValidez = new Cookie("passwordValido", "valido");
-					resp.addCookie(cookieValidez);
-					p.setPassword(req.getParameter("nuevaContrasenia"));
-					p.cambiarContrasenia();
-					System.out.println("La nueva contraseña ha sido guardada con éxito.");
-				}
-			} else {
-				Cookie cookieValidez = new Cookie("passwordValido", "noValido");
-				Cookie cookieOrigen = new Cookie("origen", "cuenta");
-				resp.addCookie(cookieValidez);
-				resp.addCookie(cookieOrigen);
-			}
-			Cookie cookieOrigen = new Cookie("origen", "cuenta");
-			resp.addCookie(cookieOrigen);
-			resp.sendRedirect("panel.html");
-		} catch(SQLException e) {
-			e.printStackTrace();
-		}
-	}
+//	private void bajaPaciente(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+//		
+//		int id = req.getParameter("id") == null ? null : Integer.parseInt(req.getParameter("id"));
+//		Paciente p;
+//		try {
+//			
+//			p = PacienteDAO.getInstance().obtenerPacientePorID(id);
+//			p.eliminar();
+//		} catch (SQLException e1) {
+//			// TODO Auto-generated catch block
+//			e1.printStackTrace();
+//		}
+//			
+//	}
+//	
+//	private void actualizarPaciente(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException, URISyntaxException {
+//		
+//		int id = req.getParameter("id") == null ? null : Integer.parseInt(req.getParameter("id"));
+//		Paciente p;
+//		try {
+//			p = PacienteDAO.getInstance().obtenerPacientePorID(id);
+//			p.setNombre(req.getParameter("nombre"));
+//			p.setApellidos(req.getParameter("apellidos"));
+//			p.setFecNacimiento(Date.valueOf(req.getParameter("fecNacimiento")));
+//			p.setDomicilio(req.getParameter("domicilio"));
+//			int codPostal = req.getParameter("codPostal").isBlank() ? 0 : Integer.parseInt(req.getParameter("codPostal"));
+//			p.setCodPostal(codPostal);
+//			p.setLocalidad(req.getParameter("localidad"));
+//			p.setProvincia(req.getParameter("provincia"));
+//			int telefono = req.getParameter("telefono").isBlank() ? 0 : Integer.parseInt(req.getParameter("telefono"));
+//			p.setTelefono(telefono);
+//			p.setEstadoCivil(req.getParameter("estadoCivil"));
+//			
+//			p.actualizar();
+//			Cookie cookieOrigen = new Cookie("origen", "perfil");
+//			resp.addCookie(cookieOrigen);
+//			resp.sendRedirect("panel.html");
+//			System.out.println("El paciente se ha modificado con éxito");
+//		} catch (SQLException e1) {
+//			// TODO Auto-generated catch block
+//			e1.printStackTrace();
+//		}
+//	}
+//	
+//	private void buscarPaciente(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException, URISyntaxException {
+//		
+//		String p = null;
+//		HttpSession sesion = req.getSession();
+//		String email = ((Paciente) sesion.getAttribute("paciente")).getEmail();
+//		
+//		try {
+//			p = PacienteDAO.getInstance().buscarPacientePorAtributoJSON("email", email);
+//		} catch(SQLException e) {
+//			e.printStackTrace();
+//		}
+//		resp.setContentType("text/html;charset=UTF8");
+//		resp.getWriter().print(p);
+//	}
+//	
+//	private void cambiarContrasenia(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException, URISyntaxException {
+//			
+//		try {
+//			
+//			HttpSession sesion = req.getSession();
+//			int id = req.getParameter("id") == null ? null : Integer.parseInt(req.getParameter("id"));
+//			String email = req.getParameter("email");
+//			String actualContrasenia = req.getParameter("actualContrasenia");
+//			String nuevaContrasenia = req.getParameter("nuevaContrasenia");
+//			String repetirContrasenia = req.getParameter("repetirContrasenia");
+//			
+//			String mensaje = null;
+//			Paciente p = PacienteDAO.getInstance().autenticarPaciente(email, actualContrasenia);
+//			
+//			if (p != null) {
+//				
+//				if(nuevaContrasenia.equals(repetirContrasenia)) {
+//					Cookie cookieValidez = new Cookie("passwordValido", "valido");
+//					resp.addCookie(cookieValidez);
+//					p.setPassword(req.getParameter("nuevaContrasenia"));
+//					p.cambiarContrasenia();
+//					System.out.println("La nueva contraseña ha sido guardada con éxito.");
+//				}
+//			} else {
+//				Cookie cookieValidez = new Cookie("passwordValido", "noValido");
+//				Cookie cookieOrigen = new Cookie("origen", "cuenta");
+//				resp.addCookie(cookieValidez);
+//				resp.addCookie(cookieOrigen);
+//			}
+//			Cookie cookieOrigen = new Cookie("origen", "cuenta");
+//			resp.addCookie(cookieOrigen);
+//			resp.sendRedirect("panel.html");
+//		} catch(SQLException e) {
+//			e.printStackTrace();
+//		}
+//	}
 	
 	private void abrirSesion(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		

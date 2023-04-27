@@ -1,5 +1,7 @@
 package singleton;
 
+import java.net.URI;
+import java.net.URISyntaxException;
 import java.sql.Connection;
 
 import java.sql.DriverManager;
@@ -20,29 +22,37 @@ public class ConexionBBDD {
 		
 	}
 	
- 	public static Connection getConnection() throws SQLException {
-		
- 		// System.out.println("getConection() - The current instance connection is " + instance);
- 		
-		if(instance == null) {
-			Properties props = new Properties();
-			props.put("user", "ba840f90deec6a");
-			props.put("password", "bfefe5fd");
-//			props.put("maxLifetime", "90_000ms");
-//			props.put("wait_timeout", "28800");
-//			props.put("user", "root");
-//			props.put("password", "root");
-			
-			instance = DriverManager.getConnection(JDBC_URL, props);
-		}
-		return instance;
+	public static Connection getConnection() throws URISyntaxException, SQLException {
+	    URI dbUri = new URI(System.getenv("CLEARDB_DATABASE_URL"));
+
+	    String username = dbUri.getUserInfo().split(":")[0];
+	    String password = dbUri.getUserInfo().split(":")[1];
+	    String dbUrl = "jdbc:mysql://" + dbUri.getHost() + dbUri.getPath();
+
+	    return DriverManager.getConnection(dbUrl, username, password);
 	}
 	
-	public static void insertarDatosHistoriaClinica(int idPacienteSesionActiva) throws SQLException {
+// 	public static Connection getConnection() throws SQLException {
+// 		
+//		if(instance == null) {
+//			Properties props = new Properties();
+//			props.put("user", "ba840f90deec6a");
+//			props.put("password", "bfefe5fd");
+////			props.put("maxLifetime", "90_000ms");
+////			props.put("wait_timeout", "28800");
+////			props.put("user", "root");
+////			props.put("password", "root");
+//			
+//			instance = DriverManager.getConnection(JDBC_URL, props);
+//		}
+//		return instance;
+//	}
+	
+	public static void insertarDatosHistoriaClinica(int idPacienteSesionActiva) throws URISyntaxException, SQLException {
 		
 		// System.out.println("insertarDatosHistoriaClinica() - The current instance connection is " + instance);
 		
-		PreparedStatement ps1 = ConexionBBDD.getConnection().prepareStatement(
+		PreparedStatement ps1 = getConnection().prepareStatement(
 				"INSERT INTO anomalia (nombre, sintoma, facultativo, fecha, paciente_id) " + 
 				"SELECT * FROM (SELECT 'Esguince de tobillo', 'Dolor moderado y hematoma', 'Dr. Arturo Rodríguez', '20120929', " + idPacienteSesionActiva + ")" +  
 				"as tmp WHERE NOT EXISTS (SELECT nombre FROM anomalia WHERE nombre='Esguince de tobillo' and paciente_id=" + idPacienteSesionActiva + ") LIMIT 1;"
@@ -50,14 +60,14 @@ public class ConexionBBDD {
 		ps1.executeUpdate();
 		ps1.close();
 
-		PreparedStatement ps2 = ConexionBBDD.getConnection().prepareStatement(
+		PreparedStatement ps2 = getConnection().prepareStatement(
 				"INSERT INTO anomalia (nombre, sintoma, facultativo, fecha, paciente_id) " +
 				  "SELECT * FROM (SELECT 'Gripe', 'Estornudos y malestar general', 'Dr. Carlos Rodríguez', '20150104', " + idPacienteSesionActiva + ")" + 
 				  "as tmp WHERE NOT EXISTS (SELECT nombre FROM anomalia WHERE nombre='Gripe' and paciente_id=" + idPacienteSesionActiva + ") LIMIT 1;");
 		ps2.executeUpdate();
 		ps2.close();
 		
-		PreparedStatement ps3 = ConexionBBDD.getConnection().prepareStatement(
+		PreparedStatement ps3 = getConnection().prepareStatement(
 				"INSERT INTO anomalia (nombre, sintoma, facultativo, fecha, paciente_id) " + 
 				"SELECT * FROM (SELECT 'Otitis', 'Inflamación y dolor en los oídos', 'Dr. Arturo Rodríguez', '20120921'," + idPacienteSesionActiva + ")" +  
 				"as tmp WHERE NOT EXISTS (SELECT nombre FROM anomalia WHERE nombre='Otitis' and paciente_id=" + idPacienteSesionActiva + ") LIMIT 1;"
@@ -114,7 +124,7 @@ public class ConexionBBDD {
 		ps9.close();
 	}
 	
-	public static void insertarDatosAnalisis(int idPacienteSesionActiva) throws SQLException {
+	public static void insertarDatosAnalisis(int idPacienteSesionActiva) throws SQLException, URISyntaxException {
 		
 		PreparedStatement ps1 = getConnection().prepareStatement(
 				"INSERT INTO analisis (nombre, estado, fecha, paciente_id) " + 
@@ -141,7 +151,7 @@ public class ConexionBBDD {
 		ps3.close();
 	}
 	
-	public static void insertarDatosMarcador(int idPacienteSesionActiva) throws SQLException {
+	public static void insertarDatosMarcador(int idPacienteSesionActiva) throws SQLException, URISyntaxException {
 		
 		PreparedStatement ps1 = getConnection().prepareStatement(
 				"INSERT INTO marcador (nombre, categoria, valor, valor_minimo, valor_maximo, resultado, analisis_id) " + 
@@ -168,7 +178,7 @@ public class ConexionBBDD {
 		ps3.close();
 	}
 	
-	public static void insertarDatosPacientes() throws SQLException {
+	public static void insertarDatosPacientes() throws SQLException, URISyntaxException {
 		
 		PreparedStatement ps1 = getConnection().prepareStatement(
 			"INSERT INTO paciente (nombre, apellidos, fec_nacimiento, email, password) " + 
