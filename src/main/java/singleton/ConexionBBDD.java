@@ -22,6 +22,7 @@ public class ConexionBBDD {
 			props.put("user", "ba840f90deec6a");
 			props.put("password", "bfefe5fd");
 			props.put("maxLifetime", "90_000ms");
+			props.put("wait_timeout", "28800");
 //			props.put("user", "root");
 //			props.put("password", "root");
 			
