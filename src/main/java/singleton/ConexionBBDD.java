@@ -31,23 +31,23 @@ public class ConexionBBDD {
 //			props.put("user", "root");
 //			props.put("password", "root");
 			
-			props.put("jmxEnabled", "true");
-			props.put("initialSize", "5");
-			props.put("maxActive", "50");
-			props.put("minIdle", "5");
-			props.put("maxIdle", "30");
-			props.put("maxWait", "10000");
-			props.put("maxAge", "10 * 60000");
-			props.put("timeBetweenEvictionRunsMillis", "5000");
-			props.put("minEvictableIdleTimeMillis", "60000");
-			props.put("validationQuery", "SELECT 1");
-			props.put("validationQueryTimeout", "3");
-			props.put("validationInterval", "15000");
-			props.put("testOnBorrow", "true");
-			props.put("testWhileIdle", "true");
-			props.put("testOnReturn", "false");
-			props.put("jdbcInterceptors", "ConnectionState");
-			props.put("defaultTransactionIsolation", "java.sql.Connection.TRANSACTION_READ_COMMITTED");
+			props.put("idleTimeout", "40");
+//			props.put("initialSize", "5");
+//			props.put("maxActive", "50");
+//			props.put("minIdle", "5");
+//			props.put("maxIdle", "30");
+//			props.put("maxWait", "10000");
+//			props.put("maxAge", "10 * 60000");
+//			props.put("timeBetweenEvictionRunsMillis", "5000");
+//			props.put("minEvictableIdleTimeMillis", "60000");
+//			props.put("validationQuery", "SELECT 1");
+//			props.put("validationQueryTimeout", "3");
+//			props.put("validationInterval", "15000");
+//			props.put("testOnBorrow", "true");
+//			props.put("testWhileIdle", "true");
+//			props.put("testOnReturn", "false");
+//			props.put("jdbcInterceptors", "ConnectionState");
+//			props.put("defaultTransactionIsolation", "java.sql.Connection.TRANSACTION_READ_COMMITTED");
 			
 			instance = DriverManager.getConnection(JDBC_URL, props);
 		}
