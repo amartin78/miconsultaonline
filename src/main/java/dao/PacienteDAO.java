@@ -156,7 +156,8 @@ public class PacienteDAO {
 	
 	public Paciente autenticarPaciente(String email, String password) throws SQLException {
 		
-		boolean registrado = false;
+		System.out.println("El objeto conexion es " + con + ", email " + email + ", password " + password);
+		
 		PreparedStatement ps = con.prepareStatement("SELECT * FROM paciente WHERE email=? AND password=?");
 		ps.setString(1, email);
 		ps.setString(2, password);
