@@ -28,7 +28,7 @@ public class HistoriaClinicaDAO {
 	
 	public HistoriaClinicaDAO() throws SQLException {
 		
-		con = ConexionBBDD.getConnection();
+		// con = ConexionBBDD.getConnection();
 	}
 	
 	public static HistoriaClinicaDAO getInstance() throws SQLException {

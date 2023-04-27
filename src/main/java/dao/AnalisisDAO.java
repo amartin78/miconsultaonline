@@ -29,7 +29,7 @@ public class AnalisisDAO {
 	
 	public AnalisisDAO() throws SQLException {
 		
-		con = ConexionBBDD.getConnection();
+		// con = ConexionBBDD.getConnection();
 	}
 	
 	public static AnalisisDAO getInstance() throws SQLException {
