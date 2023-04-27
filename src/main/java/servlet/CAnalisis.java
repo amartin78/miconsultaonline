@@ -40,7 +40,7 @@ public class CAnalisis extends HttpServlet {
 			// Se recogen los datos correspondientes en formato json de acuerdo según la opción 
 			// enviada desde la parte cliente.
 			if(opcion == 1) {
-				ConexionBBDD.insertarDatosAnalisis(id);
+				// ConexionBBDD.insertarDatosAnalisis(id);
 				datos = AnalisisDAO.getInstance().listarAnalisisPorPacienteSesionJSON(id);
 			} else if(opcion == 2) {
 				// datos = AnalisisDAO.getInstance().listarMarcadorPorAnalisisJSON(id);
