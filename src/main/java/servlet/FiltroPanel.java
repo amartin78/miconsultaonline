@@ -14,7 +14,7 @@ import javax.servlet.ServletResponse;
 import javax.servlet.annotation.WebFilter;
 import javax.servlet.annotation.MultipartConfig;
 
-@WebFilter("/panel.html")
+@WebFilter("/panel22.html")
 @MultipartConfig
 public class FiltroPanel implements Filter {
 	

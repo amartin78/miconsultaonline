@@ -234,19 +234,19 @@ public class CPacientes extends HttpServlet {
 	
 	private void cerrarSesion(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		
-		HttpSession sesion = req.getSession();
-				
-		try {
-			
-			// Si la sesión esta abierta entonces se cierra.
-			if(sesion.getAttribute("paciente") != null) {
-				System.out.println("Se cierra la sesión");
-				// sesion.invalidate();
-				resp.sendRedirect("login.html");
-			}
-		} catch(Exception e) {
-			e.printStackTrace();
-		}
+//		HttpSession sesion = req.getSession();
+//				
+//		try {
+//			
+//			// Si la sesión esta abierta entonces se cierra.
+//			if(sesion.getAttribute("paciente") != null) {
+//				System.out.println("Se cierra la sesión");
+//				// sesion.invalidate();
+//				resp.sendRedirect("login.html");
+//			}
+//		} catch(Exception e) {
+//			e.printStackTrace();
+//		}
 	}
 }
 
