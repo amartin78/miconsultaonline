@@ -52,6 +52,8 @@ public class PacienteDAO {
 		
 		if(ps != null)
             ps.close();
+		if(con != null)
+            con.close();
        
 	}
 	
@@ -175,6 +177,8 @@ public class PacienteDAO {
 		}
 		rs.close();
 		ps.close();
+		if(con != null)
+            con.close();
 		return p;
 	}
 
