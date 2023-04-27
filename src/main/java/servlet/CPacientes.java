@@ -241,7 +241,7 @@ public class CPacientes extends HttpServlet {
 			// Si la sesión esta abierta entonces se cierra.
 			if(sesion.getAttribute("paciente") != null) {
 				System.out.println("Se cierra la sesión");
-				sesion.invalidate();
+				// sesion.invalidate();
 				resp.sendRedirect("login.html");
 			}
 		} catch(Exception e) {
