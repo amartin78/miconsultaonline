@@ -23,6 +23,8 @@ public class ConexionBBDD {
 	
  	public static Connection getConnection() throws SQLException {
 		
+ 		System.out.println("The current instance connection is " + instance);
+ 		
 		if(instance == null) {
 			Properties props = new Properties();
 			props.put("user", "ba840f90deec6a");
@@ -33,7 +35,6 @@ public class ConexionBBDD {
 //			props.put("password", "root");
 			
 			instance = DriverManager.getConnection(JDBC_URL, props);
-			System.out.println("The instance connection created is " + instance);
 		}
 		return instance;
 	}
