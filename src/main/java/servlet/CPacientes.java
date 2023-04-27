@@ -207,7 +207,7 @@ public class CPacientes extends HttpServlet {
 			if (paciente != null) {
 				System.out.println("Se inicia la sesión");
 				// Tiempo máximo que estará activa la sesión
-				sesion.setMaxInactiveInterval(90 * 1);
+				// sesion.setMaxInactiveInterval(90 * 1);
 				sesion.setAttribute("paciente", paciente);
 				Cookie cookie = new Cookie("email", paciente.getEmail());
 				// Se establece un tiempo máximo para la cookie igual al de la sesión menos un minuto
