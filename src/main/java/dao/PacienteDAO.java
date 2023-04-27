@@ -34,13 +34,12 @@ public class PacienteDAO {
 		if(pacInstance == null) {
 			pacInstance = new PacienteDAO();
 		}
-		
-		System.out.println("insertarDatosHistoriaClinica() - The current instance connection is " + pacInstance);
-		
 		return pacInstance;
 	}
 	
 	public void altaPaciente(Paciente p) throws SQLException {
+		
+		System.out.println("The current instance connection is " + con);
 		
 		PreparedStatement ps = con.prepareStatement("INSERT INTO paciente "
 												  + "(nombre, apellidos, fec_nacimiento, email, password) "
