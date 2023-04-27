@@ -34,6 +34,9 @@ public class PacienteDAO {
 		if(pacInstance == null) {
 			pacInstance = new PacienteDAO();
 		}
+		
+		System.out.println("insertarDatosHistoriaClinica() - The current instance connection is " + pacInstance);
+		
 		return pacInstance;
 	}
 	

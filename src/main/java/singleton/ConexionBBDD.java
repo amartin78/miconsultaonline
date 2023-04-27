@@ -23,7 +23,7 @@ public class ConexionBBDD {
 	
  	public static Connection getConnection() throws SQLException {
 		
- 		System.out.println("getConection() - The current instance connection is " + instance);
+ 		// System.out.println("getConection() - The current instance connection is " + instance);
  		
 		if(instance == null) {
 			Properties props = new Properties();
@@ -41,7 +41,7 @@ public class ConexionBBDD {
 	
 	public static void insertarDatosHistoriaClinica(int idPacienteSesionActiva) throws SQLException {
 		
-		System.out.println("insertarDatosHistoriaClinica() - The current instance connection is " + instance);
+		// System.out.println("insertarDatosHistoriaClinica() - The current instance connection is " + instance);
 		
 		PreparedStatement ps1 = ConexionBBDD.getConnection().prepareStatement(
 				"INSERT INTO anomalia (nombre, sintoma, facultativo, fecha, paciente_id) " + 
