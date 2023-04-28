@@ -36,8 +36,8 @@ public class ConexionBBDD {
 			PoolProperties p = new PoolProperties();
 	          p.setUrl(JDBC_URL);
 	          p.setDriverClassName("com.mysql.cj.jdbc.Driver");
-	          p.setUsername("root");
-	          p.setPassword("root");
+	          p.setUsername("ba840f90deec6a");
+	          p.setPassword("bfefe5fd");
 	          p.setJmxEnabled(true);
 	          p.setTestWhileIdle(false);
 	          p.setTestOnBorrow(true);
@@ -67,8 +67,6 @@ public class ConexionBBDD {
 	}
 	
 	public static void insertarDatosHistoriaClinica(int idPacienteSesionActiva) throws SQLException {
-		
-		// System.out.println("insertarDatosHistoriaClinica() - The current instance connection is " + instance);
 		
 		PreparedStatement ps1 = ConexionBBDD.getConnection().prepareStatement(
 				"INSERT INTO anomalia (nombre, sintoma, facultativo, fecha, paciente_id) " + 
