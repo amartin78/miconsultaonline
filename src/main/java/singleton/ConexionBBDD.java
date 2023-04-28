@@ -35,7 +35,7 @@ public class ConexionBBDD {
 
 			PoolProperties p = new PoolProperties();
 	          p.setUrl(JDBC_URL);
-	          p.setDriverClassName("com.mysql.jdbc.Driver");
+	          // p.setDriverClassName("com.mysql.jdbc.Driver");
 	          p.setUsername("root");
 	          p.setPassword("root");
 	          p.setJmxEnabled(true);
