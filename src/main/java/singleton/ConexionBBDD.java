@@ -42,7 +42,7 @@ public class ConexionBBDD {
 	          p.setTestWhileIdle(true);
 	          p.setTestOnBorrow(true);
 	          p.setValidationQuery("SELECT 1");
-	          p.setTestOnReturn(false);
+	          p.setTestOnReturn(true);
 	          p.setValidationInterval(30000);
 	          p.setTimeBetweenEvictionRunsMillis(10000);
 	          p.setMaxActive(2);
@@ -52,11 +52,11 @@ public class ConexionBBDD {
 	          p.setMinEvictableIdleTimeMillis(10000);
 	          p.setMinIdle(1);
 	          p.setMinIdle(2);
-//	          p.setLogAbandoned(true);
-//	          p.setRemoveAbandoned(true);
-//	          p.setJdbcInterceptors(
-//	            "org.apache.tomcat.jdbc.pool.interceptor.ConnectionState;"+
-//	            "org.apache.tomcat.jdbc.pool.interceptor.StatementFinalizer");
+	          p.setLogAbandoned(true);
+	          p.setRemoveAbandoned(true);
+	          p.setJdbcInterceptors(
+	            "org.apache.tomcat.jdbc.pool.interceptor.ConnectionState;"+
+	            "org.apache.tomcat.jdbc.pool.interceptor.StatementFinalizer");
 	          
 	          DataSource datasource = new DataSource();
 	          datasource.setPoolProperties(p);
