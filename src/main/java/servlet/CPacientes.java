@@ -206,7 +206,7 @@ public class CPacientes extends HttpServlet {
 					e.printStackTrace();
 				}
 			}
-		}, 0, 40, TimeUnit.SECONDS);
+		}, 0, 50 * 1000, TimeUnit.MILLISECONDS);
 		
 		HttpSession sesion = req.getSession();
 		String email = req.getParameter("email");

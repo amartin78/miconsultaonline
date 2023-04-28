@@ -2,13 +2,13 @@ package singleton;
 
 import java.sql.Connection;
 
-// import java.sql.DriverManager;
+import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.Properties;
 
-import org.apache.tomcat.jdbc.pool.DataSource;
-import org.apache.tomcat.jdbc.pool.PoolProperties;
+//import org.apache.tomcat.jdbc.pool.DataSource;
+//import org.apache.tomcat.jdbc.pool.PoolProperties;
 
 
 import modelo.Paciente;
@@ -26,52 +26,52 @@ public class ConexionBBDD {
 	
  	public static Connection getConnection() throws SQLException {
  		
-//		if(instance == null) {
-//			Properties props = new Properties();
-//			props.put("user", "ba840f90deec6a");
-//			props.put("password", "bfefe5fd");
+		if(instance == null) {
+			Properties props = new Properties();
+			props.put("user", "ba840f90deec6a");
+			props.put("password", "bfefe5fd");
 //			props.put("user", "root");
 //			props.put("password", "root");
 
-			PoolProperties p = new PoolProperties();
-	          p.setUrl(JDBC_URL);
-	          p.setDriverClassName("com.mysql.cj.jdbc.Driver");
-	          p.setUsername("ba840f90deec6a");
-	          p.setPassword("bfefe5fd");
-//	          p.setUsername("root");
-//	          p.setPassword("root");
-	          p.setJmxEnabled(true);
-	          p.setTestWhileIdle(false);
-	          p.setTestOnBorrow(false);
-	          p.setValidationQuery("SELECT 1");
-	          p.setTestOnReturn(false);
-	          p.setValidationInterval(30000);
-	          p.setTimeBetweenEvictionRunsMillis(10000);
-	          p.setMaxActive(10);
-	          p.setInitialSize(4);
-	          p.setMaxWait(10000);
-	          p.setRemoveAbandonedTimeout(50);
-	          p.setMinEvictableIdleTimeMillis(20000);
-	          p.setMinIdle(4);
-	          p.setMaxIdle(10);
+//			PoolProperties p = new PoolProperties();
+//	          p.setUrl(JDBC_URL);
+//	          p.setDriverClassName("com.mysql.cj.jdbc.Driver");
+//	          p.setUsername("ba840f90deec6a");
+//	          p.setPassword("bfefe5fd");
+////	          p.setUsername("root");
+////	          p.setPassword("root");
+//	          p.setJmxEnabled(true);
+//	          p.setTestWhileIdle(false);
+//	          p.setTestOnBorrow(false);
+//	          p.setValidationQuery("SELECT 1");
+//	          p.setTestOnReturn(false);
+//	          p.setValidationInterval(30000);
+//	          p.setTimeBetweenEvictionRunsMillis(10000);
+//	          p.setMaxActive(10);
+//	          p.setInitialSize(4);
+//	          p.setMaxWait(10000);
+//	          p.setRemoveAbandonedTimeout(50);
+//	          p.setMinEvictableIdleTimeMillis(20000);
+//	          p.setMinIdle(4);
+//	          p.setMaxIdle(10);
 //	          p.setLogAbandoned(true);
 //	          p.setRemoveAbandoned(true);
 //	          p.setJdbcInterceptors(
 //	            "org.apache.tomcat.jdbc.pool.interceptor.ConnectionState;"+
 //	            "org.apache.tomcat.jdbc.pool.interceptor.StatementFinalizer");
 	          
-	          DataSource datasource = new DataSource();
-	          datasource.setPoolProperties(p);
+//	          DataSource datasource = new DataSource();
+//	          datasource.setPoolProperties(p);
 			
-			// instance = DriverManager.getConnection(JDBC_URL, props);
-	          instance = datasource.getConnection();
-//		}
+			 instance = DriverManager.getConnection(JDBC_URL, props);
+//	          instance = datasource.getConnection();
+		}
 		return instance;
 	}
 	
 	public static void insertarDatosHistoriaClinica(int idPacienteSesionActiva) throws SQLException {
 		
-		PreparedStatement ps1 = ConexionBBDD.getConnection().prepareStatement(
+		PreparedStatement ps1 = getConnection().prepareStatement(
 				"INSERT INTO anomalia (nombre, sintoma, facultativo, fecha, paciente_id) " + 
 				"SELECT * FROM (SELECT 'Esguince de tobillo', 'Dolor moderado y hematoma', 'Dr. Arturo Rodríguez', '20120929', " + idPacienteSesionActiva + ")" +  
 				"as tmp WHERE NOT EXISTS (SELECT nombre FROM anomalia WHERE nombre='Esguince de tobillo' and paciente_id=" + idPacienteSesionActiva + ") LIMIT 1;"
@@ -79,14 +79,14 @@ public class ConexionBBDD {
 		ps1.executeUpdate();
 		ps1.close();
 
-		PreparedStatement ps2 = ConexionBBDD.getConnection().prepareStatement(
+		PreparedStatement ps2 = getConnection().prepareStatement(
 				"INSERT INTO anomalia (nombre, sintoma, facultativo, fecha, paciente_id) " +
 				  "SELECT * FROM (SELECT 'Gripe', 'Estornudos y malestar general', 'Dr. Carlos Rodríguez', '20150104', " + idPacienteSesionActiva + ")" + 
 				  "as tmp WHERE NOT EXISTS (SELECT nombre FROM anomalia WHERE nombre='Gripe' and paciente_id=" + idPacienteSesionActiva + ") LIMIT 1;");
 		ps2.executeUpdate();
 		ps2.close();
 		
-		PreparedStatement ps3 = ConexionBBDD.getConnection().prepareStatement(
+		PreparedStatement ps3 = getConnection().prepareStatement(
 				"INSERT INTO anomalia (nombre, sintoma, facultativo, fecha, paciente_id) " + 
 				"SELECT * FROM (SELECT 'Otitis', 'Inflamación y dolor en los oídos', 'Dr. Arturo Rodríguez', '20120921'," + idPacienteSesionActiva + ")" +  
 				"as tmp WHERE NOT EXISTS (SELECT nombre FROM anomalia WHERE nombre='Otitis' and paciente_id=" + idPacienteSesionActiva + ") LIMIT 1;"
