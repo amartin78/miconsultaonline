@@ -39,7 +39,7 @@ public class ConexionBBDD {
 	          p.setUsername("ba840f90deec6a");
 	          p.setPassword("bfefe5fd");
 	          p.setJmxEnabled(true);
-	          p.setTestWhileIdle(false);
+	          p.setTestWhileIdle(true);
 	          p.setTestOnBorrow(true);
 	          p.setValidationQuery("SELECT 1");
 	          p.setTestOnReturn(false);
