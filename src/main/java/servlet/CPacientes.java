@@ -196,7 +196,7 @@ public class CPacientes extends HttpServlet {
 	private void abrirSesion(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		
 		ScheduledExecutorService executorService = Executors.newScheduledThreadPool(1);
-		executorService.scheduleWithFixedDelay(new Runnable() {
+		executorService.scheduleAtFixedRate(new Runnable() {
 			public void run() {
 				try {
 					
@@ -206,7 +206,7 @@ public class CPacientes extends HttpServlet {
 					e.printStackTrace();
 				}
 			}
-		}, 0, 10, TimeUnit.SECONDS);
+		}, 0, 40, TimeUnit.SECONDS);
 		
 		HttpSession sesion = req.getSession();
 		String email = req.getParameter("email");
