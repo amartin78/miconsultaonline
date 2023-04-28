@@ -19,13 +19,14 @@ function analisis() {
 		    // tablaAnalitica += "<tr><th>Prueba realizada</th><th>Estado</th><th>Fecha</th></tr>";
 		    
 		    /* let analisis = [
-				{"prueba": "Prueba1", "estado": "Estado1", "fecha": "12-04-2010", "ruta": "<a href=/CAnaliticas>Ver</a>"},
-				{"prueba": "Prueba2", "estado": "Estado2", "fecha": "12-04-2021", "ruta": "<a href=#''>Ver</a>"},
-				{"prueba": "Prueba3", "estado": "Estado3", "fecha": "12-04-2022", "ruta": "<a href=#''>Ver</a>"}
+				{"nombre": "Prueba1", "estado": "Estado1", "fecha": "12-04-2010", "ruta": ""},
+				{"nombre": "Prueba2", "estado": "Estado2", "fecha": "12-04-2021", "ruta": ""},
+				{"nombre": "Prueba3", "estado": "Estado3", "fecha": "12-04-2022", "ruta": ""}
 			]; */
-		    
+			
 			for(let a in analisis) {
 				if(analisis.hasOwnProperty(a)) {
+					let analisis_id = analisis[a]["analisis_id"];
 					let nombre = analisis[a]["nombre"] == undefined ? "" : analisis[a]["nombre"];
 			        let estado = analisis[a]["estado"] == undefined ? "" : analisis[a]["estado"];
 			        let fecha = analisis[a]["fecha"];
@@ -41,7 +42,7 @@ function analisis() {
 					tablaAnalisis += "<tr><td>" + nombre + "</td>" + 
 										"<td>" + estado + "</td>" + 
 					                    "<td>" + fecha + "</td>" +
-					                    "<td><a href=/CAnaliticas?opcion=2>Ver</a></td></tr>";
+					                    "<td><a href=/CAnalisis?opcion=2&id=" + analisis_id + ">Ver</a></td></tr>";
 					}
 				}
 			tablaAnalisis += "</table>";

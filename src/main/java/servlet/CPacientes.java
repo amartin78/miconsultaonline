@@ -212,8 +212,6 @@ public class CPacientes extends HttpServlet {
 		String email = req.getParameter("email");
 		String password = req.getParameter("password");
 		String mensaje;
-		
-		System.out.println("El email y la contraseña son - antes: " + email + ", " + password);
 				
 		try {
 			
@@ -236,12 +234,11 @@ public class CPacientes extends HttpServlet {
 			// credenciales no son válidas y se redirecciona a la página de loguin.
 			} else {
 				mensaje = "noValido";
-				// Cookie cookieValidez = new Cookie("credencialesInvalidas", mensaje);
-				// resp.addCookie(cookieValidez);
+				Cookie cookieValidez = new Cookie("credencialesInvalidas", mensaje);
+				resp.addCookie(cookieValidez);
 				resp.sendRedirect("login.html");
 			}
 		} catch(Exception e) {
-			System.out.println("El email y la contraseña son - error: " + email + ", " + password);
 			resp.sendRedirect("login.html");
 			e.printStackTrace();
 		}

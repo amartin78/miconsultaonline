@@ -18,7 +18,7 @@ import modelo.Marcador;
  */
 public class Analisis {
 
-	private int id;
+	private int analisis_id;
 	private String nombre;	// Tipo de test (perfil tiroideo, colesterol, salud general)
 	private String estado;	// Si la muestra ha llegado o no al laboratorio, si esta en proceso o listo para consultar.
 	private Date fecha;		// La fecha en que se realizó la orden.
@@ -35,10 +35,10 @@ public class Analisis {
 	/**
 	 * Constructor de un objeto de tipo Analisis.
 	 * 
-	 * @param id
 	 * @param nombre
 	 * @param estado
 	 * @param fecha
+	 * @param marcadores
 	 * @param paciente_id
 	 */
 	public Analisis(String nombre, String estado, Date fecha) {
@@ -46,16 +46,32 @@ public class Analisis {
 		this.nombre = nombre;
 		this.estado = estado;
 		this.fecha = fecha;
-		this.marcadores = new ArrayList<>();
-		this.paciente_id = paciente_id;
+	}
+	
+	/**
+	 * Constructor de un objeto de tipo Analisis.
+	 * 
+	 * @param id
+	 * @param nombre
+	 * @param estado
+	 * @param fecha
+	 * @param marcadores
+	 * @param paciente_id
+	 */
+	public Analisis(int analisis_id, String nombre, String estado, Date fecha) {
+		super();
+		this.analisis_id = analisis_id;
+		this.nombre = nombre;
+		this.estado = estado;
+		this.fecha = fecha;
 	}
 
-	public int getId() {
-		return id;
+	public int getAnalisis_id() {
+		return analisis_id;
 	}
 
-	public void setId(int id) {
-		this.id = id;
+	public void setAnalisis_id(int analisis_id) {
+		this.analisis_id = analisis_id;
 	}
 
 	public String getNombre() {
@@ -100,7 +116,7 @@ public class Analisis {
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(estado, fecha, id, marcadores, nombre, paciente_id);
+		return Objects.hash(estado, fecha, analisis_id, marcadores, nombre, paciente_id);
 	}
 
 	@Override
@@ -112,14 +128,14 @@ public class Analisis {
 		if (getClass() != obj.getClass())
 			return false;
 		Analisis other = (Analisis) obj;
-		return Objects.equals(estado, other.estado) && Objects.equals(fecha, other.fecha) && id == other.id
+		return Objects.equals(estado, other.estado) && Objects.equals(fecha, other.fecha) && analisis_id == other.analisis_id
 				&& Objects.equals(marcadores, other.marcadores) && Objects.equals(nombre, other.nombre)
 				&& paciente_id == other.paciente_id;
 	}
 
 	@Override
 	public String toString() {
-		return "Analisis [id=" + id + ", nombre=" + nombre + ", estado=" + estado + ", fecha=" + fecha + ", marcadores="
+		return "Analisis [id=" + analisis_id + ", nombre=" + nombre + ", estado=" + estado + ", fecha=" + fecha + ", marcadores="
 				+ marcadores + ", paciente_id=" + paciente_id + "]";
 	}
 }

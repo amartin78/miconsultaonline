@@ -6,7 +6,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import com.google.gson.Gson;
-import com.mysql.cj.jdbc.ClientPreparedStatement;
 
 import modelo.Paciente;
 import singleton.ConexionBBDD;
@@ -39,7 +38,7 @@ public class PacienteDAO {
 	
 	public void reconectar() throws SQLException {
 		
-		System.out.println("Reconexion...");
+		// System.out.println("Reconexion...");
 		
 		PreparedStatement ps = con.prepareStatement("SELECT 1");
 		ps.executeQuery();
@@ -162,8 +161,6 @@ public class PacienteDAO {
 	}
 	
 	public Paciente autenticarPaciente(String email, String password) throws SQLException {
-		
-		System.out.println("El objeto conexion es " + con + ", email " + email + ", password " + password);
 		
 		PreparedStatement ps = con.prepareStatement("SELECT * FROM paciente WHERE email=? AND password=?");
 		ps.setString(1, email);

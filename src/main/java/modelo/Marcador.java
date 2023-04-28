@@ -43,7 +43,7 @@ public class Marcador {
 	 * @param analisis_id
 	 */
 	public Marcador(String nombre, String categoria, float valor, float valor_minimo, float valor_maximo,
-			String resultado, int analisis_id) {
+			String resultado) {
 		super();
 		this.nombre = nombre;
 		this.categoria = categoria;
@@ -51,7 +51,6 @@ public class Marcador {
 		this.valor_minimo = valor_minimo;
 		this.valor_maximo = valor_maximo;
 		this.resultado = resultado;
-		this.analisis_id = analisis_id;
 	}
 
 	/**

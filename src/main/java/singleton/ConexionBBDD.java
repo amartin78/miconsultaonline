@@ -7,13 +7,6 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.Properties;
 
-//import org.apache.tomcat.jdbc.pool.DataSource;
-//import org.apache.tomcat.jdbc.pool.PoolProperties;
-
-
-import modelo.Paciente;
-
-
 public class ConexionBBDD {
 	
 //	private static final String JDBC_URL = "jdbc:mysql://localhost:3306/consultaonline";
@@ -32,39 +25,8 @@ public class ConexionBBDD {
 			props.put("password", "bfefe5fd");
 //			props.put("user", "root");
 //			props.put("password", "root");
-
-//			PoolProperties p = new PoolProperties();
-//	          p.setUrl(JDBC_URL);
-//	          p.setDriverClassName("com.mysql.cj.jdbc.Driver");
-//	          p.setUsername("ba840f90deec6a");
-//	          p.setPassword("bfefe5fd");
-////	          p.setUsername("root");
-////	          p.setPassword("root");
-//	          p.setJmxEnabled(true);
-//	          p.setTestWhileIdle(false);
-//	          p.setTestOnBorrow(false);
-//	          p.setValidationQuery("SELECT 1");
-//	          p.setTestOnReturn(false);
-//	          p.setValidationInterval(30000);
-//	          p.setTimeBetweenEvictionRunsMillis(10000);
-//	          p.setMaxActive(10);
-//	          p.setInitialSize(4);
-//	          p.setMaxWait(10000);
-//	          p.setRemoveAbandonedTimeout(50);
-//	          p.setMinEvictableIdleTimeMillis(20000);
-//	          p.setMinIdle(4);
-//	          p.setMaxIdle(10);
-//	          p.setLogAbandoned(true);
-//	          p.setRemoveAbandoned(true);
-//	          p.setJdbcInterceptors(
-//	            "org.apache.tomcat.jdbc.pool.interceptor.ConnectionState;"+
-//	            "org.apache.tomcat.jdbc.pool.interceptor.StatementFinalizer");
-	          
-//	          DataSource datasource = new DataSource();
-//	          datasource.setPoolProperties(p);
 			
-			 instance = DriverManager.getConnection(JDBC_URL, props);
-//	          instance = datasource.getConnection();
+			instance = DriverManager.getConnection(JDBC_URL, props);
 		}
 		return instance;
 	}
@@ -170,28 +132,28 @@ public class ConexionBBDD {
 		ps3.close();
 	}
 	
-	public static void insertarDatosMarcador(int idPacienteSesionActiva) throws SQLException {
+	public static void insertarDatosMarcador(int id_analisis) throws SQLException {
 		
 		PreparedStatement ps1 = getConnection().prepareStatement(
-				"INSERT INTO marcador (nombre, categoria, valor, valor_minimo, valor_maximo, resultado, analisis_id) " + 
-				"SELECT * FROM (SELECT 'LDL Colesterol', 'Test Colesterol', '3.2'," + idPacienteSesionActiva + ")" + 
-				"as tmp WHERE NOT EXISTS (SELECT nombre FROM marcador WHERE nombre='Prueba 1' and paciente_id=" + idPacienteSesionActiva + ") LIMIT 1;"
+				"INSERT INTO analisis_marcador (nombre, categoria, valor, valor_minimo, valor_maximo, resultado, analisis_id) " + 
+				"SELECT * FROM (SELECT 'LDL', 'Test Colesterol', '2.85', '1', '3', 'Normal'," + id_analisis + ")" + 
+				"as tmp WHERE NOT EXISTS (SELECT nombre FROM analisis_marcador WHERE nombre='LDL' and analisis_id=" + id_analisis + ") LIMIT 1;"
 				);
 		ps1.executeUpdate();
 		ps1.close();
 		
 		PreparedStatement ps2 = getConnection().prepareStatement(
-				"INSERT INTO analisis (nombre, estado, fecha, paciente_id) " + 
-				"SELECT * FROM (SELECT 'Prueba 2', 'Test realizado', '19981206'," + idPacienteSesionActiva + ")" + 
-				"as tmp WHERE NOT EXISTS (SELECT nombre FROM analisis WHERE nombre='Prueba 2' and paciente_id=" + idPacienteSesionActiva + ") LIMIT 1;"
+				"INSERT INTO analisis_marcador (nombre, categoria, valor, valor_minimo, valor_maximo, resultado, analisis_id) " + 
+				"SELECT * FROM (SELECT 'HDL', 'Test Colesterol', '4.38', '4.5', '8.5', 'Anormal'," + id_analisis + ")" + 
+				"as tmp WHERE NOT EXISTS (SELECT nombre FROM analisis_marcador WHERE nombre='HDL' and analisis_id=" + id_analisis + ") LIMIT 1;"
 				);
 		ps2.executeUpdate();
 		ps2.close();
 	
 		PreparedStatement ps3 = getConnection().prepareStatement(
-				"INSERT INTO analisis (nombre, estado, fecha, paciente_id) " + 
-				"SELECT * FROM (SELECT 'Prueba 3', 'En espera de muestra', '20230209'," + idPacienteSesionActiva + ")" + 
-				"as tmp WHERE NOT EXISTS (SELECT nombre FROM analisis WHERE nombre='Prueba 3' and paciente_id=" + idPacienteSesionActiva + ") LIMIT 1;"
+				"INSERT INTO analisis_marcador (nombre, categoria, valor, valor_minimo, valor_maximo, resultado, analisis_id) " + 
+				"SELECT * FROM (SELECT 'Triglicéridos', 'Test Colesterol', '0.92', '0.25', '2.65', 'Normal'," + id_analisis + ")" + 
+				"as tmp WHERE NOT EXISTS (SELECT nombre FROM analisis_marcador WHERE nombre='Triglicéridos' and analisis_id=" + id_analisis + ") LIMIT 1;"
 				);
 		ps3.executeUpdate();
 		ps3.close();

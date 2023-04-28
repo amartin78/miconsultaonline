@@ -14,7 +14,7 @@ import javax.servlet.ServletResponse;
 import javax.servlet.annotation.WebFilter;
 import javax.servlet.annotation.MultipartConfig;
 
-@WebFilter("/panel22.html")
+@WebFilter("/panel.html")
 @MultipartConfig
 public class FiltroPanel implements Filter {
 	
@@ -41,7 +41,6 @@ public class FiltroPanel implements Filter {
 			}
 		}
 		boolean clienteLogueado = sesion != null && sesion.getAttribute("paciente") != null && !email.trim().isEmpty();
-		System.out.println("El cliente esta logueado " + clienteLogueado);
 		
 		if(clienteLogueado) {
 			request.setCharacterEncoding("UTF-8");
