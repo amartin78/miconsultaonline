@@ -43,12 +43,12 @@ public class ConexionBBDD {
 	          p.setTestOnBorrow(true);
 	          p.setValidationQuery("SELECT 1");
 	          p.setTestOnReturn(true);
-	          p.setValidationInterval(30000);
+	          p.setValidationInterval(25000);
 	          p.setTimeBetweenEvictionRunsMillis(10000);
 	          p.setMaxActive(2);
 	          p.setInitialSize(1);
 	          p.setMaxWait(10000);
-	          p.setRemoveAbandonedTimeout(60);
+	          p.setRemoveAbandonedTimeout(40);
 	          p.setMinEvictableIdleTimeMillis(10000);
 	          p.setMinIdle(1);
 	          p.setMinIdle(2);
