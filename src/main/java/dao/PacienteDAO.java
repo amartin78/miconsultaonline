@@ -37,13 +37,20 @@ public class PacienteDAO {
 		return pacInstance;
 	}
 	
+	public void reconectar() throws SQLException {
+		
+		System.out.println("Reconexion...");
+		
+		PreparedStatement ps = con.prepareStatement("SELECT 1");
+		ps.executeQuery();
+		ps.close();
+	}
+	
 	public void altaPaciente(Paciente p) throws SQLException {
 		
-		System.out.println("The current instance connection is " + con);
-		
 		PreparedStatement ps = con.prepareStatement("INSERT INTO paciente "
-												  + "(nombre, apellidos, fec_nacimiento, email, password) "
-												  + "VALUES (?,?,?,?,?)");
+												+ "(nombre, apellidos, fec_nacimiento, email, password) "
+												+ "VALUES (?,?,?,?,?)");
 		ps.setString(1, p.getNombre());
 		ps.setString(2, p.getApellidos());
 		ps.setDate(3, p.getFecNacimiento());

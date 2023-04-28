@@ -15,6 +15,10 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Enumeration;
+import java.util.Timer;
+import java.util.concurrent.Executors;
+import java.util.concurrent.ScheduledExecutorService;
+import java.util.concurrent.TimeUnit;
 import java.sql.Date;
 
 import javax.servlet.annotation.WebServlet;
@@ -191,14 +195,25 @@ public class CPacientes extends HttpServlet {
 	
 	private void abrirSesion(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		
+		ScheduledExecutorService executorService = Executors.newScheduledThreadPool(1);
+		executorService.scheduleWithFixedDelay(new Runnable() {
+			public void run() {
+				try {
+					
+					PacienteDAO.getInstance().reconectar();
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+		}, 0, 40, TimeUnit.SECONDS);
+		
 		HttpSession sesion = req.getSession();
 		String email = req.getParameter("email");
 		String password = req.getParameter("password");
 		String mensaje;
 		
 		System.out.println("El email y la contraseña son - antes: " + email + ", " + password);
-		
-		
 				
 		try {
 			
