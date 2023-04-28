@@ -2,10 +2,14 @@ package singleton;
 
 import java.sql.Connection;
 
-import java.sql.DriverManager;
+// import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.Properties;
+
+import org.apache.tomcat.jdbc.pool.DataSource;
+import org.apache.tomcat.jdbc.pool.PoolProperties;
+
 
 import modelo.Paciente;
 
@@ -22,35 +26,43 @@ public class ConexionBBDD {
 	
  	public static Connection getConnection() throws SQLException {
  		
-		if(instance == null) {
-			Properties props = new Properties();
-			props.put("user", "ba840f90deec6a");
-			props.put("password", "bfefe5fd");
-//			props.put("maxLifetime", "90_000ms");
-//			props.put("wait_timeout", "28800");
+//		if(instance == null) {
+//			Properties props = new Properties();
+//			props.put("user", "ba840f90deec6a");
+//			props.put("password", "bfefe5fd");
 //			props.put("user", "root");
 //			props.put("password", "root");
+
+			PoolProperties p = new PoolProperties();
+	          p.setUrl(JDBC_URL);
+	          p.setDriverClassName("com.mysql.jdbc.Driver");
+	          p.setUsername("root");
+	          p.setPassword("root");
+	          p.setJmxEnabled(true);
+	          p.setTestWhileIdle(false);
+	          p.setTestOnBorrow(true);
+	          p.setValidationQuery("SELECT 1");
+	          p.setTestOnReturn(false);
+	          p.setValidationInterval(30000);
+	          p.setTimeBetweenEvictionRunsMillis(30000);
+	          p.setMaxActive(100);
+	          p.setInitialSize(10);
+	          p.setMaxWait(10000);
+	          p.setRemoveAbandonedTimeout(60);
+	          p.setMinEvictableIdleTimeMillis(30000);
+	          p.setMinIdle(10);
+//	          p.setLogAbandoned(true);
+//	          p.setRemoveAbandoned(true);
+//	          p.setJdbcInterceptors(
+//	            "org.apache.tomcat.jdbc.pool.interceptor.ConnectionState;"+
+//	            "org.apache.tomcat.jdbc.pool.interceptor.StatementFinalizer");
+	          
+	          DataSource datasource = new DataSource();
+	          datasource.setPoolProperties(p);
 			
-			props.put("idleTimeout", "40");
-//			props.put("initialSize", "5");
-//			props.put("maxActive", "50");
-//			props.put("minIdle", "5");
-//			props.put("maxIdle", "30");
-//			props.put("maxWait", "10000");
-//			props.put("maxAge", "10 * 60000");
-//			props.put("timeBetweenEvictionRunsMillis", "5000");
-//			props.put("minEvictableIdleTimeMillis", "60000");
-//			props.put("validationQuery", "SELECT 1");
-//			props.put("validationQueryTimeout", "3");
-//			props.put("validationInterval", "15000");
-//			props.put("testOnBorrow", "true");
-//			props.put("testWhileIdle", "true");
-//			props.put("testOnReturn", "false");
-//			props.put("jdbcInterceptors", "ConnectionState");
-//			props.put("defaultTransactionIsolation", "java.sql.Connection.TRANSACTION_READ_COMMITTED");
-			
-			instance = DriverManager.getConnection(JDBC_URL, props);
-		}
+			// instance = DriverManager.getConnection(JDBC_URL, props);
+	          instance = datasource.getConnection();
+//		}
 		return instance;
 	}
 	
