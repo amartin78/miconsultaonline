@@ -38,25 +38,27 @@ public class ConexionBBDD {
 	          p.setDriverClassName("com.mysql.cj.jdbc.Driver");
 	          p.setUsername("ba840f90deec6a");
 	          p.setPassword("bfefe5fd");
+//	          p.setUsername("root");
+//	          p.setPassword("root");
 	          p.setJmxEnabled(true);
-	          p.setTestWhileIdle(true);
-	          p.setTestOnBorrow(true);
+	          p.setTestWhileIdle(false);
+	          p.setTestOnBorrow(false);
 	          p.setValidationQuery("SELECT 1");
-	          p.setTestOnReturn(true);
+	          p.setTestOnReturn(false);
 	          p.setValidationInterval(30000);
 	          p.setTimeBetweenEvictionRunsMillis(10000);
-	          p.setMaxActive(4);
-	          p.setInitialSize(2);
+	          p.setMaxActive(10);
+	          p.setInitialSize(4);
 	          p.setMaxWait(10000);
 	          p.setRemoveAbandonedTimeout(50);
 	          p.setMinEvictableIdleTimeMillis(20000);
-	          p.setMinIdle(2);
-	          p.setMaxIdle(3);
-	          p.setLogAbandoned(true);
-	          p.setRemoveAbandoned(true);
-	          p.setJdbcInterceptors(
-	            "org.apache.tomcat.jdbc.pool.interceptor.ConnectionState;"+
-	            "org.apache.tomcat.jdbc.pool.interceptor.StatementFinalizer");
+	          p.setMinIdle(4);
+	          p.setMaxIdle(10);
+//	          p.setLogAbandoned(true);
+//	          p.setRemoveAbandoned(true);
+//	          p.setJdbcInterceptors(
+//	            "org.apache.tomcat.jdbc.pool.interceptor.ConnectionState;"+
+//	            "org.apache.tomcat.jdbc.pool.interceptor.StatementFinalizer");
 	          
 	          DataSource datasource = new DataSource();
 	          datasource.setPoolProperties(p);
