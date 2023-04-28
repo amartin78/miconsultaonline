@@ -206,7 +206,7 @@ public class CPacientes extends HttpServlet {
 					e.printStackTrace();
 				}
 			}
-		}, 0, 40, TimeUnit.SECONDS);
+		}, 0, 10, TimeUnit.SECONDS);
 		
 		HttpSession sesion = req.getSession();
 		String email = req.getParameter("email");
@@ -221,14 +221,14 @@ public class CPacientes extends HttpServlet {
 			if (paciente != null) {
 				System.out.println("Se inicia la sesión");
 				// Tiempo máximo que estará activa la sesión
-				// sesion.setMaxInactiveInterval(10 * 1);
-				 sesion.setAttribute("paciente", paciente);
-				// Cookie cookie = new Cookie("email", paciente.getEmail());
+				sesion.setMaxInactiveInterval(10 * 60);
+				sesion.setAttribute("paciente", paciente);
+				Cookie cookie = new Cookie("email", paciente.getEmail());
 				// Se establece un tiempo máximo para la cookie igual al de la sesión menos un minuto
 				// que es la frecuencia con que la parte cliente comprueba el estado de la sesión 
 				// para en el caso de estar finalizada redireccionar al cliente a la página de loguin.
-				// cookie.setMaxAge(9 * 1);
-				// resp.addCookie(cookie);
+				cookie.setMaxAge(9 * 60);
+				resp.addCookie(cookie);
 				// Una vez autenticado el usuario y creadas la sesión y la cookie redireccionamos
 				// al cliente hacia el panel. 
 				resp.sendRedirect("panel.html");	
@@ -249,19 +249,19 @@ public class CPacientes extends HttpServlet {
 	
 	private void cerrarSesion(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		
-//		HttpSession sesion = req.getSession();
-//				
-//		try {
-//			
-//			// Si la sesión esta abierta entonces se cierra.
-//			if(sesion.getAttribute("paciente") != null) {
-//				System.out.println("Se cierra la sesión");
-//				// sesion.invalidate();
-//			}
-//		} catch(Exception e) {
-//			e.printStackTrace();
-//		}
+		HttpSession sesion = req.getSession();
+				
+		try {
+			
+			// Si la sesión esta abierta entonces se cierra.
+			if(sesion.getAttribute("paciente") != null) {
+				System.out.println("Se cierra la sesión");
+				sesion.invalidate();
 				resp.sendRedirect("login.html");
+			}
+		} catch(Exception e) {
+			e.printStackTrace();
+		}
 	}
 }
 
