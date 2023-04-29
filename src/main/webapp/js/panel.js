@@ -52,6 +52,8 @@ window.onload = function () {
 		opcion("Perfil");
 	} else if(origen == "cuenta") {
 		opcion("Cuenta");
+	} else if(origen == "marcadores") {
+		opcion("Marcadores");
 	} else {
 		opcion("Analítica");
 	}
@@ -104,6 +106,9 @@ function opcion(o) {
             break;
         case "Analítica":
             analisis();
+            break;
+        case "Marcadores":
+            marcadores();
             break;
         case "Diagnóstico por imagen":
             imagen();

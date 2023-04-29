@@ -17,8 +17,8 @@ public class Marcador {
 	private String nombre;	// Tipo de test (perfil tiroideo, colesterol, salud general)
 	private String categoria;	// Si la muestra ha llegado o no al laboratorio, si esta en proceso o listo para consultar.
 	private float valor;
-	private float valor_minimo;
-	private float valor_maximo;
+	private float valorMinimo;
+	private float valorMaximo;
 	private String resultado;
 	private int analisis_id;	// El id del paciente que ordenó el test.
 	
@@ -37,19 +37,19 @@ public class Marcador {
 	 * @param nombre
 	 * @param categoria
 	 * @param valor
-	 * @param valor_minimo
-	 * @param valor_maximo
+	 * @param valorMinimo
+	 * @param valorMaximo
 	 * @param resultado
 	 * @param analisis_id
 	 */
-	public Marcador(String nombre, String categoria, float valor, float valor_minimo, float valor_maximo,
+	public Marcador(String nombre, String categoria, float valor, float valorMinimo, float valorMaximo,
 			String resultado) {
 		super();
 		this.nombre = nombre;
 		this.categoria = categoria;
 		this.valor = valor;
-		this.valor_minimo = valor_minimo;
-		this.valor_maximo = valor_maximo;
+		this.valorMinimo = valorMinimo;
+		this.valorMaximo = valorMaximo;
 		this.resultado = resultado;
 	}
 
@@ -60,20 +60,20 @@ public class Marcador {
 	 * @param nombre
 	 * @param categoria
 	 * @param valor
-	 * @param valor_minimo
-	 * @param valor_maximo
+	 * @param valorMinimo
+	 * @param valorMaximo
 	 * @param resultado
 	 * @param analisis_id
 	 */
-	public Marcador(int id, String nombre, String categoria, float valor, float valor_minimo, float valor_maximo,
+	public Marcador(int id, String nombre, String categoria, float valor, float valorMinimo, float valorMaximo,
 			String resultado, int analisis_id) {
 		super();
 		this.id = id;
 		this.nombre = nombre;
 		this.categoria = categoria;
 		this.valor = valor;
-		this.valor_minimo = valor_minimo;
-		this.valor_maximo = valor_maximo;
+		this.valorMinimo = valorMinimo;
+		this.valorMaximo = valorMaximo;
 		this.resultado = resultado;
 		this.analisis_id = analisis_id;
 	}
@@ -110,20 +110,20 @@ public class Marcador {
 		this.valor = valor;
 	}
 
-	public float getValor_minimo() {
-		return valor_minimo;
+	public float getValorMinimo() {
+		return valorMinimo;
 	}
 
-	public void setValor_minimo(float valor_minimo) {
-		this.valor_minimo = valor_minimo;
+	public void setValorMinimo(float valorMinimo) {
+		this.valorMinimo = valorMinimo;
 	}
 
-	public float getValor_maximo() {
-		return valor_maximo;
+	public float getValorMaximo() {
+		return valorMaximo;
 	}
 
-	public void setValor_maximo(float valor_maximo) {
-		this.valor_maximo = valor_maximo;
+	public void getValorMaximo(float valorMaximo) {
+		this.valorMaximo = valorMaximo;
 	}
 
 	public String getResultado() {
@@ -144,7 +144,7 @@ public class Marcador {
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(analisis_id, categoria, id, nombre, resultado, valor, valor_maximo, valor_minimo);
+		return Objects.hash(analisis_id, categoria, id, nombre, resultado, valor, valorMaximo, valorMinimo);
 	}
 
 	@Override
@@ -159,14 +159,14 @@ public class Marcador {
 		return analisis_id == other.analisis_id && Objects.equals(categoria, other.categoria) && id == other.id
 				&& Objects.equals(nombre, other.nombre) && Objects.equals(resultado, other.resultado)
 				&& Float.floatToIntBits(valor) == Float.floatToIntBits(other.valor)
-				&& Float.floatToIntBits(valor_maximo) == Float.floatToIntBits(other.valor_maximo)
-				&& Float.floatToIntBits(valor_minimo) == Float.floatToIntBits(other.valor_minimo);
+				&& Float.floatToIntBits(valorMaximo) == Float.floatToIntBits(other.valorMaximo)
+				&& Float.floatToIntBits(valorMinimo) == Float.floatToIntBits(other.valorMinimo);
 	}
 
 	@Override
 	public String toString() {
 		return "Marcador [id=" + id + ", nombre=" + nombre + ", categoria=" + categoria + ", valor=" + valor
-				+ ", valor_minimo=" + valor_minimo + ", valor_maximo=" + valor_maximo + ", resultado=" + resultado
+				+ ", valorMinimo=" + valorMinimo + ", valorMaximo=" + valorMaximo + ", resultado=" + resultado
 				+ ", analisis_id=" + analisis_id + "]";
 	}
 }

@@ -1,5 +1,6 @@
 package servlet;
 
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -10,6 +11,7 @@ import dao.AnalisisDAO;
 import javax.servlet.ServletException;
 import java.io.IOException;
 import java.sql.SQLException;
+// import java.sql.Date;
 
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.annotation.MultipartConfig;
@@ -32,6 +34,7 @@ public class CAnalisis extends HttpServlet {
 		
 		String datos = "";
 		int analisis_id = 0;
+		String categoria = null;
 		HttpSession sesion = req.getSession();
 		int id = ((Paciente) sesion.getAttribute("paciente")).getId();
 		int opcion = Integer.parseInt(req.getParameter("opcion"));
@@ -44,18 +47,31 @@ public class CAnalisis extends HttpServlet {
 			if(opcion == 1) {
 				ConexionBBDD.insertarDatosAnalisis(id);
 				datos = AnalisisDAO.getInstance().listarAnalisisPorPacienteSesionJSON(id);
+				resp.setContentType("text/html;charset=UTF8");
+				resp.getWriter().print(datos);
 			} else if(opcion == 2) {
 				analisis_id = Integer.parseInt(req.getParameter("id"));
-				ConexionBBDD.insertarDatosMarcador(analisis_id);
+				categoria = req.getParameter("categoria");
+				ConexionBBDD.insertarDatosMarcador(analisis_id, categoria);
 				datos = AnalisisDAO.getInstance().listarMarcadoresPorAnalisisJSON(analisis_id);
+				Cookie cookieOrigen = new Cookie("origen", "marcadores");
+				resp.addCookie(cookieOrigen);
+				resp.sendRedirect("panel.html");
+				resp.setContentType("text/html;charset=UTF8");
+				resp.getWriter().print(datos);
+//			} else if(opcion == 3) {
+//				analisis_id = Integer.parseInt(req.getParameter("id"));
+//				datos = AnalisisDAO.getInstance().listarMarcadoresPorAnalisisJSON(analisis_id);
+//				resp.setContentType("text/html;charset=UTF8");
+//				resp.getWriter().print(datos);
 			} else {
 				System.out.println("Opción no válida.");
 			}
 		} catch(SQLException e) {
 			e.printStackTrace();
 		}
-		resp.setContentType("text/html;charset=UTF8");
-		resp.getWriter().print(datos);
+//		resp.setContentType("text/html;charset=UTF8");
+//		resp.getWriter().print(datos);
 	}
 	
 	@Override

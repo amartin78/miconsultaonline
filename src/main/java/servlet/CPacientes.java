@@ -6,16 +6,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import java.net.URLDecoder;
-import java.net.URLEncoder;
-
 import javax.servlet.ServletException;
 import java.io.IOException;
 import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Enumeration;
-import java.util.Timer;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
@@ -86,7 +79,8 @@ public class CPacientes extends HttpServlet {
 		String apellidos = req.getParameter("apellidos");
 		String email = req.getParameter("email");
 		String password = req.getParameter("password");
-		Date fecNacimiento = req.getParameter("fecNacimiento").isBlank() ? null : Date.valueOf(req.getParameter("fecNacimiento"));
+		Date fecNacimiento = req.getParameter("fecNacimiento") == null || req.getParameter("fecNacimiento").isBlank() ? 
+							 null : Date.valueOf(req.getParameter("fecNacimiento"));
 		
 		Paciente p = new Paciente(nombre, apellidos, email, password, fecNacimiento);
 		try {			

@@ -46,6 +46,7 @@ public class Analisis {
 		this.nombre = nombre;
 		this.estado = estado;
 		this.fecha = fecha;
+		this.marcadores = new ArrayList<>();
 	}
 	
 	/**
@@ -64,6 +65,7 @@ public class Analisis {
 		this.nombre = nombre;
 		this.estado = estado;
 		this.fecha = fecha;
+		this.marcadores = new ArrayList<>();
 	}
 
 	public int getAnalisis_id() {

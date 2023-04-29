@@ -13,61 +13,66 @@ function analisis() {
 	then(response => response.json()).
 	then(analisis => {
 		
+		tablaAnalisis = "<div class='contenedor-analisis'>";
+		
 		if(analisis) {
-			tablaAnalisis = "<div class='contenedor-analisis'>";
-		    tablaAnalisis += "<table id='analisis' class='listado'>";
-		    // tablaAnalitica += "<tr><th>Prueba realizada</th><th>Estado</th><th>Fecha</th></tr>";
-		    
-		    /* let analisis = [
-				{"nombre": "Prueba1", "estado": "Estado1", "fecha": "12-04-2010", "ruta": ""},
-				{"nombre": "Prueba2", "estado": "Estado2", "fecha": "12-04-2021", "ruta": ""},
-				{"nombre": "Prueba3", "estado": "Estado3", "fecha": "12-04-2022", "ruta": ""}
-			]; */
-			
 			for(let a in analisis) {
-				if(analisis.hasOwnProperty(a)) {
-					let analisis_id = analisis[a]["analisis_id"];
+				if(analisis.hasOwnProperty(a) && analisis[a]["marcadores"].length > 0) {
+					console.log(analisis[a])				
+		    		tablaAnalisis += "<table class='listado'>";
+					// let analisis_id = analisis[a]["analisis_id"];
 					let nombre = analisis[a]["nombre"] == undefined ? "" : analisis[a]["nombre"];
 			        let estado = analisis[a]["estado"] == undefined ? "" : analisis[a]["estado"];
-			        let fecha = analisis[a]["fecha"];
-			        fecha = new Date(fecha);
-			        let anio = fecha.getFullYear();
-			        let mes = fecha.getMonth() + 1;
-			        mes = String(mes).length == 2 ? mes : `0${mes}`;
-			        let dia = fecha.getDate();
-			        dia = String(dia).length == 2 ? dia : `0${dia}`;
-			        fecha = anio + "-" + mes + "-" + dia;
-			        let ruta = analisis[a]["ruta"] == undefined ? "" : analisis[a]["ruta"];
-			        
-					tablaAnalisis += "<tr><td>" + nombre + "</td>" + 
-										"<td>" + estado + "</td>" + 
-					                    "<td>" + fecha + "</td>" +
-					                    "<td><a href=/CAnalisis?opcion=2&id=" + analisis_id + ">Ver</a></td></tr>";
+			        let fecha = analisis[a]["fecha"] == undefined ? "" : analisis[a]["fecha"];
+			        if(fecha !== undefined) {
+						fecha = new Date(fecha);
+				        let anio = fecha.getFullYear();
+				        let mes = fecha.getMonth() + 1;
+				        mes = String(mes).length == 2 ? mes : `0${mes}`;
+				        let dia = fecha.getDate();
+				        dia = String(dia).length == 2 ? dia : `0${dia}`;
+				        fecha = anio + "-" + mes + "-" + dia;
 					}
+
+					let marcadores = analisis[a]["marcadores"]; 
+					
+					for(let m in marcadores) {
+						if(analisis.hasOwnProperty(m)) {
+							nombre = marcadores[m]["nombre"] == undefined ? "" : marcadores[m]["nombre"];
+							let categoria = marcadores[m]["categoria"] == undefined ? "" : marcadores[m]["categoria"];
+							let valor = marcadores[m]["valor"] == undefined ? "" : marcadores[m]["valor"];
+					        let valorMinimo = marcadores[m]["valorMinimo"] == undefined ? "" : marcadores[m]["valorMinimo"];
+					        let valorMaximo = marcadores[m]["valorMaximo"] == undefined ? "" : marcadores[m]["valorMaximo"];
+					        let resultado = marcadores[m]["resultado"] == undefined ? "" : marcadores[m]["resultado"];
+							tablaAnalisis += "<tr><td>" + nombre + "</td>" + 
+							                     "<td>" + fecha + "</td>" +
+							                     "<td>" + categoria + "</td>" +
+							                     "<td>" + valor + "</td>" +
+							                     "<td>" + valorMinimo + "</td>" +
+							                     "<td>" + valorMaximo + "</td>" +
+							                     "<td><span id='resultado'>" + resultado + "</span></td></tr>";
+						}
+					}
+					tablaAnalisis += "</table>";
+			    	
 				}
-			tablaAnalisis += "</table>";
-	    	tablaAnalisis += "</div>";
+			}
+			
+			tablaAnalisis += "</div>";
 	    	
 	    	document.getElementById("contenido-principal").innerHTML += tablaAnalisis;
 	    	
+			document.querySelectorAll("#resultado").forEach(function(elem) {
+				
+				if(elem.innerText === "Anormal") {
+					elem.style.color = "orange";
+				}
+			});
+		    	
 	    	// Añadir mensaje cuando no haya ninguna tabla que mostrar.
 	    	// let numeroTablas = document.querySelectorAll('div.contenedor-hClinica').length;
 	    	// mensajeContenidoVacio(numeroTablas);
-	    	
 		}
     }); 
     document.querySelector("#menu li:nth-child(2)").style.color = "#d87093";  
-}
-
-function mensajeContenidoVacio(numeroTablas) {
-	
-	console.log("numero de tablas es " + numeroTablas)
-	
-	if(numeroTablas == undefined) {
-		document.getElementById("mensaje").style.display = "block";	
-		document.getElementById("mensaje").style.fontSize = "1.6em";
-		document.getElementById("mensaje").style.marginTop = "7em";			
-		texto = "No hay datos que mostrar.";
-		document.getElementById("mensaje").innerText = texto;
-	}
 }

@@ -44,16 +44,42 @@ public class AnalisisDAO {
 	public ArrayList<Analisis> listarAnalisisPorPacienteSesion(int id) throws SQLException {
 		
 		PreparedStatement ps = con.prepareStatement("SELECT analisis_id, nombre, estado, fecha FROM analisis " +
-													"WHERE paciente_id=?");
+													"WHERE paciente_id=? ORDER BY fecha DESC");
 		ps.setInt(1, id);
 		ResultSet rs = ps.executeQuery();
+		Analisis analisis = null;
+		Marcador marcador = null;
 		ArrayList<Analisis> analisisRes = null;
 		
+		// Se obtienen las pruebas analíticas que se haya realizado el paciente y se almacenan en la varibale analisisRes.
 		while(rs.next()) {
+			
 			if(analisisRes == null) {
 				analisisRes = new ArrayList<>();
 			}
-			analisisRes.add(new Analisis(rs.getInt("analisis_id"), rs.getString("nombre"), rs.getString("estado"), rs.getDate("fecha")));
+			analisis = new Analisis(rs.getInt("analisis_id"), rs.getString("nombre"), rs.getString("estado"), rs.getDate("fecha"));
+			analisisRes.add(analisis);
+		}
+		
+		// Para cada prueba analítica que se haya realizado un paciente, se obtiene sus correspondientes marcadores
+		// y se almacenan en ella.
+		for(int i = 0; i < analisisRes.size(); i++) {
+			
+			int analisis_id = analisisRes.get(i).getAnalisis_id();
+			
+//			ps = con.prepareStatement("SELECT analisis_marcador.nombre, categoria, valor, valor_minimo, valor_maximo, resultado " + 
+//					  "FROM analisis JOIN analisis_marcador ON analisis.analisis_id=analisis_marcador.analisis_id");
+			ps = con.prepareStatement("SELECT nombre, categoria, valor, valor_minimo, valor_maximo, resultado " + 
+								 "FROM analisis_marcador WHERE analisis_id=?");
+			ps.setInt(1, analisis_id);
+			rs = ps.executeQuery();
+			
+			while(rs.next()) {
+								
+				marcador = new Marcador(rs.getString("nombre"), rs.getString("categoria"),  rs.getFloat("valor"), 
+						rs.getFloat("valor_minimo"), rs.getFloat("valor_maximo"), rs.getString("resultado"));
+				analisisRes.get(i).getMarcadores().add(marcador);
+			}
 		}
 		rs.close();
 		ps.close();
