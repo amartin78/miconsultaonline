@@ -1,12 +1,11 @@
-.listado-analisis {
-	width: 100%;
-	margin: 0 auto 2em;
-	border-collapse: collapse;
-	/* border: 1px solid; */
+.contenedor-tabla-analisis {
+	/* border: 2px solid aliceblue; */
+	padding: 0.4em;
+	margin: 0 0 2em 0;
+	box-shadow: 0 2px 4px rgba(0,0,0,0.2);
 }
 
 .contenedor-analisis {
-	/* box-shadow: 0 3px 6px rgba(0,0,0,0.2), 0 5px 16px rgba(0,0,0,0.14); */
 	width: 70%;
 	background-color: white;
 	padding: 1.8em;
@@ -15,6 +14,32 @@
 
 .contenedor-analisis table td {
 	font-size: 0.9em;
+}
+
+.listado-analisis tr:first-child {
+	background-color: white !important;
+}
+
+.listado-analisis tr:nth-child(2) {
+	background-color: aliceblue !important;
+}
+
+.listado-analisis tr:first-child td {
+	padding: 1em 0;
+}
+
+.listado-analisis tr:first-child td:first-child {
+	font-size: 1.2em;
+}
+
+.listado-analisis tr:first-child td:nth-child(2) {
+	font-size: 1em;
+}
+
+.listado-analisis {
+	width: 100%;
+	margin: 0 auto;
+	border-collapse: collapse;
 }
 
 .listado-analisis td, .listado-analisis th {
@@ -31,7 +56,7 @@
 	color: #333;
 }
 
-.listado-analisis tr:nth-child(2n+1) {
+.listado-analisis tr:nth-child(2n+2) {
 	background-color: aliceblue;
 }
 

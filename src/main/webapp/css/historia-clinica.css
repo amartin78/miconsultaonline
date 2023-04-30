@@ -4,11 +4,12 @@
 }
 
 .contenedor-hClinica {
-	box-shadow: 0 3px 6px rgba(0,0,0,0.2), 0 5px 16px rgba(0,0,0,0.14);
 	width: 70%;
 	background-color: white;
 	padding: 1.8em;
 	margin: 0 auto 2em;
+	/* box-shadow: 0 3px 6px rgba(0,0,0,0.2), 0 5px 16px rgba(0,0,0,0.14); */
+	box-shadow: 0 2px 4px rgba(0,0,0,0.2);
 }
 
 .contenedor-hClinica table {
