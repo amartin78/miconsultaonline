@@ -6,14 +6,9 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import com.google.gson.Gson;
-import com.mysql.cj.jdbc.ClientPreparedStatement;
 
-import modelo.Anomalia;
 import modelo.Marcador;
-import modelo.Alergia;
 import modelo.Analisis;
-import modelo.Vacuna;
-import modelo.Paciente;
 import singleton.ConexionBBDD;
 
 /**
@@ -67,8 +62,6 @@ public class AnalisisDAO {
 			
 			int analisis_id = analisisRes.get(i).getAnalisis_id();
 			
-//			ps = con.prepareStatement("SELECT analisis_marcador.nombre, categoria, valor, valor_minimo, valor_maximo, resultado " + 
-//					  "FROM analisis JOIN analisis_marcador ON analisis.analisis_id=analisis_marcador.analisis_id");
 			ps = con.prepareStatement("SELECT nombre, categoria, valor, valor_minimo, valor_maximo, resultado " + 
 								 "FROM analisis_marcador WHERE analisis_id=?");
 			ps.setInt(1, analisis_id);
@@ -91,34 +84,6 @@ public class AnalisisDAO {
 		
 		Gson gson = new Gson();
 		String json = gson.toJson(this.listarAnalisisPorPacienteSesion(id));
-		return json;
-	}
-	
-	public ArrayList<Marcador> listarMarcadoresPorAnalisis(int analisis_id) throws SQLException {
-		
-		PreparedStatement ps = con.prepareStatement("SELECT nombre, categoria, valor, valor_minimo, valor_maximo, resultado " + 
-													"FROM analisis_marcador WHERE analisis_id=?");
-		ps.setInt(1, analisis_id);
-		ResultSet rs = ps.executeQuery();
-		ArrayList<Marcador> marcadores = null;
-		
-		while(rs.next()) {
-			if(marcadores == null) {
-				marcadores = new ArrayList<>();
-			}
-			marcadores.add(new Marcador(rs.getString("nombre"), rs.getString("categoria"),  rs.getFloat("valor"), 
-					rs.getFloat("valor_minimo"), rs.getFloat("valor_maximo"), rs.getString("resultado")));
-		}
-		rs.close();
-		ps.close();
-		
-		return marcadores;
-	}
-	
-	public String listarMarcadoresPorAnalisisJSON(int analisis_id) throws SQLException {
-		
-		Gson gson = new Gson();
-		String json = gson.toJson(this.listarMarcadoresPorAnalisis(analisis_id));
 		return json;
 	}
 }

@@ -2,14 +2,9 @@
 function analisis() {
 	
     limpiarContenidoPrincipal();
-    
-    document.getElementById("contenido-principal").innerHTML = "<div id='mensaje'></div>";
-    
-    // Por defecto no se muestra ningún mensaje.
-	document.getElementById("mensaje").style.display = "none";	
 	
 	// Se muestra por pantalla la información relativa a las anomalías del paciente
-    fetch('CAnalisis?opcion=1').
+    fetch('CAnalisis').
 	then(response => response.json()).
 	then(analisis => {
 		
@@ -35,9 +30,8 @@ function analisis() {
 					}
 
 					let marcadores = analisis[a]["marcadores"]; 
-					
 					for(let m in marcadores) {
-						if(analisis.hasOwnProperty(m)) {
+						if(marcadores.hasOwnProperty(m) && marcadores.length > 0) {
 							nombre = marcadores[m]["nombre"] == undefined ? "" : marcadores[m]["nombre"];
 							let categoria = marcadores[m]["categoria"] == undefined ? "" : marcadores[m]["categoria"];
 							let valor = marcadores[m]["valor"] == undefined ? "" : marcadores[m]["valor"];
@@ -54,24 +48,18 @@ function analisis() {
 						}
 					}
 					tablaAnalisis += "</table>";
-			    	
 				}
 			}
 			
 			tablaAnalisis += "</div>";
-	    	
 	    	document.getElementById("contenido-principal").innerHTML += tablaAnalisis;
 	    	
+	    	// Marcadores anormales se muestran con color naranja.
 			document.querySelectorAll("#resultado").forEach(function(elem) {
-				
 				if(elem.innerText === "Anormal") {
 					elem.style.color = "orange";
 				}
 			});
-		    	
-	    	// Añadir mensaje cuando no haya ninguna tabla que mostrar.
-	    	// let numeroTablas = document.querySelectorAll('div.contenedor-hClinica').length;
-	    	// mensajeContenidoVacio(numeroTablas);
 		}
     }); 
     document.querySelector("#menu li:nth-child(2)").style.color = "#d87093";  

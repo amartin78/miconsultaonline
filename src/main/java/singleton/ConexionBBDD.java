@@ -4,8 +4,12 @@ import java.sql.Connection;
 import java.sql.Date;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.Properties;
+
+import modelo.Analisis;
 
 public class ConexionBBDD {
 	
@@ -132,66 +136,115 @@ public class ConexionBBDD {
 		ps3.close();
 	}
 	
-	public static void insertarDatosMarcador(int id_analisis, String categoria) throws SQLException {
+	public static void insertarDatosMarcador(int idPacienteSesionActiva) throws SQLException {
 		
-		System.out.println("La categoría es " + categoria);
+		// Para cada analítica del paciente se insertan una serie de marcadores (ej. para colesterol: bilirrubina, ALP, etc.)
+		PreparedStatement ps = getConnection().prepareStatement("SELECT * FROM analisis WHERE paciente_id=?");
+		ps.setInt(1, idPacienteSesionActiva);
+		ResultSet rs = ps.executeQuery();
+		ArrayList<Analisis> analisisRes = null;
 		
-		if(categoria.equals("Colesterol")) {
-			PreparedStatement ps1 = getConnection().prepareStatement(
-					"INSERT INTO analisis_marcador (nombre, categoria, valor, valor_minimo, valor_maximo, resultado, analisis_id) " + 
-					"SELECT * FROM (SELECT 'LDL', 'Test Colesterol', '2.85', '1', '3', 'Normal'," + id_analisis + ")" + 
-					"as tmp WHERE NOT EXISTS (SELECT nombre FROM analisis_marcador WHERE nombre='LDL' and analisis_id=" + id_analisis + ") LIMIT 1;"
-					);
-			ps1.executeUpdate();
-			ps1.close();
+		while(rs.next()) {
+			if(analisisRes == null) {
+				analisisRes = new ArrayList<>();
+			}
 			
-			PreparedStatement ps2 = getConnection().prepareStatement(
-					"INSERT INTO analisis_marcador (nombre, categoria, valor, valor_minimo, valor_maximo, resultado, analisis_id) " + 
-					"SELECT * FROM (SELECT 'HDL', 'Test Colesterol', '4.38', '4.5', '8.5', 'Anormal'," + id_analisis + ")" + 
-					"as tmp WHERE NOT EXISTS (SELECT nombre FROM analisis_marcador WHERE nombre='HDL' and analisis_id=" + id_analisis + ") LIMIT 1;"
-					);
-			ps2.executeUpdate();
-			ps2.close();
-		
-			PreparedStatement ps3 = getConnection().prepareStatement(
-					"INSERT INTO analisis_marcador (nombre, categoria, valor, valor_minimo, valor_maximo, resultado, analisis_id) " + 
-					"SELECT * FROM (SELECT 'Triglicéridos', 'Test Colesterol', '0.92', '0.25', '2.65', 'Normal'," + id_analisis + ")" + 
-					"as tmp WHERE NOT EXISTS (SELECT nombre FROM analisis_marcador WHERE nombre='Triglicéridos' and analisis_id=" + id_analisis + ") LIMIT 1;"
-					);
-			ps3.executeUpdate();
-			ps3.close();
+			String analisis = rs.getString("nombre"); // Tipo de analítica (colesterol, vitaminas, etc.)
+			String analisis_id = rs.getString("analisis_id");
 			
-		} else if(categoria.equals("Vitaminas")) {
+			if(analisis.equals("Test Colesterol")) {
+				
+				PreparedStatement ps1 = getConnection().prepareStatement(
+						"INSERT INTO analisis_marcador (nombre, categoria, valor, valor_minimo, valor_maximo, resultado, analisis_id) " + 
+						"SELECT * FROM (SELECT 'LDL', 'Test Colesterol', '2.85', '1', '3', 'Normal'," + analisis_id + ")" + 
+						"as tmp WHERE NOT EXISTS (SELECT nombre FROM analisis_marcador WHERE nombre='LDL' and analisis_id=" + analisis_id + ") LIMIT 1;"
+						);
+				ps1.executeUpdate();
+				ps1.close();
+				
+				PreparedStatement ps2 = getConnection().prepareStatement(
+						"INSERT INTO analisis_marcador (nombre, categoria, valor, valor_minimo, valor_maximo, resultado, analisis_id) " + 
+						"SELECT * FROM (SELECT 'HDL', 'Test Colesterol', '4.38', '4.5', '8.5', 'Anormal'," + analisis_id + ")" + 
+						"as tmp WHERE NOT EXISTS (SELECT nombre FROM analisis_marcador WHERE nombre='HDL' and analisis_id=" + analisis_id + ") LIMIT 1;"
+						);
+				ps2.executeUpdate();
+				ps2.close();
 			
-			PreparedStatement ps4 = getConnection().prepareStatement(
-					"INSERT INTO analisis_marcador (nombre, categoria, valor, valor_minimo, valor_maximo, resultado, analisis_id) " + 
-					"SELECT * FROM (SELECT 'Ácido fólico (Vitamina B9)', 'Test Vitaminas', '7.24', '2.96', '32', 'Normal'," + id_analisis + ")" + 
-					"as tmp WHERE NOT EXISTS (SELECT nombre FROM analisis_marcador WHERE nombre='Ácido fólico (Vitamina b9)' and analisis_id=" + id_analisis + ") LIMIT 1;"
-					);
-			ps4.executeUpdate();
-			ps4.close();
+				PreparedStatement ps3 = getConnection().prepareStatement(
+						"INSERT INTO analisis_marcador (nombre, categoria, valor, valor_minimo, valor_maximo, resultado, analisis_id) " + 
+						"SELECT * FROM (SELECT 'Triglicéridos', 'Test Colesterol', '0.92', '0.25', '2.65', 'Normal'," + analisis_id + ")" + 
+						"as tmp WHERE NOT EXISTS (SELECT nombre FROM analisis_marcador WHERE nombre='Triglicéridos' and analisis_id=" + analisis_id + ") LIMIT 1;"
+						);
+				ps3.executeUpdate();
+				ps3.close();
+				
+			} else if(analisis.equals("Test Vitaminas")) {
+				
+				PreparedStatement ps4 = getConnection().prepareStatement(
+						"INSERT INTO analisis_marcador (nombre, categoria, valor, valor_minimo, valor_maximo, resultado, analisis_id) " + 
+						"SELECT * FROM (SELECT 'Ácido fólico (Vitamina B9)', 'Test Vitaminas', '7.24', '2.96', '32', 'Normal'," + analisis_id + ")" + 
+						"as tmp WHERE NOT EXISTS (SELECT nombre FROM analisis_marcador WHERE nombre='Ácido fólico (Vitamina b9)' and analisis_id=" + analisis_id + ") LIMIT 1;"
+						);
+				ps4.executeUpdate();
+				ps4.close();
+				
+				PreparedStatement ps5 = getConnection().prepareStatement(
+						"INSERT INTO analisis_marcador (nombre, categoria, valor, valor_minimo, valor_maximo, resultado, analisis_id) " + 
+						"SELECT * FROM (SELECT 'Vitamina B12', 'Test Vitaminas', '82.6', '32.28', '189.5', 'Normal'," + analisis_id + ")" + 
+						"as tmp WHERE NOT EXISTS (SELECT nombre FROM analisis_marcador WHERE nombre='Vitamina B12' and analisis_id=" + analisis_id + ") LIMIT 1;"
+						);
+				ps5.executeUpdate();
+				ps5.close();
 			
-			PreparedStatement ps5 = getConnection().prepareStatement(
-					"INSERT INTO analisis_marcador (nombre, categoria, valor, valor_minimo, valor_maximo, resultado, analisis_id) " + 
-					"SELECT * FROM (SELECT 'Vitamina B12', 'Test Vitaminas', '82.6', '32.28', '189.5', 'Normal'," + id_analisis + ")" + 
-					"as tmp WHERE NOT EXISTS (SELECT nombre FROM analisis_marcador WHERE nombre='Vitamina B12' and analisis_id=" + id_analisis + ") LIMIT 1;"
-					);
-			ps5.executeUpdate();
-			ps5.close();
-		
-			PreparedStatement ps6 = getConnection().prepareStatement(
-					"INSERT INTO analisis_marcador (nombre, categoria, valor, valor_minimo, valor_maximo, resultado, analisis_id) " + 
-					"SELECT * FROM (SELECT 'Vitamina D3', 'Test Vitaminas', '46.7', '46.8', '174.2', 'Anormal'," + id_analisis + ")" + 
-					"as tmp WHERE NOT EXISTS (SELECT nombre FROM analisis_marcador WHERE nombre='Vitamina D3' and analisis_id=" + id_analisis + ") LIMIT 1;"
-					);
-			ps6.executeUpdate();
-			ps6.close();
+				PreparedStatement ps6 = getConnection().prepareStatement(
+						"INSERT INTO analisis_marcador (nombre, categoria, valor, valor_minimo, valor_maximo, resultado, analisis_id) " + 
+						"SELECT * FROM (SELECT 'Vitamina D3', 'Test Vitaminas', '46.7', '46.8', '174.2', 'Anormal'," + analisis_id + ")" + 
+						"as tmp WHERE NOT EXISTS (SELECT nombre FROM analisis_marcador WHERE nombre='Vitamina D3' and analisis_id=" + analisis_id + ") LIMIT 1;"
+						);
+				ps6.executeUpdate();
+				ps6.close();
+				
+			} else if(analisis.equals("Test Hepático")) {
+				
+				PreparedStatement ps7 = getConnection().prepareStatement(
+						"INSERT INTO analisis_marcador (nombre, categoria, valor, valor_minimo, valor_maximo, resultado, analisis_id) " + 
+						"SELECT * FROM (SELECT 'Bilirrubina', 'Test Hepático', '12.36', '0', '26', 'Normal'," + analisis_id + ")" + 
+						"as tmp WHERE NOT EXISTS (SELECT nombre FROM analisis_marcador WHERE nombre='Bilirrubina' and analisis_id=" + analisis_id + ") LIMIT 1;"
+						);
+				ps7.executeUpdate();
+				ps7.close();
+				
+				PreparedStatement ps8 = getConnection().prepareStatement(
+						"INSERT INTO analisis_marcador (nombre, categoria, valor, valor_minimo, valor_maximo, resultado, analisis_id) " + 
+						"SELECT * FROM (SELECT 'ALP', 'Test Hepático', '56.7', '0', '128.5', 'Normal'," + analisis_id + ")" + 
+						"as tmp WHERE NOT EXISTS (SELECT nombre FROM analisis_marcador WHERE nombre='ALP' and analisis_id=" + analisis_id + ") LIMIT 1;"
+						);
+				ps8.executeUpdate();
+				ps8.close();
 			
-//		} else if(categoria.equals("Hepático")) {
-//			
-//		} else {
-//			
+				PreparedStatement ps9 = getConnection().prepareStatement(
+						"INSERT INTO analisis_marcador (nombre, categoria, valor, valor_minimo, valor_maximo, resultado, analisis_id) " + 
+						"SELECT * FROM (SELECT 'ALT', 'Test Hepático', '52.1', '0', '52', 'Anormal'," + analisis_id + ")" + 
+						"as tmp WHERE NOT EXISTS (SELECT nombre FROM analisis_marcador WHERE nombre='ALT' and analisis_id=" + analisis_id + ") LIMIT 1;"
+						);
+				ps9.executeUpdate();
+				ps9.close();
+				
+				PreparedStatement ps10 = getConnection().prepareStatement(
+						"INSERT INTO analisis_marcador (nombre, categoria, valor, valor_minimo, valor_maximo, resultado, analisis_id) " + 
+						"SELECT * FROM (SELECT 'GGT', 'Test Hepático', '66.5', '12', '68.5', 'Normal'," + analisis_id + ")" + 
+						"as tmp WHERE NOT EXISTS (SELECT nombre FROM analisis_marcador WHERE nombre='GGT' and analisis_id=" + analisis_id + ") LIMIT 1;"
+						);
+				ps10.executeUpdate();
+				ps10.close();
+				
+			} else {
+				
+				System.out.println("Tipo de analítica no disponible.");
+		    }
 		}
+		rs.close();
+		ps.close();
 	}
 	
 	public static void insertarDatosPacientes() throws SQLException {
