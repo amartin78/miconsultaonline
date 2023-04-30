@@ -15,7 +15,7 @@ async function historiaClinica() {
 		
 		if(anomalias) {
 			tablaDiagnostico = "<div class='contenedor-hClinica'>";
-		    tablaDiagnostico += "<table id='diagnostico' class='listado'>";
+		    tablaDiagnostico += "<table id='diagnostico' class='listado-hClinica'>";
 		    tablaDiagnostico += "<tr><th>Anomalía</th><th>Síntomas</th><th>Facultativo</th><th>Fecha</th></tr>";
 		    
 			for(let a in anomalias) {
@@ -52,7 +52,7 @@ async function historiaClinica() {
 		
 		if(alergias) {
 			tablaAlergias = "<div class='contenedor-hClinica'>";                    
-    		tablaAlergias += "<table id='alergias' class='listado'>";
+    		tablaAlergias += "<table id='alergias' class='listado-hClinica'>";
     		tablaAlergias += "<tr><th>Alergia</th><th>Frecuencia</th><th>Test realizado</th><th>Fecha</th></tr>";
 		    
 			for(let a in alergias) {
@@ -89,7 +89,7 @@ async function historiaClinica() {
 		
 		if(vacunas) {
 			tablaVacunas = "<div class='contenedor-hClinica'>";
-    		tablaVacunas += "<table id='vacunas' class='listado'>";
+    		tablaVacunas += "<table id='vacunas' class='listado-hClinica'>";
     		tablaVacunas += "<tr><th>Vacuna</th><th>Laboratorio</th><th>Lote</th><th>Fecha</th></tr>";
 		    
 			for(let v in vacunas) {

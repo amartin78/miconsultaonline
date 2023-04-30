@@ -15,9 +15,10 @@ function analisis() {
 		if(analisis) {
 			for(let a in analisis) {
 				if(analisis.hasOwnProperty(a) && analisis[a]["marcadores"].length > 0) {
-					console.log(analisis[a])				
-		    		tablaAnalisis += "<table class='listado'>";
-					// let analisis_id = analisis[a]["analisis_id"];
+					// console.log(analisis[a])				
+					
+		    		tablaAnalisis += "<table class='listado-analisis'>";
+		    		
 					let nombre = analisis[a]["nombre"] == undefined ? "" : analisis[a]["nombre"];
 			        let estado = analisis[a]["estado"] == undefined ? "" : analisis[a]["estado"];
 			        let fecha = analisis[a]["fecha"] == undefined ? "" : analisis[a]["fecha"];
@@ -49,11 +50,13 @@ function analisis() {
 							                     "<td><span id='resultado'>" + resultado + "</span></td></tr>";
 						}
 					}
+					
 					tablaAnalisis += "</table>";
 				}
 			}
 			
 			tablaAnalisis += "</div>";
+			
 	    	document.getElementById("contenido-principal").innerHTML += tablaAnalisis;
 	    	
 	    	// Marcadores anormales se muestran con color naranja.
@@ -66,3 +69,4 @@ function analisis() {
     }); 
     document.querySelector("#menu li:nth-child(2)").style.color = "#d87093";  
 }
+

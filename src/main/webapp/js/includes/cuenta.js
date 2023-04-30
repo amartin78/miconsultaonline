@@ -26,7 +26,7 @@ async function cuenta() {
         formulario += "<input name='repetirContrasenia' id='repetirContrasenia' onblur='comprobarContrasenia()' disabled type='password' autoComplete='new-password' size='30'></td></tr>";
         formulario += "<tr><td><input id='editar' class='boton' type='button' value='Editar'>";
         // El botón Enviar envía el formulario al servidor pero además comprueba justo antes del envío que 
-        // los datos correspondientes a la contraseña sean correctos.
+        // la nueva contraseña sea igual a la nueva contraseña repetida.
         formulario += "<input id='enviar' class='boton' type='submit' onclick='comprobarContrasenia()' value='Enviar'></td></tr>";
         formulario += "</table>";
         formulario += "<input name='id' type='hidden'>";

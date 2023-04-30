@@ -1,5 +1,4 @@
-
-.listado {
+.listado-hClinica {
 	width: 100%;
 	border-collapse: collapse;
 }
@@ -24,21 +23,21 @@
 	margin-bottom: 4em;
 }
 
-.listado td, .listado th {
+.listado-hClinica td, .listado-hClinica th {
 	padding: 0.6em 1em;
 	text-align: center;
 }
 
-.listado tr:last-child td {
+.listado-hClinica tr:last-child td {
 	border: none;
 }
 
-.listado th {
+.listado-hClinica th {
 	background-color: aliceblue;
 	color: #333;
 }
 
-.listado tr:nth-child(2n+1) {
+.listado-hClinica tr:nth-child(2n+1) {
 	background-color: aliceblue;
 }
 
