@@ -2,6 +2,8 @@
 function analisis() {
 	
     limpiarContenidoPrincipal();
+    
+    document.getElementById("contenido-principal").innerHTML = "";
 	
 	// Se muestra por pantalla la información relativa a las anomalías del paciente
     fetch('CAnalisis').
