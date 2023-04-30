@@ -16,7 +16,7 @@ main p {
 }
 
 img {
-    width: 90%;
+    width: 80%;
 }
 
 #portal {
@@ -26,7 +26,7 @@ img {
 #descripcion {
     display: grid;
     grid-template-columns: 45% 55%;
-    padding-bottom: 4.5em;
+    margin-bottom: 3.5em;
 }
 
 #ventajas {
@@ -41,7 +41,7 @@ img {
 }
 
 #ventajas img {
-    width: 30%;
+    width: 27%;
 }
 
 
