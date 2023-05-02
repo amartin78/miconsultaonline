@@ -44,6 +44,7 @@ img {
 #contenedor-navegacion div:nth-child(2) {
 	display: grid;
 	align-items: center;
+	font-size: 1.1em;
 }
 
 #contenedor-navegacion div:nth-child(3) {

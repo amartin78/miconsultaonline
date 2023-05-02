@@ -9,9 +9,9 @@ import modelo.Marcador;
 
 /**
  * Esta clase crea un objeto de tipo Análisis con información útil
- * para el paciente como la fecha en que lo ordenó, el tipo de
- * test y el estado en que se encuentra la orden. Cada análisis
- * incluye una serie de marcadores (colesterol, tiroides, etc.).
+ * para el paciente como la fecha en que lo ordenó y el tipo de
+ * test. Cada análisis incluye a su vez una serie de marcadores 
+ * (colesterol, tiroides, etc.).
  * 
  * @author Antonio M. Martín Jimeno
  * @version 1.0

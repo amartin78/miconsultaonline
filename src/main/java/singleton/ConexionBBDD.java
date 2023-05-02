@@ -247,14 +247,85 @@ public class ConexionBBDD {
 		ps.close();
 	}
 	
+	public static void insertarDatosDiagnosticoImagen(int idPacienteSesionActiva) throws SQLException {
+		
+		String descripcion = "Posible indicio de artrosis, desgaste del cartílago provocando a su vez falta de protección a " +
+							 "se observa también una alteración en la forma en que los huesos están alineados.";
+		PreparedStatement ps1 = getConnection().prepareStatement(
+				"INSERT INTO diagnostico_imagen (nombre, descripcion, fecha, paciente_id) " + 
+				"SELECT * FROM (SELECT 'Rodilla', '" + descripcion + "', '20210314'," + idPacienteSesionActiva + ")" + 
+				"as tmp WHERE NOT EXISTS (SELECT nombre FROM diagnostico_imagen WHERE nombre='Rodilla' and paciente_id=" + idPacienteSesionActiva + ") LIMIT 1;"
+				);
+		ps1.executeUpdate();
+		ps1.close();
+		
+		descripcion = "En principio no se aprecia ningún tipo de anomalía en la cadera. El paciente presenta cierta sintomatología " +
+				 	  "que puede sugerir una inflamación en los músculos que rodean los huesos.";
+		PreparedStatement ps2 = getConnection().prepareStatement(
+			"INSERT INTO diagnostico_imagen (nombre, descripcion, fecha, paciente_id) " + 
+			"SELECT * FROM (SELECT 'Cadera', '" + descripcion + "', '20230128'," + idPacienteSesionActiva + ")" + 
+			"as tmp WHERE NOT EXISTS (SELECT nombre FROM diagnostico_imagen WHERE nombre='Cadera' and paciente_id=" + idPacienteSesionActiva + ") LIMIT 1;"
+			);
+		ps2.executeUpdate();
+		ps2.close();
+	}
+	
+	public static void insertarDatosDiagnosticoImgRutas(int idPacienteSesionActiva) throws SQLException {
+		
+		// Para cada diagnóstico del paciente se insertan una o varias imágenes de rayos x.
+		PreparedStatement ps = getConnection().prepareStatement("SELECT * FROM diagnostico_imagen WHERE paciente_id=?");
+		ps.setInt(1, idPacienteSesionActiva);
+		ResultSet rs = ps.executeQuery();
+		ArrayList<Analisis> analisisRes = null;
+		
+		while(rs.next()) {
+			
+			if(analisisRes == null) {
+				analisisRes = new ArrayList<>();
+			}
+			String prueba = rs.getString("nombre"); // Tipo de prueba (rodilla, cadera, etc.)
+			String diagnostico_imagen_id = rs.getString("diagnostico_imagen_id");
+			
+			if(prueba.equals("Rodilla")) {
+				
+				// Se inserta 4 imágenes para la prueba de rodilla
+				for(int i = 1; i <= 4; i++) {
+					
+					ps = getConnection().prepareStatement(
+							"INSERT INTO diagnostico_imagen_ruta (ruta, diagnostico_imagen_id) " + 
+									"SELECT * FROM (SELECT 'rayos_x_rod_" + i + "', " + diagnostico_imagen_id + ")" + 
+									"as tmp WHERE NOT EXISTS (SELECT ruta FROM diagnostico_imagen_ruta WHERE ruta='rayos_x_rod_" + i + "' and diagnostico_imagen_id=" + diagnostico_imagen_id + ") LIMIT 1;"
+							);
+					ps.executeUpdate();
+				}
+			} else if(prueba.equals("Cadera")) {
+				
+				// Se inserta 7 imágenes para la prueba de cadera
+				for(int i = 1; i <= 7; i++) {
+					
+					ps = getConnection().prepareStatement(
+							"INSERT INTO diagnostico_imagen_ruta (ruta, diagnostico_imagen_id) " + 
+									"SELECT * FROM (SELECT 'rayos_x_cad_" + i + "', " + diagnostico_imagen_id + ")" + 
+									"as tmp WHERE NOT EXISTS (SELECT ruta FROM diagnostico_imagen_ruta WHERE ruta='rayos_x_cad_" + i + "' and diagnostico_imagen_id=" + diagnostico_imagen_id + ") LIMIT 1;"
+							);
+					ps.executeUpdate();
+				}
+			} else {
+				System.out.println("Tipo de diagnóstico por imagen no disponible.");
+		    }
+		}
+		rs.close();
+		ps.close();
+	}
+	
 	public static void insertarDatosPacientes() throws SQLException {
 		
-		PreparedStatement ps1 = getConnection().prepareStatement(
+		PreparedStatement ps = getConnection().prepareStatement(
 			"INSERT INTO paciente (nombre, apellidos, fec_nacimiento, email, password) " + 
 			"SELECT * FROM (SELECT 'Mario', 'García Martín', '19920904', 'mario@hotmail.com','Mario2023*')" +  
 			"as tmp WHERE NOT EXISTS (SELECT email FROM paciente WHERE email='mario@hotmail.com') LIMIT 1;"
 			);
-		ps1.executeUpdate();
-		ps1.close();
+		ps.executeUpdate();
+		ps.close();
 	}
 }
