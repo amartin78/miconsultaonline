@@ -44,4 +44,36 @@ img {
     width: 27%;
 }
 
+footer a {
+	color: #333;
+	text-decoration: none;
+}
+
+#contenedor-legal {
+	width: 70%;
+	margin: 0 auto;
+}
+
+#contenedor-legal h1 {
+	margin-bottom: 0.8em;
+}
+
+#referencias {
+	margin-top: 1.6em;
+}
+
+#referencias li {
+	padding: 0.3em 0;
+	
+}
+
+.tipo-referencia {
+	margin-top: 1em;
+	font-weight: bold;
+}
+
+#referencias li:not(.tipo-referencia) {
+	list-style-type: "- ";
+	margin-left: 0.7em;
+}
 

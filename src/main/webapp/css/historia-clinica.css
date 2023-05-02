@@ -6,14 +6,15 @@
 .contenedor-hClinica {
 	width: 70%;
 	background-color: white;
-	padding: 1.8em;
+	padding: 1.2em;
 	margin: 0 auto 2em;
+	border-radius: 6px;
 	/* box-shadow: 0 3px 6px rgba(0,0,0,0.2), 0 5px 16px rgba(0,0,0,0.14); */
 	box-shadow: 1px 2px 8px rgba(0,0,0,0.2);
 }
 
-.contenedor-hClinica table {
-	margin: 0 !important;	
+.listado-hClinica th, .listado-hClinica tr:nth-child(n+2) {
+	border: 2px solid aliceblue;
 }
 
 .contenedor-hClinica table td {
