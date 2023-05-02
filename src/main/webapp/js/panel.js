@@ -55,7 +55,7 @@ window.onload = function () {
 	} else if(origen == "marcadores") {
 		opcion("Marcadores");
 	} else {
-		opcion("Diagnóstico por imagen");
+		opcion("Historia clínica");
 	}
 	
 	// Se comprueba cada minuto que la cookie este activa, en caso contrario se redirecciona al  
