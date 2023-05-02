@@ -1,8 +1,5 @@
 window.onload = function() {
 	
-	// Por defecto no se muestra ningún mensaje.
-	document.getElementById("mensaje").style.display = "none";	
-	
 	// Si se ha producido un error de autenticación entonces se creará una cookie credencialesInvalidas   
     // que supondrá la creación de un mensaje al usuario por pantalla para que intente 
     // loguearse de nuevo.
