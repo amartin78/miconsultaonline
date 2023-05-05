@@ -23,14 +23,14 @@ async function historiaClinica() {
 					let nombre = anomalias[a]["nombre"] == undefined ? "" : anomalias[a]["nombre"];
 			        let sintomas = anomalias[a]["sintomas"] == undefined ? "" : anomalias[a]["sintomas"];
 			        let facultativo = anomalias[a]["facultativo"] == undefined ? "" : anomalias[a]["facultativo"];
-			        let fecha = anomalias[a]["fecha"];
-			        fecha = new Date(fecha);
-			        let anio = fecha.getFullYear();
-			        let mes = fecha.getMonth() + 1;
-			        mes = String(mes).length == 2 ? mes : `0${mes}`;
-			        let dia = fecha.getDate();
-			        dia = String(dia).length == 2 ? dia : `0${dia}`;
-			        fecha = anio + "-" + mes + "-" + dia;
+			        let fecha = anomalias[a]["fecha"] == undefined ? "" : anomalias[a]["fecha"];
+			        if(fecha !== undefined) {
+						fecha = new Date(fecha);
+						const options = {day: "numeric", month: "long", year: "numeric"};
+						fecha = new Intl.DateTimeFormat("es-ES", options).format(fecha);
+						fecha = fecha.split(" ");
+						fecha = fecha[0] + " " + fecha[2][0].toUpperCase() + fecha[2].substring(1, 3) + " " + fecha[4];
+					}
 			        
 					tablaDiagnostico += "<tr><td>" + nombre + "</td>" + 
 										"<td>" + sintomas + "</td>" +
@@ -60,14 +60,14 @@ async function historiaClinica() {
 					let nombre = alergias[a]["nombre"] == undefined ? "" : alergias[a]["nombre"];
 			        let frecuencia = alergias[a]["frecuencia"] == undefined ? "" : alergias[a]["frecuencia"];
 			        let testRealizado = alergias[a]["testRealizado"] == undefined ? "" : alergias[a]["testRealizado"];
-			        let fecha = alergias[a]["fecha"];
-			        fecha = new Date(fecha);
-			        let anio = fecha.getFullYear();
-			        let mes = fecha.getMonth() + 1;
-			        mes = String(mes).length == 2 ? mes : `0${mes}`;
-			        let dia = fecha.getDate();
-			        dia = String(dia).length == 2 ? dia : `0${dia}`;
-			        fecha = anio + "-" + mes + "-" + dia;
+			        let fecha = alergias[a]["fecha"] == undefined ? "" : alergias[a]["fecha"];
+			        if(fecha !== undefined) {
+						fecha = new Date(fecha);
+						const options = {day: "numeric", month: "long", year: "numeric"};
+						fecha = new Intl.DateTimeFormat("es-ES", options).format(fecha);
+						fecha = fecha.split(" ");
+						fecha = fecha[0] + " " + fecha[2][0].toUpperCase() + fecha[2].substring(1, 3) + " " + fecha[4];
+					}
 			        
 					tablaAlergias += "<tr><td>" + nombre + "</td>" + 
 										"<td>" + frecuencia + "</td>" +
@@ -97,14 +97,14 @@ async function historiaClinica() {
 					let nombre = vacunas[v]["nombre"] == undefined ? "" : vacunas[v]["nombre"];
 			        let laboratorio = vacunas[v]["laboratorio"] == undefined ? "" : vacunas[v]["laboratorio"];
 			        let lote = vacunas[v]["lote"] == undefined ? "" : vacunas[v]["lote"];
-			        let fecha = vacunas[v]["fecha"];
-			        fecha = new Date(fecha);
-			        let anio = fecha.getFullYear();
-			        let mes = fecha.getMonth() + 1;
-			        mes = String(mes).length == 2 ? mes : `0${mes}`;
-			        let dia = fecha.getDate();
-			        dia = String(dia).length == 2 ? dia : `0${dia}`;
-			        fecha = anio + "-" + mes + "-" + dia;
+			        let fecha = vacunas[v]["fecha"] == undefined ? "" : vacunas[v]["fecha"];
+			        if(fecha !== undefined) {
+						fecha = new Date(fecha);
+						const options = {day: "numeric", month: "long", year: "numeric"};
+						fecha = new Intl.DateTimeFormat("es-ES", options).format(fecha);
+						fecha = fecha.split(" ");
+						fecha = fecha[0] + " " + fecha[2][0].toUpperCase() + fecha[2].substring(1, 3) + " " + fecha[4];
+					}
 			        
 					tablaVacunas += "<tr><td>" + nombre + "</td>" + 
 										"<td>" + laboratorio + "</td>" +

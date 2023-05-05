@@ -42,7 +42,7 @@ public class HistoriaClinicaDAO {
 	public ArrayList<Anomalia> listarAnomaliasPorPacienteSesion(int id) throws SQLException {
 		
 		PreparedStatement ps = con.prepareStatement("SELECT nombre, sintoma, facultativo, fecha FROM anomalia " +
-													"WHERE paciente_id=?");
+													"WHERE paciente_id=? ORDER BY fecha DESC");
 		ps.setInt(1, id);
 		ResultSet rs = ps.executeQuery();
 		ArrayList<Anomalia> anomaliaRes = null;
@@ -70,7 +70,7 @@ public class HistoriaClinicaDAO {
 	public ArrayList<Alergia> listarAlergiasPorPacienteSesion(int id) throws SQLException {
 		
 		PreparedStatement ps = con.prepareStatement("SELECT nombre, frecuencia, test_realizado, fecha FROM alergia " + 
-													"WHERE paciente_id=?");
+													"WHERE paciente_id=? ORDER BY fecha DESC");
 		ps.setInt(1, id);
 		ResultSet rs = ps.executeQuery();
 		ArrayList<Alergia> alergiaRes = null;
@@ -98,7 +98,7 @@ public class HistoriaClinicaDAO {
 	public ArrayList<Vacuna> listarVacunasPorPacienteSesion(int id) throws SQLException {
 		
 		PreparedStatement ps = con.prepareStatement("SELECT nombre, laboratorio, lote, fecha FROM vacuna " + 
-													"WHERE paciente_id=?");
+													"WHERE paciente_id=? ORDER BY fecha DESC");
 		ps.setInt(1, id);
 		ResultSet rs = ps.executeQuery();
 		ArrayList<Vacuna> vacunaRes = null;

@@ -1,7 +1,6 @@
 .contenedor-tabla-analisis {
-	/* border: 2px solid aliceblue; */
 	border-radius: 6px;
-	padding: 0.4em 1.2em 1.2em;
+	padding: 0.4em 1.2em 0.6em;
 	margin: 0 0 2em 0;
 	box-shadow: 1px 2px 8px rgba(0,0,0,0.2);
 }
@@ -10,10 +9,6 @@
 	width: 70%;
 	background-color: white;
 	margin: 0 auto 4em;
-}
-
-.listado-analisis th, .listado-analisis tr:nth-child(n+2) {
-	border: 2px solid aliceblue;
 }
 
 .contenedor-analisis table td {

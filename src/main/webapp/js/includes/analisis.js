@@ -25,6 +25,8 @@ function analisis() {
 						fecha = new Date(fecha);
 						const options = {day: "numeric", month: "long", year: "numeric"};
 						fecha = new Intl.DateTimeFormat("es-ES", options).format(fecha);
+						fecha = fecha.split(" ");
+						fecha = fecha[0] + " " + fecha[2][0].toUpperCase() + fecha[2].substring(1) + " " + fecha[4];
 					}
 					
 					// Encabezado tabla con el tipo de analítica y la fecha

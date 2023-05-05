@@ -1,41 +1,40 @@
-.listado-hClinica {
+.listado-medicamento {
 	width: 100%;
 	border-collapse: collapse;
 }
 
-.contenedor-hClinica {
+.contenedor-medicamento {
 	width: 70%;
 	background-color: white;
 	padding: 1.2em 1.2em 0.6em;
 	margin: 0 auto 2em;
 	border-radius: 6px;
-	/* box-shadow: 0 3px 6px rgba(0,0,0,0.2), 0 5px 16px rgba(0,0,0,0.14); */
 	box-shadow: 1px 2px 8px rgba(0,0,0,0.2);
 }
 
-.contenedor-hClinica table td {
+.contenedor-medicamento table td {
 	font-size: 0.9em;
 }
 
-.contenedor-hClinica:last-child {
+.contenedor-medicamento {
 	margin-bottom: 4em;
 }
 
-.listado-hClinica td, .listado-hClinica th {
+.listado-medicamento td, .listado-medicamento th {
 	padding: 0.6em 1em;
 	text-align: center;
 }
 
-.listado-hClinica tr:last-child td {
+.listado-medicamento tr:last-child td {
 	border: none;
 }
 
-.listado-hClinica th {
+.listado-medicamento th {
 	background-color: aliceblue;
 	color: #333;
 }
 
-.listado-hClinica tr:nth-child(2n+1) {
+.listado-medicamento tr:nth-child(2n+1) {
 	background-color: aliceblue;
 }
 

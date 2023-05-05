@@ -14,21 +14,29 @@
 }
 
 #contenedor-texto {
-	padding: 1em;
+	display: grid;
+	grid-template-columns: 50% 50%;
+	grid-template-rows: 20% 80%;
+	align-items: baseline;
+	padding: 0.6em;
 }
 
 h3 {
 	font-size: 1.4em;
-	margin-bottom: 0.8em;
+}
+
+h6 {
+	text-align: end;	
 }
 
 p {
+	grid-column: 1 / span 2;
 	font-size: 0.9em;
 }
 
 #contenedor-imagenes {
 	display: grid;
-	grid-template-columns: 70% 30%;
+	grid-template-columns: 80% 20%;
 	text-align: center;
 	padding-left: 2em;
 }
@@ -60,7 +68,15 @@ img {
 	cursor: pointer;
 }
 
+.flecha:first-of-type {
+	align-self: end;
+}
+
+.flecha:last-of-type {
+	align-self: start;
+}
+
 .flecha:hover {
-	opacity: 0.8;
+	opacity: 0.6;
 }
 

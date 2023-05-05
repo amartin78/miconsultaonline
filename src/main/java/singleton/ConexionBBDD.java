@@ -39,7 +39,7 @@ public class ConexionBBDD {
 		
 		PreparedStatement ps1 = getConnection().prepareStatement(
 				"INSERT INTO anomalia (nombre, sintoma, facultativo, fecha, paciente_id) " + 
-				"SELECT * FROM (SELECT 'Esguince de tobillo', 'Dolor moderado y hematoma', 'Dr. Arturo Rodríguez', '20120929', " + idPacienteSesionActiva + ")" +  
+				"SELECT * FROM (SELECT 'Esguince de tobillo', 'Dolor moderado y hematoma', 'Dr. Arturo Rodríguez', '20220929', " + idPacienteSesionActiva + ")" +  
 				"as tmp WHERE NOT EXISTS (SELECT nombre FROM anomalia WHERE nombre='Esguince de tobillo' and paciente_id=" + idPacienteSesionActiva + ") LIMIT 1;"
 				);
 		ps1.executeUpdate();
@@ -250,20 +250,25 @@ public class ConexionBBDD {
 	public static void insertarDatosDiagnosticoImagen(int idPacienteSesionActiva) throws SQLException {
 		
 		String descripcion = "Posible indicio de artrosis, desgaste del cartílago provocando a su vez falta de protección a " +
-							 "se observa también una alteración en la forma en que los huesos están alineados.";
+							 "se observa también una alteración en la forma en que los huesos están alineados.<br><br>" + 
+							 "Se recomienda que se realice una serie de ejercicios para el fortalecimiento de las articulaciones " + 
+							 "supervisado por un fisioterapeuta. Es aconsejable la actividad física de bajo impacto por al menos 15 minutos " + 
+							 "al día.";
 		PreparedStatement ps1 = getConnection().prepareStatement(
 				"INSERT INTO diagnostico_imagen (nombre, descripcion, fecha, paciente_id) " + 
-				"SELECT * FROM (SELECT 'Rodilla', '" + descripcion + "', '20210314'," + idPacienteSesionActiva + ")" + 
+				"SELECT * FROM (SELECT 'Rodilla', '" + descripcion + "', '20230128'," + idPacienteSesionActiva + ")" + 
 				"as tmp WHERE NOT EXISTS (SELECT nombre FROM diagnostico_imagen WHERE nombre='Rodilla' and paciente_id=" + idPacienteSesionActiva + ") LIMIT 1;"
 				);
 		ps1.executeUpdate();
 		ps1.close();
 		
 		descripcion = "En principio no se aprecia ningún tipo de anomalía en la cadera. El paciente presenta cierta sintomatología " +
-				 	  "que puede sugerir una inflamación en los músculos que rodean los huesos.";
+				 	  "que puede sugerir una inflamación en los músculos que rodean los huesos.<br><br>" + 
+				 	  "Por el momento no se realiza diagnóstico alguno. Se recomienda que guarde reposo durante las próximas dos semanas, " + 
+				 	  "que ingiera suficientes líquidos y que realice algunos ejercicios de rehabilitación con su fisioterapeuta.";
 		PreparedStatement ps2 = getConnection().prepareStatement(
 			"INSERT INTO diagnostico_imagen (nombre, descripcion, fecha, paciente_id) " + 
-			"SELECT * FROM (SELECT 'Cadera', '" + descripcion + "', '20230128'," + idPacienteSesionActiva + ")" + 
+			"SELECT * FROM (SELECT 'Cadera', '" + descripcion + "', '20210304'," + idPacienteSesionActiva + ")" + 
 			"as tmp WHERE NOT EXISTS (SELECT nombre FROM diagnostico_imagen WHERE nombre='Cadera' and paciente_id=" + idPacienteSesionActiva + ") LIMIT 1;"
 			);
 		ps2.executeUpdate();

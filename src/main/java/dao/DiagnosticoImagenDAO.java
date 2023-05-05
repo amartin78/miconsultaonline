@@ -39,7 +39,7 @@ public class DiagnosticoImagenDAO {
 	public ArrayList<DiagnosticoImagen> listarDiagnosticoImagenPorPacienteSesion(int id) throws SQLException {
 		
 		PreparedStatement ps = con.prepareStatement("SELECT diagnostico_imagen_id, nombre, descripcion, fecha FROM diagnostico_imagen " + 
-													"WHERE paciente_id=?");
+													"WHERE paciente_id=? ORDER BY fecha DESC");
 		ps.setInt(1, id);
 		ResultSet rs1 = ps.executeQuery();
 		ArrayList<DiagnosticoImagen> diagnosticoImagenRes = null;
