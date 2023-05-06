@@ -10,21 +10,9 @@ function medicacion() {
 	document.getElementById("mensaje").style.display = "none";	
     
     // Se muestra por pantalla la información relativa a la medicación del paciente
-    /* fetch('CMedicamentos').
+    fetch('CMedicamentos').
 	then(response => response.json()).
-	then(medicamentos => { */
-	
-		medicamentos = [
-						{nombre: "Ibuprofeno", dosis: "400 mg", posologia: "1 cada 8 horas", tratamiento: "Artrosis", fecha: "2023-03-21"},
-						{nombre: "Paracetamol pensa", dosis: "1 g", posologia: "1 cada 6 horas", tratamiento: "Esguince de tobillo", fecha: "2022-09-29"},
-						{nombre: "Aspirina", dosis: "500 mg", posologia: "1 cada 6 horas", tratamiento: "Dolor de cabeza", fecha: "2023-02-04"},
-						{nombre: "Champix", dosis: "1 mg", posologia: "1 cada 12 horas", tratamiento: "Tabaquismo", fecha: "2022-11-14"},
-						{nombre: "Lovastatina Lareq", dosis: "20 mg", posologia: "1 cada 24 horas", tratamiento: "Colesterol alto", fecha: "2021-09-28"},
-						{nombre: "Cetirizina Cinfa", dosis: "10 mg", posologia: "1 cada 24 horas", tratamiento: "Alergia", fecha: "2021-05-06"},
-						{nombre: "Prednisona Cinfa", dosis: "30 mg", posologia: "1 cada 12 horas", tratamiento: "Eczema", fecha: "2018-08-26"},
-						{nombre: "Relenza", dosis: "5 mg polvo", posologia: "1 cada 8 horas", tratamiento: "Gripe", fecha: "2015-01-04"},
-						{nombre: "Amoxicilina Normon", dosis: "500 mg", posologia: "1 cada 8 horas", tratamiento: "Otitis", fecha: "2012-09-21"},
-					];
+	then(medicamentos => {
 		
 		if(medicamentos) {
 			tablaMedicamento = "<div class='contenedor-medicamento'>";
@@ -33,8 +21,6 @@ function medicacion() {
 		    
 			for(let m in medicamentos) {
 				if(medicamentos.hasOwnProperty(m)) {
-					
-					//console.log("Datos del medicamento son " + medicamentos[m]);
 					
 					let nombre = medicamentos[m]["nombre"] == undefined ? "" : medicamentos[m]["nombre"];
 			        let dosis = medicamentos[m]["dosis"] == undefined ? "" : medicamentos[m]["dosis"];
@@ -58,18 +44,14 @@ function medicacion() {
 				}
 			tablaMedicamento += "</table>";
 	    	tablaMedicamento += "</div>";
-	    	
 	    	document.getElementById("contenido-principal").innerHTML += tablaMedicamento;
 		}
-    // });
-    
+	});
     
     document.querySelector("#menu li:nth-child(4)").style.color = "#d87093";
 }
 
 function mensajeContenidoVacio(numeroTablas) {
-	
-	// console.log("numero de tablas es " + numeroTablas)
 	
 	if(numeroTablas == undefined) {
 		document.getElementById("mensaje").style.display = "block";	

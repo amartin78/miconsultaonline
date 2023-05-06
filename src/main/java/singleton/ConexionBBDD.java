@@ -323,6 +323,81 @@ public class ConexionBBDD {
 		ps.close();
 	}
 	
+	public static void insertarDatosMedicacion(int idPacienteSesionActiva) throws SQLException {
+		
+		PreparedStatement ps1 = getConnection().prepareStatement(
+				"INSERT INTO medicacion (nombre, dosis, posologia, tratamiento, fecha, paciente_id) " + 
+				"SELECT * FROM (SELECT 'Ibuprofeno', '400 mg', '1 cada 8 horas', 'Artrosis', '2023-03-21', " + idPacienteSesionActiva + ") " + 
+				"as tmp WHERE NOT EXISTS (SELECT nombre FROM medicacion WHERE nombre='Ibuprofeno' and paciente_id=" + idPacienteSesionActiva + ") LIMIT 1;"
+				);
+		ps1.executeUpdate();
+		ps1.close();
+		
+		PreparedStatement ps2 = getConnection().prepareStatement(
+				"INSERT INTO medicacion (nombre, dosis, posologia, tratamiento, fecha, paciente_id) " + 
+				"SELECT * FROM (SELECT 'Paracetamol pensa', '1 g', '1 cada 6 horas', 'Esguince de tobillo', '2022-09-29', " + idPacienteSesionActiva + ") " + 
+				"as tmp WHERE NOT EXISTS (SELECT nombre FROM medicacion WHERE nombre='Paracetamol pensa' and paciente_id=" + idPacienteSesionActiva + ") LIMIT 1;"
+				);
+		ps2.executeUpdate();
+		ps2.close();
+		
+		PreparedStatement ps3 = getConnection().prepareStatement(
+				"INSERT INTO medicacion (nombre, dosis, posologia, tratamiento, fecha, paciente_id) " + 
+				"SELECT * FROM (SELECT 'Aspirina', '500 mg', '1 cada 6 horas', 'Dolor de cabeza', '2023-02-04', " + idPacienteSesionActiva + ") " + 
+				"as tmp WHERE NOT EXISTS (SELECT nombre FROM medicacion WHERE nombre='Aspirina' and paciente_id=" + idPacienteSesionActiva + ") LIMIT 1;"
+				);
+		ps3.executeUpdate();
+		ps3.close();
+		
+		PreparedStatement ps4 = getConnection().prepareStatement(
+				"INSERT INTO medicacion (nombre, dosis, posologia, tratamiento, fecha, paciente_id) " + 
+				"SELECT * FROM (SELECT 'Champix', '1 mg', '1 cada 12 horas', 'Tabaquismo', '2022-11-14', " + idPacienteSesionActiva + ") " + 
+				"as tmp WHERE NOT EXISTS (SELECT nombre FROM medicacion WHERE nombre='Champix' and paciente_id=" + idPacienteSesionActiva + ") LIMIT 1;"
+				);
+		ps4.executeUpdate();
+		ps4.close();
+		
+		PreparedStatement ps5 = getConnection().prepareStatement(
+				"INSERT INTO medicacion (nombre, dosis, posologia, tratamiento, fecha, paciente_id) " + 
+				"SELECT * FROM (SELECT 'Lovastatina Lareq', '20 g', '1 cada 24 horas', 'Colesterol alto', '2021-09-28', " + idPacienteSesionActiva + ") " + 
+				"as tmp WHERE NOT EXISTS (SELECT nombre FROM medicacion WHERE nombre='Lovastatina Lareq' and paciente_id=" + idPacienteSesionActiva + ") LIMIT 1;"
+				);
+		ps5.executeUpdate();
+		ps5.close();
+		
+		PreparedStatement ps6 = getConnection().prepareStatement(
+				"INSERT INTO medicacion (nombre, dosis, posologia, tratamiento, fecha, paciente_id) " + 
+				"SELECT * FROM (SELECT 'Cetirizina Cinfa', '10 mg', '1 cada 24 horas', 'Alergia', '2021-05-06', " + idPacienteSesionActiva + ") " + 
+				"as tmp WHERE NOT EXISTS (SELECT nombre FROM medicacion WHERE nombre='Cetirizina Cinfa' and paciente_id=" + idPacienteSesionActiva + ") LIMIT 1;"
+				);
+		ps6.executeUpdate();
+		ps6.close();
+		
+		PreparedStatement ps7 = getConnection().prepareStatement(
+				"INSERT INTO medicacion (nombre, dosis, posologia, tratamiento, fecha, paciente_id) " + 
+				"SELECT * FROM (SELECT 'Prednisona Cinfa', '30 mg', '1 cada 12 horas', 'Eczema', '2018-08-26', " + idPacienteSesionActiva + ") " + 
+				"as tmp WHERE NOT EXISTS (SELECT nombre FROM medicacion WHERE nombre='Prednisona Cinfa' and paciente_id=" + idPacienteSesionActiva + ") LIMIT 1;"
+				);
+		ps7.executeUpdate();
+		ps7.close();
+		
+		PreparedStatement ps8 = getConnection().prepareStatement(
+				"INSERT INTO medicacion (nombre, dosis, posologia, tratamiento, fecha, paciente_id) " + 
+				"SELECT * FROM (SELECT 'Relenza', '5 mg en polvo', '1 cada 8 horas', 'Gripe', '2015-01-04', " + idPacienteSesionActiva + ") " + 
+				"as tmp WHERE NOT EXISTS (SELECT nombre FROM medicacion WHERE nombre='Relenza' and paciente_id=" + idPacienteSesionActiva + ") LIMIT 1;"
+				);
+		ps8.executeUpdate();
+		ps8.close();
+		
+		PreparedStatement ps9 = getConnection().prepareStatement(
+				"INSERT INTO medicacion (nombre, dosis, posologia, tratamiento, fecha, paciente_id) " + 
+				"SELECT * FROM (SELECT 'Amoxicilina Normon', '500 mg', '1 cada 8 horas', 'Otitis', '2012-09-01', " + idPacienteSesionActiva + ") " + 
+				"as tmp WHERE NOT EXISTS (SELECT nombre FROM medicacion WHERE nombre='Amoxicilina Normon' and paciente_id=" + idPacienteSesionActiva + ") LIMIT 1;"
+				);
+		ps9.executeUpdate();
+		ps9.close();
+	}
+	
 	public static void insertarDatosPacientes() throws SQLException {
 		
 		PreparedStatement ps = getConnection().prepareStatement(
@@ -334,3 +409,4 @@ public class ConexionBBDD {
 		ps.close();
 	}
 }
+

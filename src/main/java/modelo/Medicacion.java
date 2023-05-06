@@ -1,8 +1,7 @@
 package modelo;
 
-import java.sql.SQLException;
-import java.util.Date;
 import java.util.Objects;
+import java.util.Date;
 
 /**
  * Esta clase crea un objeto con información relativa a la medicación de un 
@@ -18,6 +17,8 @@ public class Medicacion {
 	private String dosis; 
 	private String posologia;
 	private String tratamiento; 
+	private Date fecha;
+	private int pacienteId;
 	
 	/**
 	 * Constructor de Medicación vacío
@@ -34,14 +35,17 @@ public class Medicacion {
 	 * @param dosis
 	 * @param posologia
 	 * @param tratamiento
+	 * @param fecha
+	 * @param paciente_id
 	 */
-	public Medicacion(int id, String nombre, String dosis, String posologia, String tratamiento) {
+	public Medicacion(String nombre, String dosis, String posologia, String tratamiento, Date fecha, int pacienteId) {
 		super();
-		this.id = id;
 		this.nombre = nombre;
 		this.dosis = dosis;
 		this.posologia = posologia;
 		this.tratamiento = tratamiento;
+		this.fecha = fecha;
+		this.pacienteId = pacienteId;
 	}
 
 	public int getId() {
@@ -84,9 +88,24 @@ public class Medicacion {
 		this.tratamiento = tratamiento;
 	}
 
+	public Date getFecha() {
+		return fecha;
+	}
+
+	public void setFecha(Date fecha) {
+		this.fecha = fecha;
+	}
+	public int getPacienteId() {
+		return pacienteId;
+	}
+
+	public void setPacienteId(int pacienteId) {
+		this.pacienteId = pacienteId;
+	}
+
 	@Override
 	public int hashCode() {
-		return Objects.hash(dosis, id, nombre, posologia, tratamiento);
+		return Objects.hash(dosis, fecha, id, nombre, pacienteId, posologia, tratamiento);
 	}
 
 	@Override
@@ -98,15 +117,15 @@ public class Medicacion {
 		if (getClass() != obj.getClass())
 			return false;
 		Medicacion other = (Medicacion) obj;
-		return Objects.equals(dosis, other.dosis) && id == other.id && Objects.equals(nombre, other.nombre)
+		return Objects.equals(dosis, other.dosis) && Objects.equals(fecha, other.fecha) && id == other.id
+				&& Objects.equals(nombre, other.nombre) && pacienteId == other.pacienteId
 				&& Objects.equals(posologia, other.posologia) && Objects.equals(tratamiento, other.tratamiento);
 	}
 
 	@Override
 	public String toString() {
 		return "Medicacion [id=" + id + ", nombre=" + nombre + ", dosis=" + dosis + ", posologia=" + posologia
-				+ ", tratamiento=" + tratamiento + "]";
-	} 
+				+ ", tratamiento=" + tratamiento + ", fecha=" + fecha + ", pacienteId=" + pacienteId + "]";
+	}
 }
-
 
