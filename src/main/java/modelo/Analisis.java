@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.Objects;
 
+import dao.AnalisisDAO;
 import modelo.Marcador;
 
 /**
@@ -139,6 +140,12 @@ public class Analisis {
 	public String toString() {
 		return "Analisis [id=" + analisis_id + ", nombre=" + nombre + ", estado=" + estado + ", fecha=" + fecha + ", marcadores="
 				+ marcadores + ", paciente_id=" + paciente_id + "]";
+	}
+	
+	public String listarAnalisis(int id) throws SQLException {
+		
+		String listado = AnalisisDAO.getInstance().listarAnalisisPorPacienteSesionJSON(id);
+		return listado;
 	}
 }
 

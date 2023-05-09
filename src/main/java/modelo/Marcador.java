@@ -1,7 +1,5 @@
 package modelo;
 
-import java.sql.SQLException;
-import java.util.Date;
 import java.util.Objects;
 
 /**

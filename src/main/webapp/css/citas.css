@@ -1,0 +1,10 @@
+.contenedor-citas {
+	border-radius: 6px;
+	padding: 0.4em 1.2em 0.6em;
+	margin: 0 0 2em 0;
+	box-shadow: 1px 2px 8px rgba(0,0,0,0.2);
+}
+
+input[type="radio"] {
+	/* display: block; */
+}

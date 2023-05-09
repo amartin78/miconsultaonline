@@ -5,8 +5,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import dao.AnalisisDAO;
-
 import javax.servlet.ServletException;
 import java.io.IOException;
 import java.sql.SQLException;
@@ -16,6 +14,7 @@ import javax.servlet.annotation.MultipartConfig;
 
 import singleton.ConexionBBDD;
 import modelo.Paciente;
+import modelo.Analisis;
 
 @WebServlet("/CAnalisis")
 @MultipartConfig
@@ -32,13 +31,14 @@ public class CAnalisis extends HttpServlet {
 		
 		String datos = "";
 		HttpSession sesion = req.getSession();
+		Analisis analisis = new Analisis();
 		int id = ((Paciente) sesion.getAttribute("paciente")).getId();
 		
 		try {
 			
 			ConexionBBDD.insertarDatosAnalisis(id);
 			ConexionBBDD.insertarDatosMarcador(id);
-			datos = AnalisisDAO.getInstance().listarAnalisisPorPacienteSesionJSON(id);
+			datos = analisis.listarAnalisis(id);
 			resp.setContentType("text/html;charset=UTF8");
 			resp.getWriter().print(datos);
 		} catch(SQLException e) {

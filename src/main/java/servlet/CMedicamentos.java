@@ -13,8 +13,8 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.annotation.MultipartConfig;
 
 import singleton.ConexionBBDD;
-import dao.MedicacionDAO;
 import modelo.Paciente;
+import modelo.Medicacion;
 
 @WebServlet("/CMedicamentos")
 @MultipartConfig
@@ -31,12 +31,13 @@ public class CMedicamentos extends HttpServlet {
 		
 		String datos = "";
 		HttpSession sesion = req.getSession();
+		Medicacion medicacion = new Medicacion();
 		int id = ((Paciente) sesion.getAttribute("paciente")).getId();
 		
 		try {
 			
 			ConexionBBDD.insertarDatosMedicacion(id);
-			datos = MedicacionDAO.getInstance().listarMedicamentosPorPacienteSesionJSON(id);
+			datos = medicacion.listarMedicamentos(id);
 			resp.setContentType("text/html;charset=UTF8");
 			resp.getWriter().print(datos);
 		} catch(SQLException e) {

@@ -116,9 +116,9 @@ function opcion(o) {
         case "Medicación":
             medicacion();
             break;
-        case "Citas":
-            citas();
-            break;
+        // case "Citas":
+           // citas();
+            // break;
         default:
             console.log("Opción incorrecta");
     }

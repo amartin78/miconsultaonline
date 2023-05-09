@@ -1,6 +1,10 @@
 package modelo;
 
 import java.util.Objects;
+
+import dao.MedicacionDAO;
+
+import java.sql.SQLException;
 import java.util.Date;
 
 /**
@@ -126,6 +130,12 @@ public class Medicacion {
 	public String toString() {
 		return "Medicacion [id=" + id + ", nombre=" + nombre + ", dosis=" + dosis + ", posologia=" + posologia
 				+ ", tratamiento=" + tratamiento + ", fecha=" + fecha + ", pacienteId=" + pacienteId + "]";
+	}
+	
+	public String listarMedicamentos(int id) throws SQLException {
+		
+		String listado = MedicacionDAO.getInstance().listarMedicamentosPorPacienteSesionJSON(id);
+		return listado;
 	}
 }
 

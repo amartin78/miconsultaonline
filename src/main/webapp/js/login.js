@@ -2,7 +2,7 @@ window.onload = function() {
 	
 	// Si se ha producido un error de autenticación entonces se creará una cookie credencialesInvalidas   
     // que supondrá la creación de un mensaje al usuario por pantalla para que intente 
-    // loguearse de nuevo.
+    // loguearse de nuevo. 
     let texto = "";
     let validez = "";
     let cookies = document.cookie.split(";");
@@ -33,3 +33,4 @@ window.onload = function() {
 		document.getElementById("mensaje").style.display = "none";	
 	});
 };
+

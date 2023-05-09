@@ -13,8 +13,8 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.annotation.MultipartConfig;
 
 import modelo.Paciente;
+import modelo.HistoriaClinica;
 import singleton.ConexionBBDD;
-import dao.HistoriaClinicaDAO;
 
 @WebServlet("/CHistoriasClinicas")
 @MultipartConfig
@@ -31,6 +31,7 @@ public class CHistoriasClinicas extends HttpServlet {
 		
 		String datos = "";
 		HttpSession sesion = req.getSession();
+		HistoriaClinica historiaClinica = new HistoriaClinica();
 		int id = ((Paciente) sesion.getAttribute("paciente")).getId();
 		int opcion = Integer.parseInt(req.getParameter("opcion")); 
 		
@@ -38,13 +39,13 @@ public class CHistoriasClinicas extends HttpServlet {
 			
 			// Se recogen los datos correspondientes en formato json de acuerdo según la opción 
 			// enviada desde la parte cliente.
+			ConexionBBDD.insertarDatosHistoriaClinica(id);
 			if(opcion == 1) {
-				ConexionBBDD.insertarDatosHistoriaClinica(id);
-				datos = HistoriaClinicaDAO.getInstance().listarAnomaliasPorPacienteSesionJSON(id);
+				datos = historiaClinica.listarAnomalias(id);
 			} else if(opcion == 2) {
-				datos = HistoriaClinicaDAO.getInstance().listarAlergiasPorPacienteSesionJSON(id);
+				datos = historiaClinica.listarAlergias(id);
 			} else if(opcion == 3) {
-				datos = HistoriaClinicaDAO.getInstance().listarVacunasPorPacienteSesionJSON(id);
+				datos = historiaClinica.listarVacunas(id);
 			} else {
 				System.out.println("Opción no válida.");
 			}

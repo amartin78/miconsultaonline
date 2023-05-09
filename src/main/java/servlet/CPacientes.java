@@ -137,17 +137,18 @@ public class CPacientes extends HttpServlet {
 	
 	private void buscarPaciente(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		
-		String p = null;
+		String datos;
 		HttpSession sesion = req.getSession();
+		Paciente p = new Paciente();
 		String email = ((Paciente) sesion.getAttribute("paciente")).getEmail();
 		
 		try {
-			p = PacienteDAO.getInstance().buscarPacientePorAtributoJSON("email", email);
+			datos = p.buscar("email", email);
+			resp.setContentType("text/html;charset=UTF8");
+			resp.getWriter().print(datos);
 		} catch(SQLException e) {
 			e.printStackTrace();
 		}
-		resp.setContentType("text/html;charset=UTF8");
-		resp.getWriter().print(p);
 	}
 	
 	private void cambiarContrasenia(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {

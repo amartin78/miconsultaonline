@@ -15,15 +15,23 @@ function citas() {
 		
 		elemCitas = "<div class='contenedor-citas'>";
 		
-		if(citas) {
-			for(let c in citas) {
-				if(analisis.hasOwnProperty(c)) {
+		// if(citas) {
+			// for(let c in citas) {
+				// if(analisis.hasOwnProperty(c)) {
 					
-					elemCitas += "<div class='contenedor-citas'>";
-		    		elemCitas += "<table class='listado-citas'>";
+		    		elemCitas += "<div class='listado-citas'>";
 		    		
-					let nombre = analisis[a]["nombre"] == undefined ? "" : analisis[a]["nombre"];
-			        let fecha = analisis[a]["fecha"] == undefined ? "" : analisis[a]["fecha"];
+		    		elemCitas += "<input type='radio' id='dia_10' name='dia_semana' value='2023-05-10'>";
+		    		elemCitas += "<label for='dia_10'>Martes 10 May</label>";
+		    		elemCitas += "<input type='radio' id='dia_11' name='dia_semana' value='2023-05-11'>";
+		    		elemCitas += "<label for='dia_11'>Miércoles 11 May</label>";
+		    		elemCitas += "<input type='radio' id='dia_12' name='dia_semana' value='2023-05-12'>";
+		    		elemCitas += "<label for='dia_12'>Jueves 12 May</label>";
+		    		
+		    		
+		    		
+					// let nombre = analisis[a]["nombre"] == undefined ? "" : analisis[a]["nombre"];
+			        // let fecha = analisis[a]["fecha"] == undefined ? "" : analisis[a]["fecha"];
 			        /* if(fecha !== undefined) {
 						fecha = new Date(fecha);
 						const options = {day: "numeric", month: "long", year: "numeric"};
@@ -61,21 +69,24 @@ function citas() {
 							                     "<td><span id='resultado'>" + resultado + "</span></td></tr>";
 						}
 					} */
-					tablaAnalisis += "</table>";
-					tablaAnalisis += "</div>";
-				}
-			}
-			tablaAnalisis += "</div>";
+					elemCitas += "</div>";
+					elemCitas += "</div>";
+				// }
+			// }
+			elemCitas += "</div>";
 			
-	    	document.getElementById("contenido-principal").innerHTML += tablaAnalisis;
+	    	document.getElementById("contenido-principal").innerHTML += elemCitas;
 	    	
-	    	// Marcadores anormales se muestran con color naranja.
-			document.querySelectorAll("#resultado").forEach(function(elem) {
-				if(elem.innerText === "Anormal") {
-					elem.style.color = "orange";
+	    	document.querySelectorAll("label").forEach(function(elem) {
+				if(elem.control.id == "dia_11") {
+					elem.innerText += " (Lleno)";
 				}
 			});
-		}
+	    	
+	    	//console.log(document.querySelectorAll("label")[1].control.id == "dia_11");
+	    	document.getElementById("dia_11").disabled = true;
+	    	// document.querySelector("#dia_11 label").innerText += "(Lleno)";
+		// }
     // }); 
 
 

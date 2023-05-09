@@ -5,8 +5,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import dao.DiagnosticoImagenDAO;
-
 import javax.servlet.ServletException;
 import java.io.IOException;
 import java.sql.SQLException;
@@ -16,6 +14,7 @@ import javax.servlet.annotation.MultipartConfig;
 
 import singleton.ConexionBBDD;
 import modelo.Paciente;
+import modelo.DiagnosticoImagen;
 
 @WebServlet("/CDiagnosticoImagenes")
 @MultipartConfig
@@ -32,13 +31,14 @@ public class CDiagnosticoImagenes extends HttpServlet {
 		
 		String datos = "";
 		HttpSession sesion = req.getSession();
+		DiagnosticoImagen diagImagen = new DiagnosticoImagen();
 		int id = ((Paciente) sesion.getAttribute("paciente")).getId();
 		
 		try {
 			
 			ConexionBBDD.insertarDatosDiagnosticoImagen(id);
 			ConexionBBDD.insertarDatosDiagnosticoImgRutas(id);
-			datos = DiagnosticoImagenDAO.getInstance().listarDiagnosticoImagenPorPacienteSesionJSON(id);
+			datos = diagImagen.listarDiagnosticosPorImagen(id);
 			resp.setContentType("text/html;charset=UTF8");
 			resp.getWriter().print(datos);
 		} catch(SQLException e) {

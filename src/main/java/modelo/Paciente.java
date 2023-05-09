@@ -226,5 +226,11 @@ public class Paciente {
 		
 		PacienteDAO.getInstance().cambiarContrasenia(this);
 	}
+	
+	public String buscar(String atributo, String valor) throws SQLException {
+		
+		String listado = PacienteDAO.getInstance().buscarPacientePorAtributoJSON(atributo, valor);
+		return listado;
+	}
 }
 

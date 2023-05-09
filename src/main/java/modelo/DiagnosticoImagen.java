@@ -1,8 +1,11 @@
 package modelo;
 
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.Objects;
+
+import dao.DiagnosticoImagenDAO;
 
 /**
  * Esta clase crea un objeto de tipo DiagnosticoImagen con información útil
@@ -117,6 +120,12 @@ public class DiagnosticoImagen {
 		return "DiagnosticoImagen [diagnostico_imagen_id=" + diagnostico_imagen_id + ", nombre=" + nombre
 				+ ", descripcion=" + descripcion + ", fecha=" + fecha + ", rutas=" + rutas + ", paciente_id="
 				+ paciente_id + "]";
+	}
+	
+	public String listarDiagnosticosPorImagen(int id) throws SQLException {
+		
+		String listado = DiagnosticoImagenDAO.getInstance().listarDiagnosticoImagenPorPacienteSesionJSON(id);
+		return listado;
 	}
 }
 

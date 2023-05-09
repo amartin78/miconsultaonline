@@ -1,7 +1,10 @@
 package modelo;
 
+import java.sql.SQLException;
 import java.util.Date;
 import java.util.Objects;
+
+import dao.HistoriaClinicaDAO;
 
 /**
  * Esta clase crea la historia clínica de un paciente con información relativa a 
@@ -96,6 +99,26 @@ public class HistoriaClinica {
 	@Override
 	public String toString() {
 		return "HistoriaClinica [id=" + id + ", nombre=" + nombre + ", fecha=" + fecha + "]";
+	}
+	
+	public String listarAnomalias(int id) throws SQLException {
+		
+		String listado = HistoriaClinicaDAO.getInstance().listarAnomaliasPorPacienteSesionJSON(id);
+		return listado;
+	}
+	
+
+	public String listarAlergias(int id) throws SQLException {
+		
+		String listado = HistoriaClinicaDAO.getInstance().listarAlergiasPorPacienteSesionJSON(id);
+		return listado;
+	}
+	
+
+	public String listarVacunas(int id) throws SQLException {
+		
+		String listado = HistoriaClinicaDAO.getInstance().listarVacunasPorPacienteSesionJSON(id);
+		return listado;
 	}
 }
 
