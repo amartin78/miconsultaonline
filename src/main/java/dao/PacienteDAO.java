@@ -184,7 +184,6 @@ public class PacienteDAO {
 	public void cambiarContrasenia(Paciente p) throws SQLException {
 		
 		if(p.getId() != 0) {
-			
 			PreparedStatement ps = con.prepareStatement("UPDATE paciente SET password=? WHERE id=?");
 			ps.setString(1, p.getPassword());
 			ps.setInt(2, p.getId());

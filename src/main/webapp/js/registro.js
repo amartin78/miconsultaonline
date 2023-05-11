@@ -1,114 +1,77 @@
 
-document.getElementById("nombre").addEventListener("blur", function() {
+let mensajeRecibido = ""; // Esta variable almacena el valor del método validarContrasenia(campo) al ser invocado
+let mensajeError = ""; // Mensaje con lista de errores de los campos del formulario registro para mostrarlos por pantalla 
+let contadorErrores = 0;
+let contadorCamposVacios = 0;
 	
-	if(!esTexto(this)) {
-		alert("Debe de introducir texto en el campo Nombre");
-	}
-});
-
-document.getElementById("apellidos").addEventListener("blur", function() {
-	
-	if(!esTexto(this)) {
-		alert("Debe de introducir texto en el campo Apellidos");
-	}
-});
-
-document.getElementById("fecNacimiento").addEventListener("blur", function() {
-	
-	validarFechaNacimiento(this);
-});
-
-document.getElementById("password").addEventListener("blur", function() {
-	
-	validarContrasenia();
-});
-
-function esTexto(input) {
-	
-	let texto = input.value;
-	
-	for(let i = 0; i < texto.length; i++) {
+// Antes de enviar el formulario se realiza una serie de validaciones sobre los campos de éste 
+// para decidir si se corrigen o se envían al servidor en caso de estar todos correctos
+document.getElementById("enviar").addEventListener("click", function(campo) {
+ 
+	// Se evalúa cada campo del formulario registro
+	document.querySelectorAll(".registro").forEach(function(campo) {
 		
-		if(!/[A-Za-zÀ-ÖØ-öø-ÿ\s]/.test(texto[i])) {
-			return false;
+		switch(campo.id) {
+			case "nombre":
+				if(campo.value.length == 0) {
+					mensajeError += "Debe de introducir su nombre \n";
+				} else if(!esTexto(campo)) {
+					mensajeError += "Debe de introducir texto en el campo Nombre \n";
+					contadorErrores++;
+				}
+				break;
+			case "apellidos":
+				if(campo.value.length == 0) {
+					mensajeError += "Debe de introducir sus apellidos \n";
+				} else if(!esTexto(campo)) {
+					mensajeError += "Debe de introducir texto en el campo Apellidos \n";
+					contadorErrores++;
+				}
+				break;
+			case "fecNacimiento":
+				if(campo.value.length == 0) {
+					mensajeError += "Debe de introducir su fecha de nacimiento \n";
+				} else if(!esFechaNacimientoValida(campo)) {
+					mensajeError += "La fecha de nacimiento debe ser menor o igual a la fecha actual \n";
+					contadorErrores++;
+				}
+				break;
+			case "email":
+				if(campo.value.length == 0) {
+					mensajeError += "Debe de introducir un email \n";
+				} 
+				break;
+			case "password":
+				mensajeRecibido = validarContrasenia(campo);
+				if(campo.value.length == 0) {
+					mensajeError += "Debe de introducir una contraseña \n";
+				} else if(mensajeRecibido) {
+					mensajeError += "La contraseña actual debe tener " + mensajeRecibido + "\n";
+					contadorErrores++;
+				}
+				break;
+			default:
+				console.log("Campo no definido");
 		}
-	}
-	return true;
-}
-
-function validarFechaNacimiento(input) {
+	});	// Fin forEach loop
 	
-	let fechaNacimiento = new Date(input.value);
-	let momentoActual = Date.now();
-	let diferencia = momentoActual - fechaNacimiento;
-	
-	if(diferencia <= 0) {
-		alert("La fecha de nacimiento debe ser menor o igual a la fecha actual");
-	}
-}
-
-function validarContrasenia() {
-	
-	let charContrasenia;
-	totalLetras = 0;
-	totalNumeros = 0;
-	totalCharEspeciales = 0;  // Es un caracter especial
-	totalMinusculas = 0;
-	totalMayusculas = 0;
-	esLetra = false;
-	charsEspeciales = '[`!@#$%^&*()_+-=[]{};\':"\\|,.<>/?~]/';  
-	let contrasenia = document.getElementById("password").value;
-	let tamanio = contrasenia.length;
-	
-	for(let i = 0; i < contrasenia.length; i++) {
+	// Se cuenta el número de campos vacíos y se almacena en la variable contadorCamposVacios
+	document.querySelectorAll(".registro").forEach(function(campo) {
 		
-		// Almacenamos la letra que se valida
-		charContrasenia = contrasenia.charAt(i);
-		
-		// El caracter es una letra
-		esLetra = charContrasenia.toLowerCase() != charContrasenia.toUpperCase();
-		if(esLetra) {
-			
-			totalLetras++;			
+		if(campo.value.length == 0) {					
+			contadorCamposVacios++;
 		}
-		// El caracter es un número
-		if(!(isNaN(charContrasenia))) {
-			
-			totalNumeros++;
-			esLetra = false;		
-		}
-		// El caracter es especial
-		if(charsEspeciales.includes(charContrasenia)) {
-			
-			totalCharEspeciales++;
-			esLetra = false;		
-		}
-		// El caracter es minúscula
-		if(esLetra && (charContrasenia.toLowerCase() === charContrasenia)) {
-			
-			totalMinusculas++;
-		}
-		// El caracter es mayúscula
-		if(esLetra && (charContrasenia === charContrasenia.toUpperCase())) {
-			
-			totalMayusculas++;
-		}
+	});
+				
+	// En caso de existir un campo vacío o al menos un error en cualquier campo, se muestra por pantalla 
+	// al usuario un mensaje y se anula el envío del formulario al servidor
+	if(contadorErrores > 0 || contadorCamposVacios > 0) {				
+		alert(mensajeError);
+		event.preventDefault();		
 	}
-	
-	if(tamanio < 8) {
-		alert("Su contraseña debe contener al menos 8 caracteres.");
-	} else if(totalLetras < 2) {
-		alert("Su contraseña debe contener al menos 2 letras.");		
-	} else if(totalMinusculas < 1) {
-		alert("Su contraseña debe contener al menos 1 letra minúscula.");
-	} else if(totalMayusculas < 1) {
-		alert("Su contraseña debe contener al menos 1 letra mayúscula.");
-	} else if(totalNumeros < 1) {
-		alert("Su contraseña debe contener al menos 1 número.");		
-	} else if(totalCharEspeciales < 1) {
-		alert("Su contraseña debe contener al menos 1 caracter especial.");
-	} else {
-		console.log("Contraseña válida");
-	}
-}
+	// Se reinician los marcadores
+	mensajeError = "";
+	contadorErrores = 0;
+	contadorCamposVacios = 0;
+});
 

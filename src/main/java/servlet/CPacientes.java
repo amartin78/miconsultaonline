@@ -160,19 +160,20 @@ public class CPacientes extends HttpServlet {
 			String email = req.getParameter("email");
 			String actualContrasenia = req.getParameter("actualContrasenia");
 			String nuevaContrasenia = req.getParameter("nuevaContrasenia");
-			String repetirContrasenia = req.getParameter("repetirContrasenia");
+			String contraseniaRepetida = req.getParameter("contraseniaRepetida");
 			
 			String mensaje = null;
 			Paciente p = PacienteDAO.getInstance().autenticarPaciente(email, actualContrasenia);
 			
 			if (p != null) {
-				
-				if(nuevaContrasenia.equals(repetirContrasenia)) {
+				if(nuevaContrasenia.equals(contraseniaRepetida)) {
 					Cookie cookieValidez = new Cookie("passwordValido", "valido");
 					resp.addCookie(cookieValidez);
 					p.setPassword(req.getParameter("nuevaContrasenia"));
 					p.cambiarContrasenia();
 					System.out.println("La nueva contraseña ha sido guardada con éxito.");
+				} else {
+					System.out.println("La nueva contraseña y la repetida deben ser idénticas");
 				}
 			} else {
 				Cookie cookieValidez = new Cookie("passwordValido", "noValido");
