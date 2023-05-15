@@ -57,7 +57,15 @@ async function cuenta() {
 		let contadorErrores = 0;
 		let contadorCamposVacios = 0;
 		
-		document.querySelector("#enviar").addEventListener('click', function() {
+		document.querySelector("#enviar").addEventListener('click', function(event) {
+			
+			// En caso de haber al menos un campo input deshabilitado (además del campo email) quiere decir que 
+			// el formulario esta deshabilitado y no se deberá realizar ninguna acción.
+	 		if(document.getElementById("actualContrasenia").disabled) {
+				alert("Pulse antes el botón Editar para modificar o añadir información y luego Enviar");
+				event.preventDefault();
+				return;
+			}
 				
 			let indice = 0;
 			

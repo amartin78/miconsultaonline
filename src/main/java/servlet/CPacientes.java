@@ -103,7 +103,6 @@ public class CPacientes extends HttpServlet {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
-			
 	}
 	
 	private void actualizarPaciente(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -218,7 +217,7 @@ public class CPacientes extends HttpServlet {
 				sesion.setMaxInactiveInterval(10 * 60);
 				sesion.setAttribute("paciente", paciente);
 				Cookie cookie = new Cookie("email", paciente.getEmail());
-				// Se establece un tiempo máximo para la cookie igual al de la sesión menos un minuto
+				// Se establece un tiempo máximo para la cookie igual al de la sesión menos un minuto, 
 				// que es la frecuencia con que la parte cliente comprueba el estado de la sesión 
 				// para en el caso de estar finalizada redireccionar al cliente a la página de loguin.
 				cookie.setMaxAge(9 * 60);

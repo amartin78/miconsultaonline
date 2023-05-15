@@ -84,7 +84,15 @@ async function perfil() {
 		// Antes de enviar el formulario se realiza una serie de validaciones sobre los campos de éste 
 		// para decidir si se corrigen o se envían al servidor en caso de estar todos correctos
 		document.getElementById("enviar").addEventListener("click", function(event) {
-	 
+			
+			// En caso de haber al menos un campo input deshabilitado (además del campo email) quiere decir que 
+			// el formulario esta deshabilitado y no se deberá realizar ninguna acción.
+	 		if(document.getElementById("nombre").disabled) {
+				alert("Pulse antes el botón Editar para modificar o añadir información y luego Enviar");
+				event.preventDefault();
+				return;
+			}
+				
 			// Se evalúa cada campo del formulario perfil
 			document.querySelectorAll(".perfil").forEach(function(campo) {
 				
