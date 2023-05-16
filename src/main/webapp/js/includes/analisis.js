@@ -50,6 +50,9 @@ function analisis() {
 							let valor = marcadores[m]["valor"] == undefined ? "" : marcadores[m]["valor"];
 					        let valorMinimo = marcadores[m]["valorMinimo"] == undefined ? "" : marcadores[m]["valorMinimo"];
 					        let valorMaximo = marcadores[m]["valorMaximo"] == undefined ? "" : marcadores[m]["valorMaximo"];
+					        valor = valor.toString().replace(".", ",");
+					        valorMinimo = valorMinimo.toString().replace(".", ",");
+					        valorMaximo = valorMaximo.toString().replace(".", ",");
 					        let resultado = marcadores[m]["resultado"] == undefined ? "" : marcadores[m]["resultado"];
 							tablaAnalisis += "<tr><td>" + nombre + "</td>" + 
 							                     "<td>" + valor + "</td>" +
