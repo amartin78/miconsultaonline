@@ -1,6 +1,9 @@
+/Users/antonio/eclipse-workspace/miconsultaonline/src/main/java/servlet/CMedicamentos.java
+/Users/antonio/eclipse-workspace/miconsultaonline/src/main/java/dao/MedicacionDAO.java
 /Users/antonio/eclipse-workspace/miconsultaonline/src/main/java/modelo/Marcador.java
 /Users/antonio/eclipse-workspace/miconsultaonline/src/main/java/launch/Main.java
 /Users/antonio/eclipse-workspace/miconsultaonline/src/main/java/servlet/CPacientes.java
+/Users/antonio/eclipse-workspace/miconsultaonline/src/main/java/servlet/CDiagnosticoImagenes.java
 /Users/antonio/eclipse-workspace/miconsultaonline/src/main/java/modelo/HistoriaClinica.java
 /Users/antonio/eclipse-workspace/miconsultaonline/src/main/java/modelo/Anomalia.java
 /Users/antonio/eclipse-workspace/miconsultaonline/src/main/java/singleton/ConexionBBDD.java
@@ -9,8 +12,11 @@
 /Users/antonio/eclipse-workspace/miconsultaonline/src/main/java/dao/AnalisisDAO.java
 /Users/antonio/eclipse-workspace/miconsultaonline/src/main/java/dao/PacienteDAO.java
 /Users/antonio/eclipse-workspace/miconsultaonline/src/main/java/modelo/Analisis.java
+/Users/antonio/eclipse-workspace/miconsultaonline/src/main/java/dao/DiagnosticoImagenDAO.java
 /Users/antonio/eclipse-workspace/miconsultaonline/src/main/java/servlet/FiltroPanel.java
 /Users/antonio/eclipse-workspace/miconsultaonline/src/main/java/modelo/Vacuna.java
+/Users/antonio/eclipse-workspace/miconsultaonline/src/main/java/modelo/DiagnosticoImagen.java
+/Users/antonio/eclipse-workspace/miconsultaonline/src/main/java/modelo/Medicacion.java
 /Users/antonio/eclipse-workspace/miconsultaonline/src/main/java/modelo/Alergia.java
 /Users/antonio/eclipse-workspace/miconsultaonline/src/main/java/servlet/CHistoriasClinicas.java
 /Users/antonio/eclipse-workspace/miconsultaonline/src/main/java/dao/HistoriaClinicaDAO.java

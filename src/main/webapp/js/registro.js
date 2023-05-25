@@ -6,7 +6,7 @@ let contadorCamposVacios = 0;
 	
 // Antes de enviar el formulario se realiza una serie de validaciones sobre los campos de éste 
 // para decidir si se corrigen o se envían al servidor en caso de estar todos correctos
-document.getElementById("enviar").addEventListener("click", function(campo) {
+document.getElementById("enviar").addEventListener("click", function(event) {
  
 	// Se evalúa cada campo del formulario registro
 	document.querySelectorAll(".registro").forEach(function(campo) {
