@@ -19,7 +19,7 @@
 -- Table structure for table `Medico`
 --
 
-use heroku_40029d4180b186d;
+use heroku_01d8c9df605ed4c;
 
 DROP TABLE IF EXISTS `Medico`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
