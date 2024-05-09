@@ -14,7 +14,7 @@ import modelo.Analisis;
 public class ConexionBBDD {
 	
 //	private static final String JDBC_URL = "jdbc:mysql://localhost:3306/consultaonline";
-	private static final String JDBC_URL = "jdbc:mysql://eu-cdbr-west-03.cleardb.net/heroku_40029d4180b186d?autoReconnect=true";
+	private static final String JDBC_URL = "jdbc:mysql://eu-cluster-west-01.k8s.cleardb.net/heroku_01d8c9df605ed4c?autoReconnect=true";
 	private static Connection instance = null;
 	
 	private ConexionBBDD() {
@@ -25,8 +25,8 @@ public class ConexionBBDD {
  		
 		if(instance == null) {
 			Properties props = new Properties();
-			props.put("user", "ba840f90deec6a");
-			props.put("password", "bfefe5fd");
+			props.put("user", "bead67a2208397");
+			props.put("password", "4b0fff8e");
 //			props.put("user", "root");
 //			props.put("password", "root");
 			
